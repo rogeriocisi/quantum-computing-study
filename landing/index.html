@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Computing Study | Roadmap</title>
+    <meta name="description" content="A professional 12-month roadmap to master Quantum Computing and Qiskit. From Linear Algebra to IBM Certification.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container hero-content">
+            <h1 class="hero-title fade-in">Quantum <br> Computing Study</h1>
+            <p class="hero-subtitle fade-in" style="animation-delay: 0.2s;">
+                A comprehensive 12-month roadmap from Linear Algebra foundations to IBM Quantum Developer Certification.
+            </p>
+            <a href="https://github.com/rogeriocisi/quantum-computing-study" class="btn-primary fade-in" style="animation-delay: 0.4s;">Explore Repository</a>
+        </div>
+    </header>
+
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="section-title">The <span>12-Month</span> Journey</h2>
+            
+            <div class="roadmap-grid">
+                <!-- Phase 1 -->
+                <div class="phase-card">
+                    <span class="phase-number">01 / FOUNDATIONS</span>
+                    <h3>Mathematical Roots</h3>
+                    <ul>
+                        <li>Linear Algebra & Hilbert Spaces</li>
+                        <li>Dirac Notation (Bra-Ket)</li>
+                        <li>Qubits & Bloch Sphere Geometry</li>
+                        <li>Quantum Entanglement & Bell States</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="phase-card">
+                    <span class="phase-number">02 / ALGORITHMS</span>
+                    <h3>Logic & Oracles</h3>
+                    <ul>
+                        <li>Deutsch-Jozsa & Oracle Patterns</li>
+                        <li>Grover's Search Algorithm</li>
+                        <li>Quantum Fourier Transform (QFT)</li>
+                        <li>Shor's Factoring Fundamentals</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="phase-card">
+                    <span class="phase-number">03 / APPLICATIONS</span>
+                    <h3>Real-World Utility</h3>
+                    <ul>
+                        <li>Quantum Chemistry with VQE</li>
+                        <li>Quantum Machine Learning (VQC)</li>
+                        <li>Optimization with QAOA</li>
+                        <li>Quantum-Classical Hybrid Models</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="phase-card">
+                    <span class="phase-number">04 / MASTERY</span>
+                    <h3>The Final Frontier</h3>
+                    <ul>
+                        <li>Error Mitigation Techniques</li>
+                        <li>Qiskit Runtime & IBM Hardware</li>
+                        <li>Portfolio Projects Development</li>
+                        <li>IBM C1000-179 Certification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" style="background: rgba(138, 43, 226, 0.03);">
+        <div class="container">
+            <h2 class="section-title">Tech <span>Stack</span></h2>
+            <div class="tech-stack">
+                <div class="tech-item"><span>Py</span> Python 3.10+</div>
+                <div class="tech-item"><span>⚛️</span> Qiskit v2.x</div>
+                <div class="tech-item"><span>☁️</span> IBM Quantum Runtime</div>
+                <div class="tech-item"><span>📊</span> Matplotlib</div>
+                <div class="tech-item"><span>🛠️</span> Qiskit Aer</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Rogerio Cisi - Quantum Computing Study Repository</p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">Based on the Integrated Roadmap for Programmers</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.phase-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
