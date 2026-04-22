@@ -16,3 +16,6 @@ outputs/*.json
 # IDE
 .vscode/
 .idea/
+
+# Private Notes & Exercises
+notes/

@@ -1,5 +1,18 @@
-qiskit
-qiskit-ibm-runtime
-qiskit-aer
-matplotlib
+# Core Quantum SDKs (Updated for Python 3.13 compatibility)
+qiskit>=1.1.0
+qiskit-aer>=0.14.0
+qiskit-ibm-runtime>=0.23.0
+pennylane>=0.36.0
+
+# Scientific Stack
+numpy>=2.1.0
+scipy>=1.13.0
+matplotlib>=3.9.0
+pandas>=2.2.0
+
+# Development Tools
+jupyterlab>=4.2.0
+pytest>=8.0.0
+black>=24.4.0
+flake8>=7.0.0
 pylatexenc

@@ -37,38 +37,38 @@ A curated selection of the best educational materials in the field, categorized 
 ---
 
 ## 📅 Realistic Part-Time Roadmap (12 Months)
-*Optimized for 6-10 hours/week. Developer-centric approach with a focus on QML and software patterns.*
+*Optimized for 6-10 hours/week. Refined for developers focusing on core logic and professional delivery.*
 
 ### Phase 1: Foundations & Qubits (Month 1)
-*   **Topics**: Linear Algebra, Dirac Notation, Bloch Sphere, Single & Multi-qubit Gates.
-*   **Goal**: Transition from classical logic to quantum state representation.
+*   **Goal**: Transition from classical logic to quantum state representation (Dirac & Bloch).
 
-### Phase 2: Algorithms I & Logic Gates (Months 2-3)
+### Phase 2: Core Quantum Logic — Algorithms I (Months 2-4)
 *   **Topics**: Oracles, Phase Kickback, Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
-*   **Focus**: Mastering the core logic that powers quantum speedups.
+*   **Focus**: Mastery of the "Quantum Intuition" — where most developers face the steepest learning curve.
 
-### Phase 3: Intro to QML with PennyLane (Month 4)
+### Phase 3: Intro to QML with PennyLane (Month 5)
 *   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", PennyLane setup.
-*   **Focus**: Early introduction to the "learnable" part of quantum computing for developers.
+*   **Focus**: Early introduction to the "learnable" part of quantum computing.
 
-### Phase 4: Advanced Algorithms II (Months 5-6)
+### Phase 4: Advanced Algorithms II (Month 6)
 *   **Topics**: Grover's Search, Quantum Fourier Transform (QFT), Phase Estimation (QPE), Shor's Algorithm.
-*   **Goal**: Understanding the mathematical foundations of the most famous algorithms.
+*   **Goal**: Understanding the mathematical foundations and Qiskit implementations of complex routines.
 
 ### Phase 5: Applied QML & Optimization (Months 7-8)
-*   **Topics**: QAOA for optimization, VQE for simple molecular simulation, Hybrid workflows.
+*   **Topics**: QAOA for optimization, VQE for molecular simulation, Hybrid workflows.
 *   **Focus**: Practical use of **PennyLane** and Qiskit for real-world problem solving.
 
 ### Phase 6: The NISQ Era & Noise Reality (Month 9)
-*   **Topics**: Conceptual Noise, Decoherence, Fidelity, high-level Error Mitigation (ZNE/M3).
-*   **Focus**: Understanding the limitations of current hardware without diving too deep into transpilation physics.
+*   **Topics**: Conceptual Noise, Decoherence, high-level Error Mitigation (ZNE/M3).
+*   **Focus**: Understanding hardware limitations without diving too deep into physics.
 
-### Phase 7: IBM Certification Mastery (Months 10-11)
-*   **Objective**: **IBM C1000-179 Exam Prep**.
-*   **Practice**: Intensive focus on the official curriculum, mock exams, and Qiskit SDK v2 best practices.
+### Phase 7: Buffer Month & Exam Deep Review (Month 10)
+*   **Objective**: Identify and fill knowledge gaps, review all previous phases, and start targeted IBM C1000-179 prep.
+*   **Focus**: Consolidation and "house cleaning" before the final push.
 
-### Phase 8: Industrial Capstone & Portfolio (Month 12)
-*   **Final Project**: A hybrid quantum-classical application (e.g., Portfolio Optimization or QML Signal Processing) with a full CI/CD pipeline.
+### Phase 8: Industrial Capstone & IBM Certification (Months 11-12)
+*   **Final Project**: A professional-grade hybrid application with a full CI/CD pipeline and technical documentation.
+*   **Certification**: Completion of the **IBM C1000-179 Exam**.
 
 ---
 
@@ -77,15 +77,16 @@ A curated selection of the best educational materials in the field, categorized 
 To bridge the gap between classical simulation and real-world execution, the following hardware setup is recommended:
 
 ### 🖥️ Local Simulation (High-Performance Workstation)
-*Optimized for both Quantum Simulation (Qiskit Aer GPU) and high-end gaming (because you deserve some 4K FPS after solving Dirac equations) 🎮.*
+*Optimized for Quantum Simulation (Qiskit Aer GPU) and AI/LLM local workloads — no mining overhead.*
 
-*   **CPU**: AMD Ryzen 7 7700X or Intel Core i7-13700K — High clock speeds are essential for the classical optimization loops in QAOA/VQE.
-*   **RAM**: 32 GB DDR5 — The most critical component; quantum state-vector simulations are memory-intensive.
-*   **GPU**: NVIDIA RTX 4070 12 GB — Supports `qiskit-aer-gpu` and `PennyLane Lightning-GPU` for massive simulation speedups.
-*   **Storage**: 1 TB NVMe SSD (System & Dev Environments) + 1 TB HDD (Large datasets).
-*   **Motherboard**: AMD B650 or Intel B760 — Reliable and cost-effective chipsets.
-*   **PSU**: 650W 80+ Gold — Efficient power delivery for stable performance.
-*   **Cooling**: High-performance Tower Air Cooler (e.g., DeepCool AK620) for silent and stable operation.
+*   **CPU**: AMD Ryzen 7 9700X — High single-core clock speeds are essential for the classical optimization loops in QAOA/VQE. More energy-efficient than previous gen with no mining demand.
+*   **RAM**: 32 GB DDR5-6000 (2x16 GB, Dual Channel) — The most critical component; quantum state-vector simulations are memory-intensive. Expandable to 64 GB if needed in later roadmap phases (QML/VQE).
+*   **GPU**: NVIDIA RTX 4060 Ti 16 GB — Preferred over the 4070 12 GB for this use case: the extra VRAM enables simulation of ~28–30 qubits locally with `qiskit-aer-gpu` and `PennyLane Lightning-GPU`, vs. ~26 qubits with 12 GB.
+*   **Storage**: 1 TB NVMe SSD — Sufficient for system, dev environments, and all roadmap projects.
+*   **Motherboard**: AMD B650 — Reliable and cost-effective chipset, fully compatible with Ryzen 9000 series.
+*   **PSU**: 650W 80+ Gold — Efficient power delivery; adequate without 24/7 mining load.
+*   **Cooling**: High-performance Tower Air Cooler (e.g., DeepCool AK620) — Silent and stable for sustained simulation workloads.
+
 
 ### ☁️ Remote Quantum Access (Real Hardware)
 *   **IBM Quantum Platform**: Access to utility-scale processors (127-qubit Eagle/Heron) via **IBM Quantum Runtime API**.
