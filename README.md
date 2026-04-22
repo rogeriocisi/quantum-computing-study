@@ -77,7 +77,7 @@ A curated selection of the best educational materials in the field, categorized 
 To bridge the gap between classical simulation and real-world execution, the following hardware setup is recommended:
 
 ### 🖥️ Local Simulation (High-Performance Workstation)
-*Optimized for both Quantum Simulation (Qiskit Aer GPU) and high-end gaming.*
+*Optimized for both Quantum Simulation (Qiskit Aer GPU) and high-end gaming (because you deserve some 4K FPS after solving Dirac equations) 🎮.*
 
 *   **CPU**: AMD Ryzen 7 7700X or Intel Core i7-13700K — High clock speeds are essential for the classical optimization loops in QAOA/VQE.
 *   **RAM**: 32 GB DDR5 — The most critical component; quantum state-vector simulations are memory-intensive.
