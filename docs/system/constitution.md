@@ -21,8 +21,8 @@
 - **Audience**: International researchers and professional developers.
 
 ## 4. Repository Structure & Standards
-- **Source Code (`src/`)**: Modular structure by domain (`algorithms/`, `qml/`, `optimization/`, `utils/`).
-- **Scripts**: Entry point at `src/capstone_demo.py`.
+- **Source Code (`src/`)**: Reusable modules only, organized by domain (`algorithms/`, `qml/`, `optimization/`, `utils/`). No entry point runners here.
+- **Execution Scripts (`scripts/`)**: Standalone runners that import from `src/` (e.g., `capstone_demo.py`). These are not importable modules.
 - **Notebooks (`notebooks/`)**: Used for Phase 1-6 learning and prototyping.
 - **Governance (`docs/system/`)**:
     - `constitution.md`: This document.

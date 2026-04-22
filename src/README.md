@@ -8,7 +8,8 @@ This directory follows a professional modular structure for Quantum Software Eng
 - **`qml/`**: Quantum Machine Learning experiments using **PennyLane**.
 - **`optimization/`**: Hybrid variational algorithms like **VQE** and **QAOA**.
 - **`utils/`**: Helper functions for noise mitigation (NISQ), visualization, and data processing.
-- **`capstone_demo.py`**: The main entry point for the hybrid pipeline demonstration.
+
+> 📌 **Note**: Runnable entry point scripts (e.g., `capstone_demo.py`) live in `../scripts/`, not here. This folder contains only reusable, importable modules.
 
 ## 🚀 How to Run
 
