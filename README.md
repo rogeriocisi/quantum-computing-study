@@ -1,108 +1,109 @@
-# Quantum Computing Study: Roadmap & Implementation 🌌
+# Quantum Computing Study: Roadmap & Resource Portal 🌌
 
 This repository contains a comprehensive **12-month study roadmap** and practical implementations for transitioning from classical software engineering to **Quantum Computing Developer**, specifically targeting the **IBM Certified Associate Developer - Quantum Computation using Qiskit v2.X**.
 
+---
+
 ## 🚀 The Mission
-To transform classical programmers into quantum-ready developers by bridging the gap between **Linear Algebra** and **Quantum Hardware/Software** implementation using the latest **Qiskit v2.x** framework.
+To transform software engineers and scientists into quantum-ready developers by mastering **Linear Algebra**, **Quantum Algorithms**, and **Hardware-Conscious Development** using the latest **Qiskit v2.x** framework.
+
+---
+
+## 📚 Academic Resource Portal
+A curated selection of the best educational materials in the field, categorized by difficulty and focus.
+
+### 📖 Essential Books
+*   **The Best Starting Point**: *Introduction to Classical and Quantum Computing* by Thomas G. Wong.
+*   **The Official Guide**: *Learn Quantum Computing using Qiskit* by IBM Qiskit Community.
+*   **The "Bible" of the Field**: *Quantum Computation and Quantum Information* ("Mike & Ike") by Nielsen & Chuang.
+*   **The Essential Bridge**: *Quantum Computing: A Gentle Introduction* by Rieffel & Polak (Focus on Linear Algebra).
+*   **Applied Mastery**: *Quantum Computing: An Applied Approach* by Jack Hidary (Qiskit + Cirq).
+
+### 🎓 Top-Tier Courses
+*   **IBM Quantum Learning**: Official interactive path for Qiskit v2 certification.
+*   **MIT 8.370x**: Quantum Information Science by Peter Shor & Isaac Chuang.
+*   **QuTech Academy (TU Delft)**: Advanced modules on Quantum Internet and Hardware.
+
+### ▶️ Video Playlists
+*   **Michael Nielsen**: "Quantum Computing for the Determined" (Short, rigorous conceptual videos).
+*   **John Watrous (IBM)**: "Understanding Quantum Information" (Advanced university-level course).
+*   **Abraham Asfaw (IBM)**: "Coding with Qiskit" (Practical Python implementation).
+
+### 📄 Key Research Papers (ArXiv)
+*   **Preskill (arXiv:1801.00862)**: Quantum Computing in the NISQ Era and Beyond.
+*   **QML Survey (arXiv:2310.10315)**: A Survey on Quantum Machine Learning.
+*   **NISQ Tutorial (arXiv:2310.12571)**: Quantum Computing through the Lens of Control.
 
 ---
 
 ## 📅 High-Intensity Roadmap (12 Months)
+*Optimized for developers with a strong mathematical background.*
 
-### Phase 1: Foundations & Qubits (Month 1)
-*   **Month 1**: Linear Algebra (Hilbert Spaces, Dirac Notation, Complex Vectors), Qubit & Bloch Sphere (Single-qubit gates), Entanglement (Multi-qubit systems, CNOT, Bell States).
+### Phase 1: Fast Foundations (Month 1)
+*   **Topics**: Linear Algebra, Dirac Notation (|ψ⟩, ⟨ψ|), Unitary Matrices, Bloch Sphere.
+*   **Goal**: Master the mathematical representation of qubits and single/multi-qubit gates.
 
-### Phase 2: Quantum Algorithms (Months 2-3)
-*   **Month 2**: Oracles & Phase Kickback (Deutsch-Jozsa, Bernstein-Vazirani).
-*   **Month 3**: Advanced Algorithms (Grover's Search, QFT, Shor's Fundamentals).
+### Phase 2: Quantum Logic & Algorithms (Months 2-3)
+*   **Topics**: Deutsch-Jozsa, Phase Kickback, Bernstein-Vazirani, Simon's Algorithm.
+*   **Advanced**: Grover's Search (Amplitude Amplification) and QFT (Quantum Fourier Transform).
 
-### Phase 4: NISQ Applications (Months 4-5)
-*   **Month 4**: Quantum Chemistry (VQE) & Optimization (QAOA).
-*   **Month 5**: Quantum Machine Learning (VQC, Quantum Kernels).
+### Phase 3: NISQ Era & Variational Algorithms (Months 4-5)
+*   **Topics**: VQE (Variational Quantum Eigensolver), QAOA (Optimization).
+*   **Focus**: Quantum Machine Learning (QML) using PennyLane and Qiskit.
 
-### Phase 5: Mastery & Specialization (Months 6-12)
-*   **Month 6**: IBM Certification Prep (C1000-179) & Error Mitigation.
-*   **Month 7**: Quantum Communication & Cryptography (BB84, Teleportation).
-*   **Month 8**: Open Pulse & Hardware Control (Low-level pulse sequences).
-*   **Month 9**: Quantum Error Correction (QEC) & Surface Codes.
-*   **Month 10**: Advanced QML (Shadow Tomography, Generative Models).
-*   **Month 11**: Open Source Contribution (Qiskit Advocacy & Research).
-*   **Month 12**: Industrial Capstone Project (Real-world hybrid implementation).
+### Phase 4: Hardware Control & Error Mitigation (Months 6-8)
+*   **Topics**: Noise Models, ZNE (Zero-Noise Extrapolation), M3 Mitigation.
+*   **Specialization**: Open Pulse and low-level hardware control.
 
----
-
-## 🛠️ Project Structure
-*   `src/`: Practical Python implementations.
-    *   `bell_state.py`: Hello World of Quantum Entanglement.
-*   `docs/`: Theoretical material and roadmaps.
-    *   `roteiro.md`: The complete detailed study plan (in Portuguese).
-*   `outputs/`: Generated circuit diagrams and simulation results.
-*   `requirements.txt`: Project dependencies.
+### Phase 5: DevOps, Research & Certification (Months 9-12)
+*   **Portfolio**: Quantum Serverless Pipelines, Dockerized Hybrid Workflows.
+*   **Certification**: **IBM C1000-179 Exam Prep**.
+*   **Mastery**: Quantum Error Correction (QEC) and final Capstone Project.
 
 ---
 
-## 💻 Tech Stack
-*   **Language**: Python 3.10+
+## 🛠️ Tech Stack & Setup
+
+### Requirements
+*   **Python**: 3.10+
 *   **SDK**: Qiskit v2.x
-*   **Cloud Hardware**: IBM Quantum Runtime Service
-*   **Simulation**: Qiskit Aer
-*   **Visualization**: Matplotlib, Pylatexenc
+*   **Tools**: PennyLane (QML), Qiskit Aer (Simulation), Qiskit Runtime (Cloud).
+
+### Quick Setup
+```powershell
+# Create environment
+python -m venv quantum_env
+.\quantum_env\Scripts\activate
+
+# Install dependencies
+pip install qiskit qiskit-aer qiskit-ibm-runtime pennylane matplotlib
+```
 
 ---
 
-## ⚙️ Setup Instructions
+## 🏆 Certification Goals
 
-1.  **Create a Virtual Environment**:
-    ```powershell
-    python -m venv quantum_env
-    .\quantum_env\Scripts\activate
-    ```
+### 🎯 Primary: IBM C1000-179
+The main objective is 100% coverage of the IBM Certified Developer exam:
+*   **Circuit Operations (47%)**
+*   **Visualization (19%)**
+*   **Primitives (15%)**
+*   **Quantum Information (10%)**
+*   **OpenQASM & Tooling (9%)**
 
-2.  **Install Dependencies**:
-    ```powershell
-    pip install -r requirements.txt
-    ```
-
-3.  **Run your first circuit**:
-    ```powershell
-    python src/bell_state.py
-    ```
+### 🌟 The "Plus" (Complementary Badges)
+*   **AWS Braket**: For cloud-native infrastructure mastery.
+*   **MIT xPRO**: For executive strategy and theoretical depth.
+*   **PennyLane (Xanadu)**: For advanced Quantum Machine Learning.
 
 ---
 
-### 🏆 Primary Certification Goal
-
-The core objective of this repository is to cover 100% of the **IBM Certified Associate Developer - Quantum Computation using Qiskit v2.X (C1000-179)** exam.
-
-### Exam Objectives (C1000-179):
-* **Circuit Operations (47%)**: Multi-qubit construction, unitaries, and depth.
-* **Visualization (19%)**: Bloch vectors, QSpheres, and probability distributions.
-* **Primitives (15%)**: Advanced usage of Sampler & Estimator.
-* **Quantum Information (10%)**: Operators, fidelity, and state management.
-* **OpenQASM & Tooling (9%)**: QASM 3.0 export and job management.
+## 📂 Project Structure
+*   `src/`: Quantum code implementations (.py).
+*   `docs/`: Resource portal, roadmap details, and theoretical material.
+*   `landing/`: Web visualization of the study progress.
+*   `outputs/`: Circuits, diagrams, and simulation results.
 
 ---
 
-### 🎖️ Official IBM Learning Badges (Deep Dives)
-
-Beyond the main certification, this repository provides materials to help you earn specific IBM Quantum Learning badges:
-
-* **Basics of Quantum Information**: Core theory and math.
-* **Fundamentals of Quantum Algorithms**: Grover, Shor, and beyond.
-* **Quantum Machine Learning (QML)**: Quantum kernels and neural networks.
-* **Quantum Business Foundations**: Industry strategy and Quantum-Safe security.
-
----
-
-### 🌟 Complementary Certifications (The "Plus")
-
-While the IBM certification is the main goal of this repo, it could be intersting to take other specialized badges to diversify a professional profile:
-
-* **AWS Braket Digital Badge**: For cloud-native quantum infrastructure.
-* **MIT xPRO**: For deep theoretical foundations and quantum strategy.
-* **PennyLane / QHack (Xanadu)**: For specialized Quantum Machine Learning (QML).
-* **Linux Foundation (LFW103)**: For open-source and security standards.
-
----
-
-*This project is built for the era of **Quantum Utility**, focusing on practical, hardware-conscious development.*
+*Built for the **Quantum Utility** era. Focused on code that runs on real hardware.*
