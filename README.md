@@ -37,38 +37,59 @@ A curated selection of the best educational materials in the field, categorized 
 ---
 
 ## 📅 Realistic Part-Time Roadmap (12 Months)
-*Optimized for 6-10 hours/week. A comprehensive journey from zero to hardware-ready mastery.*
+*Optimized for 6-10 hours/week. Developer-centric approach with a focus on QML and software patterns.*
 
 ### Phase 1: Foundations & Qubits (Month 1)
 *   **Topics**: Linear Algebra, Dirac Notation, Bloch Sphere, Single & Multi-qubit Gates.
 *   **Goal**: Transition from classical logic to quantum state representation.
 
-### Phase 2: Quantum Logic & Algorithms I (Months 2-3)
+### Phase 2: Algorithms I & Logic Gates (Months 2-3)
 *   **Topics**: Oracles, Phase Kickback, Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
-*   **Focus**: Mastery of interference-based speedups.
+*   **Focus**: Mastering the core logic that powers quantum speedups.
 
-### Phase 3: Advanced Algorithms II (Months 4-5)
+### Phase 3: Intro to QML with PennyLane (Month 4)
+*   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", PennyLane setup.
+*   **Focus**: Early introduction to the "learnable" part of quantum computing for developers.
+
+### Phase 4: Advanced Algorithms II (Months 5-6)
 *   **Topics**: Grover's Search, Quantum Fourier Transform (QFT), Phase Estimation (QPE), Shor's Algorithm.
-*   **Goal**: Understanding the mathematical core of quantum complexity.
+*   **Goal**: Understanding the mathematical foundations of the most famous algorithms.
 
-### Phase 4: NISQ Applications & QML (Months 6-7)
-*   **Topics**: Variational Algorithms (VQE, QAOA), Quantum Kernels, Neural Networks (PennyLane).
-*   **Focus**: Solving optimization and chemistry problems on near-term hardware.
+### Phase 5: Applied QML & Optimization (Months 7-8)
+*   **Topics**: QAOA for optimization, VQE for simple molecular simulation, Hybrid workflows.
+*   **Focus**: Practical use of **PennyLane** and Qiskit for real-world problem solving.
 
-### Phase 5: Hardware Control & Error Mitigation (Months 8-9)
-*   **Topics**: Transpilation, Noise Models, Error Mitigation (ZNE, M3), Open Pulse.
-*   **Goal**: Learning to run production-grade code on noisy systems.
+### Phase 6: The NISQ Era & Noise Reality (Month 9)
+*   **Topics**: Conceptual Noise, Decoherence, Fidelity, high-level Error Mitigation (ZNE/M3).
+*   **Focus**: Understanding the limitations of current hardware without diving too deep into transpilation physics.
 
-### Phase 6: Specialization & Advanced Topics (Month 10)
-*   **Topics**: Quantum Error Correction (QEC) basics, Surface Codes, or Quantum Communication protocols.
-*   **Goal**: Expanding knowledge into the frontiers of Fault-Tolerant systems.
-
-### Phase 7: IBM Certification Mastery (Month 11)
+### Phase 7: IBM Certification Mastery (Months 10-11)
 *   **Objective**: **IBM C1000-179 Exam Prep**.
-*   **Practice**: Full-length mock exams and deep dive into Qiskit Primitives (v2).
+*   **Practice**: Intensive focus on the official curriculum, mock exams, and Qiskit SDK v2 best practices.
 
 ### Phase 8: Industrial Capstone & Portfolio (Month 12)
-*   **Final Project**: A hybrid quantum-classical application (e.g., Portfolio Optimization or Molecular Simulation) with a full CI/CD pipeline.
+*   **Final Project**: A hybrid quantum-classical application (e.g., Portfolio Optimization or QML Signal Processing) with a full CI/CD pipeline.
+
+---
+
+## 💻 Hardware Requirements
+
+To bridge the gap between classical simulation and real-world execution, the following hardware setup is recommended:
+
+### 🖥️ Local Simulation (High-Performance Workstation)
+*Optimized for both Quantum Simulation (Qiskit Aer GPU) and high-end gaming.*
+
+*   **CPU**: AMD Ryzen 7 7700X or Intel Core i7-13700K — High clock speeds are essential for the classical optimization loops in QAOA/VQE.
+*   **RAM**: 32 GB DDR5 — The most critical component; quantum state-vector simulations are memory-intensive.
+*   **GPU**: NVIDIA RTX 4070 12 GB — Supports `qiskit-aer-gpu` and `PennyLane Lightning-GPU` for massive simulation speedups.
+*   **Storage**: 1 TB NVMe SSD (System & Dev Environments) + 1 TB HDD (Large datasets).
+*   **Motherboard**: AMD B650 or Intel B760 — Reliable and cost-effective chipsets.
+*   **PSU**: 650W 80+ Gold — Efficient power delivery for stable performance.
+*   **Cooling**: High-performance Tower Air Cooler (e.g., DeepCool AK620) for silent and stable operation.
+
+### ☁️ Remote Quantum Access (Real Hardware)
+*   **IBM Quantum Platform**: Access to utility-scale processors (127-qubit Eagle/Heron) via **IBM Quantum Runtime API**.
+*   **AWS Braket**: Access to diverse architectures (IonQ, Rigetti, QuEra) using the Braket SDK.
 
 ---
 
