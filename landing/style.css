@@ -170,6 +170,40 @@ section {
     font-weight: bold;
 }
 
+/* Certifications Grid */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.cert-item {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.cert-item:hover {
+    border-color: var(--accent);
+    transform: scale(1.02);
+    background: rgba(255, 0, 122, 0.05);
+}
+
+.cert-item h4 {
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.cert-item p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+}
+
 /* Tech Stack */
 .tech-stack {
     display: flex;
