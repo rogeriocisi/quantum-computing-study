@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m py_compile src/algorithms/*.py src/optimization/*.py src/qml/*.py src/utils/*.py scripts/*.py)",
+      "Bash(pip show *)",
+      "Bash(pip install *)",
+      "Bash(export PATH=\"$PATH:/c/Users/Rogerio/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0/LocalCache/local-packages/Python313/Scripts\")",
+      "Bash(pre-commit --version)",
+      "Bash(pre-commit install *)",
+      "Bash(echo \"test\")",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
