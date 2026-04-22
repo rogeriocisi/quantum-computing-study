@@ -11,7 +11,7 @@
 
 ## 2. Tech Stack Constraints
 - **Language**: Python 3.10+
-- **Primary SDK**: Qiskit v2.x (Mandatory). Do NOT use deprecated v0.x patterns (e.g., `execute()` is deprecated, use `Sampler`/`Estimator` primitives).
+- **Primary SDK**: Qiskit 1.x (Latest Stable). Master the **Primitives v2** patterns (SamplerV2, EstimatorV2) as required by the C1000-179 exam. Do NOT use deprecated v0.x patterns (e.g., the old `execute()` function).
 - **QML Framework**: PennyLane (integration with Qiskit).
 - **Simulation**: Qiskit Aer (local), IBM Quantum Runtime (remote).
 - **Environment**: Virtual environment managed via `pip` and `requirements.txt`.

@@ -98,7 +98,7 @@ To bridge the gap between classical simulation and real-world execution, the fol
 
 ### Requirements
 *   **Python**: 3.10+
-*   **SDK**: Qiskit v2.x
+*   **SDK**: Qiskit 1.x
 *   **Tools**: PennyLane (QML), Qiskit Aer (Simulation), Qiskit Runtime (Cloud).
 
 ### Quick Setup

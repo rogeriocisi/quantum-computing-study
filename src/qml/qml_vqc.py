@@ -6,8 +6,10 @@ from typing import Optional, Tuple, List, Any
 import numpy as np
 try:
     import pennylane as qml
+    from pennylane import numpy as pnp
 except Exception:
     qml = None
+    pnp = np
 
 def build_vqc(n_qubits: int = 2, n_layers: int = 2) -> Tuple[Optional[Any], Optional[np.ndarray]]:
     """Return a PennyLane QNode and initial parameters.
@@ -28,7 +30,7 @@ def build_vqc(n_qubits: int = 2, n_layers: int = 2) -> Tuple[Optional[Any], Opti
         qml.AngleEmbedding(x, wires=range(n_qubits))
         qml.StronglyEntanglingLayers(params, wires=range(n_qubits))
         return qml.expval(qml.PauliZ(0))
-    init_params = np.random.randn(n_layers, n_qubits, 3)
+    init_params = pnp.array(np.random.randn(n_layers, n_qubits, 3), requires_grad=True)
     return circuit, init_params
 
 def loss_fn(circuit: Any, params: np.ndarray, data: List[np.ndarray], labels: List[int]) -> float:
@@ -47,7 +49,7 @@ def loss_fn(circuit: Any, params: np.ndarray, data: List[np.ndarray], labels: Li
     for x, y in zip(data, labels):
         pred = circuit(params, x)
         loss += (pred - y) ** 2
-    return float(loss / len(data))
+    return loss / len(data)
 
 def train_vqc(circuit: Any, params: np.ndarray, data: List[np.ndarray], labels: List[int], steps: int = 10) -> np.ndarray:
     """Very small training loop skeleton using gradient descent.
