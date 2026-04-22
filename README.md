@@ -36,29 +36,39 @@ A curated selection of the best educational materials in the field, categorized 
 
 ---
 
-## 📅 High-Intensity Roadmap (12 Months)
-*Optimized for developers with a strong mathematical background.*
+## 📅 Realistic Part-Time Roadmap (12 Months)
+*Optimized for 6-10 hours/week. A comprehensive journey from zero to hardware-ready mastery.*
 
-### Phase 1: Fast Foundations (Month 1)
-*   **Topics**: Linear Algebra, Dirac Notation (|ψ⟩, ⟨ψ|), Unitary Matrices, Bloch Sphere.
-*   **Goal**: Master the mathematical representation of qubits and single/multi-qubit gates.
+### Phase 1: Foundations & Qubits (Month 1)
+*   **Topics**: Linear Algebra, Dirac Notation, Bloch Sphere, Single & Multi-qubit Gates.
+*   **Goal**: Transition from classical logic to quantum state representation.
 
-### Phase 2: Quantum Logic & Algorithms (Months 2-3)
-*   **Topics**: Deutsch-Jozsa, Phase Kickback, Bernstein-Vazirani, Simon's Algorithm.
-*   **Advanced**: Grover's Search (Amplitude Amplification) and QFT (Quantum Fourier Transform).
+### Phase 2: Quantum Logic & Algorithms I (Months 2-3)
+*   **Topics**: Oracles, Phase Kickback, Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
+*   **Focus**: Mastery of interference-based speedups.
 
-### Phase 3: NISQ Era & Variational Algorithms (Months 4-5)
-*   **Topics**: VQE (Variational Quantum Eigensolver), QAOA (Optimization).
-*   **Focus**: Quantum Machine Learning (QML) using PennyLane and Qiskit.
+### Phase 3: Advanced Algorithms II (Months 4-5)
+*   **Topics**: Grover's Search, Quantum Fourier Transform (QFT), Phase Estimation (QPE), Shor's Algorithm.
+*   **Goal**: Understanding the mathematical core of quantum complexity.
 
-### Phase 4: Hardware Control & Error Mitigation (Months 6-8)
-*   **Topics**: Noise Models, ZNE (Zero-Noise Extrapolation), M3 Mitigation.
-*   **Specialization**: Open Pulse and low-level hardware control.
+### Phase 4: NISQ Applications & QML (Months 6-7)
+*   **Topics**: Variational Algorithms (VQE, QAOA), Quantum Kernels, Neural Networks (PennyLane).
+*   **Focus**: Solving optimization and chemistry problems on near-term hardware.
 
-### Phase 5: DevOps, Research & Certification (Months 9-12)
-*   **Portfolio**: Quantum Serverless Pipelines, Dockerized Hybrid Workflows.
-*   **Certification**: **IBM C1000-179 Exam Prep**.
-*   **Mastery**: Quantum Error Correction (QEC) and final Capstone Project.
+### Phase 5: Hardware Control & Error Mitigation (Months 8-9)
+*   **Topics**: Transpilation, Noise Models, Error Mitigation (ZNE, M3), Open Pulse.
+*   **Goal**: Learning to run production-grade code on noisy systems.
+
+### Phase 6: Specialization & Advanced Topics (Month 10)
+*   **Topics**: Quantum Error Correction (QEC) basics, Surface Codes, or Quantum Communication protocols.
+*   **Goal**: Expanding knowledge into the frontiers of Fault-Tolerant systems.
+
+### Phase 7: IBM Certification Mastery (Month 11)
+*   **Objective**: **IBM C1000-179 Exam Prep**.
+*   **Practice**: Full-length mock exams and deep dive into Qiskit Primitives (v2).
+
+### Phase 8: Industrial Capstone & Portfolio (Month 12)
+*   **Final Project**: A hybrid quantum-classical application (e.g., Portfolio Optimization or Molecular Simulation) with a full CI/CD pipeline.
 
 ---
 
