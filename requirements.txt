@@ -1,6 +1,6 @@
-# Core Quantum SDKs (Updated for Python 3.13 compatibility)
-qiskit>=1.1.0
-qiskit-aer>=0.14.0
+# Core Quantum SDKs (Qiskit 2.x — required for IBM C1000-179 certification)
+qiskit>=2.0.0
+qiskit-aer>=0.15.0
 qiskit-ibm-runtime>=0.23.0
 pennylane>=0.36.0
 
