@@ -101,10 +101,22 @@ To bridge the gap between classical simulation and real-world execution, the fol
 *   **Tools**: PennyLane (QML), Qiskit Aer (Simulation), Qiskit Runtime (Cloud).
 
 ### Quick Setup
+
+#### 🪟 Windows (PowerShell)
 ```powershell
 # Create environment
 python -m venv quantum_env
 .\quantum_env\Scripts\activate
+
+# Install dependencies
+pip install qiskit qiskit-aer qiskit-ibm-runtime pennylane matplotlib
+```
+
+#### 🐧 Linux / WSL2 (Bash)
+```bash
+# Create environment
+python3 -m venv quantum_env
+source quantum_env/bin/activate
 
 # Install dependencies
 pip install qiskit qiskit-aer qiskit-ibm-runtime pennylane matplotlib
