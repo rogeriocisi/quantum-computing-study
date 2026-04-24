@@ -42,6 +42,9 @@ def run_simulation(qc: QuantumCircuit) -> Dict[str, int]:
     print("Drawing the circuit...")
     qc.draw(output="mpl", filename="outputs/bell_circuit.png")
 
+    # Ensure output directory exists
+    os.makedirs("outputs", exist_ok=True)
+
     # 6. Run the simulation using AerSimulator
     backend = AerSimulator()
     job = backend.run(qc, shots=1024)
