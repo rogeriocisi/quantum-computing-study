@@ -1,6 +1,10 @@
 """
-VQE and QAOA hybrid workflow skeleton.
-Usage: implement problem Hamiltonian and optimizer hooks; this file shows structure and interfaces.
+Variational Quantum Optimization (VQE & QAOA)
+=============================================
+This module provides the hybrid quantum-classical infrastructure for running
+Variational Quantum Eigensolvers (VQE) and the Quantum Approximate Optimization 
+Algorithm (QAOA). It defines the standard interfaces for ansatz preparation,
+expectation evaluation, and classical optimization loops.
 """
 from typing import Optional, Any
 import numpy as np

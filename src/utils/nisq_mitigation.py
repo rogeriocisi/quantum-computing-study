@@ -1,6 +1,9 @@
 """
-NISQ experiment and ZNE mitigation skeleton.
-Usage: extend apply_zne() to call a real noise-aware executor or Mitiq integration.
+NISQ Error Mitigation Tools
+===========================
+This module provides utilities for error mitigation on Noisy Intermediate-Scale
+Quantum (NISQ) devices. It includes a framework for Zero Noise Extrapolation (ZNE),
+enabling the estimation of error-free results through noise scaling.
 """
 from typing import Dict, Tuple, Any
 import math

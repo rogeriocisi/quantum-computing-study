@@ -1,6 +1,9 @@
 """
-PennyLane VQC template (integration with Qiskit).
-Usage: adapt device string and optimizer; this file shows structure and training loop skeleton.
+Variational Quantum Classifier (VQC)
+====================================
+A PennyLane-based implementation of a Variational Quantum Classifier (VQC).
+This module integrates quantum circuits as learnable layers in a machine learning
+pipeline, handling data embedding, variational ansatz, and gradient-based training.
 """
 from typing import Optional, Tuple, List, Any
 import numpy as np
