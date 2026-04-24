@@ -1,3 +1,4 @@
+import os
 from typing import Dict
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
@@ -38,12 +39,12 @@ def run_simulation(qc: QuantumCircuit) -> Dict[str, int]:
     Returns:
         Dict[str, int]: The measurement counts.
     """
+    # Ensure output directory exists
+    os.makedirs("outputs", exist_ok=True)
+
     # 5. Visualize the circuit (saved as an image)
     print("Drawing the circuit...")
     qc.draw(output="mpl", filename="outputs/bell_circuit.png")
-
-    # Ensure output directory exists
-    os.makedirs("outputs", exist_ok=True)
 
     # 6. Run the simulation using AerSimulator
     backend = AerSimulator()
