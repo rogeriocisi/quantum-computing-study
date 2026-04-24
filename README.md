@@ -145,8 +145,8 @@ To maintain high standards for quantum code, this project includes a comprehensi
 
 ## 📂 Project Structure
 *   `src/`: Quantum code implementations (.py).
-*   `docs/`: Resource portal, roadmap details, and technical material under `docs/reference/`.
-*   `landing/`: Web visualization of the study progress.
+*   `docs/`: Resource portal, roadmap details, and technical reference.
+    *   `docs/dashboard/`: Visual progress dashboard (HTML/CSS).
 *   `outputs/`: Circuits, diagrams, and simulation results.
 
 ---
