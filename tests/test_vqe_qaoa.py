@@ -5,9 +5,11 @@ Verifies:
 - QAOA ansatz structure
 - VQE workflow returns a valid numpy array of parameters
 """
+
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
 import numpy as np

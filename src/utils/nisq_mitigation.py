@@ -5,13 +5,15 @@ This module provides utilities for error mitigation on Noisy Intermediate-Scale
 Quantum (NISQ) devices. It includes a framework for Zero Noise Extrapolation (ZNE),
 enabling the estimation of error-free results through noise scaling.
 """
+
 from typing import Dict, Tuple, Any
 import math
 from qiskit import QuantumCircuit
 
+
 def build_test_circuit() -> QuantumCircuit:
     """Simple entangling circuit to demonstrate mitigation.
-    
+
     Returns:
         QuantumCircuit: A Bell-state-like circuit for testing.
     """
@@ -21,13 +23,16 @@ def build_test_circuit() -> QuantumCircuit:
     qc.measure_all()
     return qc
 
-def apply_zne(circuit: QuantumCircuit, scale_factors: Tuple[float, ...] = (1.0, 1.5, 2.0)) -> Dict[float, Dict[str, Any]]:
+
+def apply_zne(
+    circuit: QuantumCircuit, scale_factors: Tuple[float, ...] = (1.0, 1.5, 2.0)
+) -> Dict[float, Dict[str, Any]]:
     """Skeleton for Zero Noise Extrapolation.
-    
+
     Args:
         circuit: The circuit to mitigate.
         scale_factors: Factors to scale the noise (e.g., by gate folding).
-        
+
     Returns:
         Dict[float, Dict[str, Any]]: Mock results for each scale factor.
     """
@@ -37,6 +42,7 @@ def apply_zne(circuit: QuantumCircuit, scale_factors: Tuple[float, ...] = (1.0, 
         results[s] = {"counts": {"00": 1}}  # mock result
     return results
 
+
 def main() -> None:
     """Main execution flow for NISQ mitigation template."""
     qc = build_test_circuit()
@@ -44,6 +50,7 @@ def main() -> None:
     print(qc)
     res = apply_zne(qc)
     print("ZNE results (mock):", res)
+
 
 if __name__ == "__main__":
     main()

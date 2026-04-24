@@ -7,9 +7,11 @@ Verifies:
 - loss_fn returns a scalar
 - train_vqc runs without error and returns updated parameters
 """
+
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
 import numpy as np
@@ -34,7 +36,7 @@ class TestBuildVqc:
         """Parameters must have requires_grad=True for PennyLane autograd."""
         _, params = build_vqc()
         if params is not None:
-            assert hasattr(params, 'requires_grad')
+            assert hasattr(params, "requires_grad")
             assert params.requires_grad is True
 
     def test_circuit_is_callable(self):
@@ -53,7 +55,7 @@ class TestLossFn:
         data = [np.array([0.1, 0.2]), np.array([0.9, 0.8])]
         labels = [1, -1]
         loss = loss_fn(circuit, params, data, labels)
-        assert hasattr(loss, '__float__') or isinstance(loss, (int, float))
+        assert hasattr(loss, "__float__") or isinstance(loss, (int, float))
 
     def test_loss_is_non_negative(self):
         """MSE loss must always be >= 0."""

@@ -5,9 +5,11 @@ Verifies:
 - Oracle circuit structure
 - Deutsch-Jozsa output: constant → all-zeros; balanced → non-zero result
 """
+
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
 from qiskit import QuantumCircuit
@@ -44,9 +46,9 @@ class TestDeutschJozsa:
             result = deutsch_jozsa(n_qubits=n)
             if result is not None:
                 for key in result:
-                    assert len(key) == n, (
-                        f"Expected key length {n}, got '{key}' (len={len(key)})"
-                    )
+                    assert (
+                        len(key) == n
+                    ), f"Expected key length {n}, got '{key}' (len={len(key)})"
 
     def test_total_shots_is_1024(self):
         """Default shot count must be 1024."""

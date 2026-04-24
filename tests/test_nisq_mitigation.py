@@ -5,9 +5,11 @@ Verifies:
 - Circuit structure
 - ZNE skeleton: correct keys, non-empty results
 """
+
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
 from qiskit import QuantumCircuit
@@ -27,7 +29,7 @@ class TestBuildTestCircuit:
     def test_circuit_has_measurements(self):
         qc = build_test_circuit()
         gate_names = [instr.operation.name for instr in qc.data]
-        assert 'measure' in gate_names
+        assert "measure" in gate_names
 
 
 class TestApplyZne:
@@ -52,4 +54,4 @@ class TestApplyZne:
         qc = build_test_circuit()
         results = apply_zne(qc)
         for s, res in results.items():
-            assert 'counts' in res, f"Missing 'counts' key for scale factor {s}"
+            assert "counts" in res, f"Missing 'counts' key for scale factor {s}"

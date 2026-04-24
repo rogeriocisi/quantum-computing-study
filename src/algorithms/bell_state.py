@@ -4,11 +4,13 @@ from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import matplotlib.pyplot as plt
 import matplotlib
-matplotlib.use('Agg')  # Non-interactive backend for headless environments
+
+matplotlib.use("Agg")  # Non-interactive backend for headless environments
+
 
 def create_bell_state() -> QuantumCircuit:
     """Creates a 2-qubit Bell state (|00> + |11>) / sqrt(2).
-    
+
     Returns:
         QuantumCircuit: The entangled circuit.
     """
@@ -26,18 +28,19 @@ def create_bell_state() -> QuantumCircuit:
     qc.measure([0, 1], [0, 1])
     return qc
 
+
 def run_simulation(qc: QuantumCircuit) -> Dict[str, int]:
     """Runs the circuit on a local AerSimulator.
-    
+
     Args:
         qc: The QuantumCircuit to simulate.
-        
+
     Returns:
         Dict[str, int]: The measurement counts.
     """
     # 5. Visualize the circuit (saved as an image)
     print("Drawing the circuit...")
-    qc.draw(output='mpl', filename='outputs/bell_circuit.png')
+    qc.draw(output="mpl", filename="outputs/bell_circuit.png")
 
     # 6. Run the simulation using AerSimulator
     backend = AerSimulator()
@@ -50,15 +53,16 @@ def run_simulation(qc: QuantumCircuit) -> Dict[str, int]:
 
     # 8. Visualize the histogram (saved as an image)
     plot_histogram(counts)
-    plt.savefig('outputs/bell_histogram.png')
+    plt.savefig("outputs/bell_histogram.png")
     print("Simulation complete. Images generated in 'outputs/'.")
     return counts
+
 
 def main() -> None:
     """Main execution flow."""
     bell_circuit = create_bell_state()
     run_simulation(bell_circuit)
 
+
 if __name__ == "__main__":
     main()
-

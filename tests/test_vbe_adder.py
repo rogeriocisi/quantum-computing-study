@@ -9,8 +9,10 @@ Verifies the Vedral-Barenco-Ekert (VBE) quantum ripple-carry adder:
   - Convenience wrapper: add()
   - Input validation
 """
+
 import sys
 import os
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
@@ -26,10 +28,10 @@ from src.algorithms.vbe_adder import (
     add,
 )
 
-
 # ---------------------------------------------------------------------------
 # Sub-circuit structure tests
 # ---------------------------------------------------------------------------
+
 
 class TestCarryGate:
     """The CARRY sub-circuit must have the expected shape."""
@@ -84,9 +86,9 @@ class TestCarryDagGate:
         # Start with a non-trivial state: flip qubits 1 and 2
         qc.x(1)
         qc.x(2)
-        carry_gate     = _carry_gate().to_gate()
+        carry_gate = _carry_gate().to_gate()
         carry_dag_gate = _carry_dag_gate().to_gate()
-        qc.append(carry_gate,     [0, 1, 2, 3])
+        qc.append(carry_gate, [0, 1, 2, 3])
         qc.append(carry_dag_gate, [0, 1, 2, 3])
         qc.measure_all()
 
@@ -95,9 +97,9 @@ class TestCarryDagGate:
         counts = result.get_counts()
         # After carry + carry†, state must be restored to |0110⟩
         # Qiskit orders: qubit 3 (MSB) ... qubit 0 (LSB) → "0110"
-        assert list(counts.keys()) == ["0110"], (
-            f"CARRY · CARRY† is not identity: got {counts}"
-        )
+        assert list(counts.keys()) == [
+            "0110"
+        ], f"CARRY · CARRY† is not identity: got {counts}"
 
 
 class TestSumGate:
@@ -125,6 +127,7 @@ class TestSumGate:
 # Circuit structure tests
 # ---------------------------------------------------------------------------
 
+
 class TestBuildVbeAdder:
     """build_vbe_adder() must produce well-formed circuits."""
 
@@ -135,9 +138,9 @@ class TestBuildVbeAdder:
     def test_qubit_count(self, n):
         """Total qubits = (n+1) carry + n addend-a + n addend-b = 3n+1."""
         qc = build_vbe_adder(n)
-        assert qc.num_qubits == 3 * n + 1, (
-            f"Expected {3*n+1} qubits for n={n}, got {qc.num_qubits}"
-        )
+        assert (
+            qc.num_qubits == 3 * n + 1
+        ), f"Expected {3*n+1} qubits for n={n}, got {qc.num_qubits}"
 
     @pytest.mark.parametrize("n", [1, 2, 4, 8])
     def test_classical_bit_count(self, n):
@@ -178,28 +181,32 @@ class TestBuildVbeAdder:
 # Correctness tests (simulation-based)
 # ---------------------------------------------------------------------------
 
+
 class TestVbeAdderCorrectness:
     """The VBE adder must compute a + b correctly for all tested pairs."""
 
     SHOTS = 4096  # high shot count for deterministic results
 
-    @pytest.mark.parametrize("a_val, b_val, n", [
-        # The Quirk example: init=[0,1,0,0,1,1,0,0,1,0,1,1] → 9 + 6 = 15
-        (9,  6,  4),
-        # Zero operands
-        (0,  0,  1),
-        (0,  5,  3),
-        (5,  0,  3),
-        # Single-bit cases
-        (0,  1,  1),
-        (1,  0,  1),
-        (1,  1,  1),   # 1+1=2, carry-out = 1  → result = 10 in binary
-        # Multi-bit cases
-        (3,  4,  3),   # 011 + 100 = 111
-        (7,  1,  3),   # 111 + 001 = 1000 (carry out)
-        (15, 15, 4),   # max 4-bit + max 4-bit = 30
-        (10,  5, 4),   # 1010 + 0101 = 1111
-    ])
+    @pytest.mark.parametrize(
+        "a_val, b_val, n",
+        [
+            # The Quirk example: init=[0,1,0,0,1,1,0,0,1,0,1,1] → 9 + 6 = 15
+            (9, 6, 4),
+            # Zero operands
+            (0, 0, 1),
+            (0, 5, 3),
+            (5, 0, 3),
+            # Single-bit cases
+            (0, 1, 1),
+            (1, 0, 1),
+            (1, 1, 1),  # 1+1=2, carry-out = 1  → result = 10 in binary
+            # Multi-bit cases
+            (3, 4, 3),  # 011 + 100 = 111
+            (7, 1, 3),  # 111 + 001 = 1000 (carry out)
+            (15, 15, 4),  # max 4-bit + max 4-bit = 30
+            (10, 5, 4),  # 1010 + 0101 = 1111
+        ],
+    )
     def test_addition(self, a_val, b_val, n):
         a_bits = [(a_val >> i) & 1 for i in range(n)]
         b_bits = [(b_val >> i) & 1 for i in range(n)]
@@ -224,9 +231,9 @@ class TestVbeAdderCorrectness:
         """A fully specified input must yield exactly one outcome (counts has one key)."""
         qc = build_vbe_adder(3, a_bits=[1, 0, 1], b_bits=[0, 1, 0])
         counts = run_simulation(qc, shots=2048)
-        assert len(counts) == 1, (
-            f"Deterministic circuit must yield exactly 1 outcome, got {counts}"
-        )
+        assert (
+            len(counts) == 1
+        ), f"Deterministic circuit must yield exactly 1 outcome, got {counts}"
 
     def test_counts_sum_to_shots(self):
         qc = build_vbe_adder(2, a_bits=[1, 0], b_bits=[0, 1])
@@ -239,11 +246,12 @@ class TestVbeAdderCorrectness:
 # decode_result tests
 # ---------------------------------------------------------------------------
 
+
 class TestDecodeResult:
     def test_returns_dominant_value(self):
         counts = {"01111": 900, "00000": 1}
         val, returned_counts = decode_result(counts, 4)
-        assert val == int("01111", 2)   # = 15
+        assert val == int("01111", 2)  # = 15
         assert returned_counts is counts
 
     def test_single_entry(self):
@@ -255,6 +263,7 @@ class TestDecodeResult:
 # ---------------------------------------------------------------------------
 # Convenience wrapper tests
 # ---------------------------------------------------------------------------
+
 
 class TestAdd:
     def test_basic(self):

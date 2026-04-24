@@ -6,9 +6,11 @@ Verifies:
 - Simulation output: Bell state produces only |00> and |11>
 - No |01> or |10> outcomes (entanglement contract)
 """
+
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
 from qiskit import QuantumCircuit
@@ -35,19 +37,19 @@ class TestCreateBellState:
         """Circuit must contain a Hadamard gate for superposition."""
         qc = create_bell_state()
         gate_names = [instr.operation.name for instr in qc.data]
-        assert 'h' in gate_names
+        assert "h" in gate_names
 
     def test_circuit_contains_cnot(self):
         """Circuit must contain a CNOT gate for entanglement."""
         qc = create_bell_state()
         gate_names = [instr.operation.name for instr in qc.data]
-        assert 'cx' in gate_names
+        assert "cx" in gate_names
 
     def test_circuit_has_measurements(self):
         """Circuit must contain measurement operations."""
         qc = create_bell_state()
         gate_names = [instr.operation.name for instr in qc.data]
-        assert 'measure' in gate_names
+        assert "measure" in gate_names
 
 
 class TestRunSimulation:
@@ -62,14 +64,14 @@ class TestRunSimulation:
         qc = create_bell_state()
         counts = run_simulation(qc)
         for key in counts:
-            assert key in ('00', '11'), f"Unexpected state observed: |{key}>"
+            assert key in ("00", "11"), f"Unexpected state observed: |{key}>"
 
     def test_both_bell_states_observed(self):
         """With 1024 shots, both |00> and |11> must appear (high probability)."""
         qc = create_bell_state()
         counts = run_simulation(qc)
-        assert '00' in counts
-        assert '11' in counts
+        assert "00" in counts
+        assert "11" in counts
 
     def test_counts_sum_to_shots(self):
         """Total counts must equal the number of shots (1024)."""
@@ -84,6 +86,6 @@ class TestRunSimulation:
         total = sum(counts.values())
         for state, count in counts.items():
             ratio = count / total
-            assert 0.40 <= ratio <= 0.60, (
-                f"|{state}> ratio {ratio:.2f} is outside the expected 40-60% range."
-            )
+            assert (
+                0.40 <= ratio <= 0.60
+            ), f"|{state}> ratio {ratio:.2f} is outside the expected 40-60% range."

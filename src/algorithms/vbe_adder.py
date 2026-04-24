@@ -55,6 +55,7 @@ from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
 
 try:
     from qiskit_aer import AerSimulator
+
     _HAS_AER = True
 except ImportError:
     _HAS_AER = False
@@ -63,6 +64,7 @@ except ImportError:
 # ---------------------------------------------------------------------------
 # Core building-block sub-circuits
 # ---------------------------------------------------------------------------
+
 
 def _carry_gate() -> QuantumCircuit:
     """Build the 4-qubit CARRY sub-circuit (gate C in VBE §II).
@@ -85,9 +87,9 @@ def _carry_gate() -> QuantumCircuit:
     """
     qc = QuantumCircuit(4, name="CARRY")
     c_in, a, b, c_out = 0, 1, 2, 3
-    qc.ccx(a, b, c_out)    # Toffoli: if a AND b → flip c_out
-    qc.cx(a, b)             # CNOT: b ^= a  (partial XOR for majority)
-    qc.ccx(c_in, b, c_out) # Toffoli: if c_in AND (a⊕b) → flip c_out
+    qc.ccx(a, b, c_out)  # Toffoli: if a AND b → flip c_out
+    qc.cx(a, b)  # CNOT: b ^= a  (partial XOR for majority)
+    qc.ccx(c_in, b, c_out)  # Toffoli: if c_in AND (a⊕b) → flip c_out
     return qc
 
 
@@ -109,9 +111,9 @@ def _carry_dag_gate() -> QuantumCircuit:
     """
     qc = QuantumCircuit(4, name="CARRY†")
     c_in, a, b, c_out = 0, 1, 2, 3
-    qc.ccx(c_in, b, c_out) # reverse of last Toffoli in CARRY
-    qc.cx(a, b)             # reverse of CNOT (self-inverse)
-    qc.ccx(a, b, c_out)    # reverse of first Toffoli in CARRY
+    qc.ccx(c_in, b, c_out)  # reverse of last Toffoli in CARRY
+    qc.cx(a, b)  # reverse of CNOT (self-inverse)
+    qc.ccx(a, b, c_out)  # reverse of first Toffoli in CARRY
     return qc
 
 
@@ -132,14 +134,15 @@ def _sum_gate() -> QuantumCircuit:
     """
     qc = QuantumCircuit(3, name="SUM")
     c_in, a, b = 0, 1, 2
-    qc.cx(a, b)    # b ^= a
-    qc.cx(c_in, b) # b ^= c_in  →  b = a ⊕ c_in ⊕ b_original
+    qc.cx(a, b)  # b ^= a
+    qc.cx(c_in, b)  # b ^= c_in  →  b = a ⊕ c_in ⊕ b_original
     return qc
 
 
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
+
 
 def build_vbe_adder(
     n: int,
@@ -213,8 +216,7 @@ def build_vbe_adder(
     # classical result: n+1 bits  (b[0..n-1] + c[n] as MSB)
     result = ClassicalRegister(n + 1, name="result")
 
-    qc = QuantumCircuit(c, a, b, result,
-                        name=f"VBE_adder_{n}bit")
+    qc = QuantumCircuit(c, a, b, result, name=f"VBE_adder_{n}bit")
 
     # ------------------------------------------------------------------
     # Optional state initialisation
@@ -231,9 +233,9 @@ def build_vbe_adder(
     # ------------------------------------------------------------------
     # Build gate objects (reused for each carry/sum step)
     # ------------------------------------------------------------------
-    carry_gate     = _carry_gate().to_gate()
+    carry_gate = _carry_gate().to_gate()
     carry_dag_gate = _carry_dag_gate().to_gate()
-    sum_gate       = _sum_gate().to_gate()
+    sum_gate = _sum_gate().to_gate()
 
     # ------------------------------------------------------------------
     # Forward CARRY pass: propagate carries from bit 0 to n-1.
@@ -270,7 +272,7 @@ def build_vbe_adder(
     # ------------------------------------------------------------------
     for i in range(n - 2, -1, -1):
         qc.append(carry_dag_gate, [c[i], a[i], b[i], c[i + 1]])
-        qc.append(sum_gate,       [c[i], a[i], b[i]])
+        qc.append(sum_gate, [c[i], a[i], b[i]])
 
     # ------------------------------------------------------------------
     # Measurements
@@ -350,6 +352,7 @@ def decode_result(counts: Dict[str, int], n: int) -> Tuple[int, Dict[str, int]]:
 # Convenience wrapper
 # ---------------------------------------------------------------------------
 
+
 def add(a: int, b: int, n: int | None = None, shots: int = 2048) -> int:
     """Add two non-negative integers using the VBE quantum adder.
 
@@ -392,10 +395,11 @@ def add(a: int, b: int, n: int | None = None, shots: int = 2048) -> int:
 # Main demo
 # ---------------------------------------------------------------------------
 
+
 def main() -> None:
     """Demonstrate the VBE adder: compute 9 + 6 = 15 on 4 bits."""
     n = 4
-    a_val, b_val = 9, 6           # binary: 1001 + 0110 = 1111 (15)
+    a_val, b_val = 9, 6  # binary: 1001 + 0110 = 1111 (15)
 
     print(f"VBE Quantum Ripple-Carry Adder — {n}-bit example")
     print(f"  a = {a_val}  ({a_val:0{n}b})")

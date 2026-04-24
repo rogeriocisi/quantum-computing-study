@@ -4,12 +4,15 @@ Deutsch-Jozsa Algorithm
 An implementation of the Deutsch-Jozsa algorithm, demonstrating quantum speedup
 for determining if a black-box function (oracle) is constant or balanced.
 """
+
 from typing import Dict, Optional
 from qiskit import QuantumCircuit, transpile
+
 try:
     from qiskit_aer import AerSimulator
 except Exception:
     AerSimulator = None
+
 
 def build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit:
     """Return an oracle circuit for Deutsch-Jozsa. Replace body to implement custom oracles."""
@@ -17,6 +20,7 @@ def build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit:
     # Placeholder: prepare last qubit in |1> for phase kickback
     qc.x(n_qubits)
     return qc
+
 
 def deutsch_jozsa(n_qubits: int = 2, balanced: bool = True) -> Optional[Dict[str, int]]:
     """Construct and run a Deutsch-Jozsa circuit; return counts."""
@@ -35,10 +39,12 @@ def deutsch_jozsa(n_qubits: int = 2, balanced: bool = True) -> Optional[Dict[str
     else:
         return None
 
+
 def main() -> None:
     """Minimal runnable flow."""
     counts = deutsch_jozsa(n_qubits=3, balanced=False)
     print("Counts:", counts)
+
 
 if __name__ == "__main__":
     main()
