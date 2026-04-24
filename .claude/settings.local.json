@@ -9,7 +9,8 @@
       "Bash(pre-commit install *)",
       "Bash(echo \"test\")",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(find /c/Antigravity/quantum-computing-study/src -type f -name \"*.py\" -exec wc -l {} +)"
     ]
   }
 }

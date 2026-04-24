@@ -14,14 +14,21 @@ The goal of this phase is to implement and visualize the most fundamental quantu
 - **Circuit**: 2 Qubits, 2 Classical Bits.
 - **Verification**: Counts should show a 50/50 distribution between |00> and |11> (for the first Bell state).
 
-### 2.2 Visualization Standards
+### 2.2 Deutsch-Jozsa Algorithm
+- **Requirement**: Implement a function that determines if an oracle is constant or balanced in one query.
+- **Oracle**: Must support mock constant and balanced functions.
+- **Logic**: Use Hadamard gates and phase kickback.
+- **Success Criteria**: Correctly identifies constant/balanced functions for $n$ qubits.
+
+### 2.3 Visualization Standards
 - Every circuit created in this phase must be exportable as a PNG using `qc.draw(output='mpl')`.
 - Bloch sphere visualizations must be generated for single-qubit gates (X, Y, Z, H).
 
 ## 3. Success Criteria
-- [ ] Code follows PEP8 and contains docstrings.
-- [ ] Simulation runs without errors on `AerSimulator`.
-- [ ] Histograms are saved in the `outputs/` directory.
+- [x] Bell State implementation (2 qubits, entangled).
+- [x] Deutsch-Jozsa implementation (oracles and main routine).
+- [x] Simulation runs without errors on `AerSimulator`.
+- [x] Histograms are saved in the `outputs/` directory.
 
 ## 4. Dependencies
 - `qiskit`

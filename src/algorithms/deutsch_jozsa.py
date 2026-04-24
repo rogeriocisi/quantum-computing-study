@@ -1,6 +1,8 @@
 """
-Quantum algorithm template: Deutsch-Jozsa / general pattern.
-Usage: extend build_oracle() and run main() to test on AerSimulator or a mock backend.
+Deutsch-Jozsa Algorithm
+=======================
+An implementation of the Deutsch-Jozsa algorithm, demonstrating quantum speedup
+for determining if a black-box function (oracle) is constant or balanced.
 """
 from typing import Dict, Optional
 from qiskit import QuantumCircuit, transpile

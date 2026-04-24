@@ -3,6 +3,8 @@ from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')  # Non-interactive backend for headless environments
 
 def create_bell_state() -> QuantumCircuit:
     """Creates a 2-qubit Bell state (|00> + |11>) / sqrt(2).

@@ -3,12 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Ambiente Virtual
+# Virtual Environment
 quantum_env/
 env/
 venv/
 
-# Resultados/Outputs
+# Results/Outputs
 outputs/*.png
 outputs/*.jpg
 outputs/*.json
@@ -17,5 +17,6 @@ outputs/*.json
 .vscode/
 .idea/
 
-# Private Notes & Exercises
+# Study Resources & Notes
 notes/
+books/

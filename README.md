@@ -10,34 +10,29 @@ To transform software engineers and scientists into quantum-ready developers by 
 ---
 
 ## 📚 Academic Resource Portal
-A curated selection of the best educational materials in the field, categorized by difficulty and focus.
+A curated selection of the best educational materials in the field. For the full list of books, courses, and papers, see the **[Detailed Resource Guide](docs/roadmap/resources.md)**.
 
 ### 📖 Essential Books
 *   **The Best Starting Point**: *Introduction to Classical and Quantum Computing* by Thomas G. Wong.
 *   **The Official Guide**: *Learn Quantum Computing using Qiskit* by IBM Qiskit Community.
 *   **The "Bible" of the Field**: *Quantum Computation and Quantum Information* ("Mike & Ike") by Nielsen & Chuang.
-*   **The Essential Bridge**: *Quantum Computing: A Gentle Introduction* by Rieffel & Polak (Focus on Linear Algebra).
-*   **Applied Mastery**: *Quantum Computing: An Applied Approach* by Jack Hidary (Qiskit + Cirq).
 
-### 🎓 Top-Tier Courses
-*   **IBM Quantum Learning**: Official interactive path for Qiskit v2 certification.
-*   **MIT 8.370x**: Quantum Information Science by Peter Shor & Isaac Chuang.
-*   **QuTech Academy (TU Delft)**: Advanced modules on Quantum Internet and Hardware.
+---
 
-### ▶️ Video Playlists
-*   **Michael Nielsen**: "Quantum Computing for the Determined" (Short, rigorous conceptual videos).
-*   **John Watrous (IBM)**: "Understanding Quantum Information" (Advanced university-level course).
-*   **Abraham Asfaw (IBM)**: "Coding with Qiskit" (Practical Python implementation).
+## ✨ Core Implementations
+Practical algorithms implemented from scratch with full technical documentation and unit testing.
 
-### 📄 Key Research Papers (ArXiv)
-*   **Preskill (arXiv:1801.00862)**: Quantum Computing in the NISQ Era and Beyond.
-*   **QML Survey (arXiv:2310.10315)**: A Survey on Quantum Machine Learning.
-*   **NISQ Tutorial (arXiv:2310.12571)**: Quantum Computing through the Lens of Control.
+*   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
+*   **[Bell State Generation](docs/reference/algorithms/bell_state.md)**: Fundamental 2-qubit entanglement circuit ($|\Phi^+\rangle$).
+*   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
+*   **[VQE & QAOA Optimization](docs/reference/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems.
+*   **[Variational Quantum Classifier](docs/reference/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration.
+*   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices.
 
 ---
 
 ## 📅 Realistic Part-Time Roadmap (12 Months)
-*Optimized for 6-10 hours/week. Refined for developers focusing on core logic and professional delivery.*
+*Optimized for 6-10 hours/week. Refined for developers focusing on core logic and professional delivery. See the **[Full Roadmap Document](docs/roadmap/quantum-dev-roadmap.md)** for detailed phase-by-phase milestones.*
 
 ### Phase 1: Foundations & Qubits (Month 1)
 *   **Goal**: Transition from classical logic to quantum state representation (Dirac & Bloch).
@@ -140,11 +135,17 @@ The main objective is 100% coverage of the IBM Certified Developer exam:
 *   **MIT xPRO**: For executive strategy and theoretical depth.
 *   **PennyLane (Xanadu)**: For advanced Quantum Machine Learning.
 
+## 🧪 Quality Assurance
+To maintain high standards for quantum code, this project includes a comprehensive test suite.
+
+*   **[Testing Guide](docs/reference/tests/testing_guide.md)**: Documentation on the `pytest` framework, circuit verification strategies, and troubleshooting.
+*   **Run all tests**: `python -m pytest`
+
 ---
 
 ## 📂 Project Structure
 *   `src/`: Quantum code implementations (.py).
-*   `docs/`: Resource portal, roadmap details, and theoretical material.
+*   `docs/`: Resource portal, roadmap details, and technical material under `docs/reference/`.
 *   `landing/`: Web visualization of the study progress.
 *   `outputs/`: Circuits, diagrams, and simulation results.
 

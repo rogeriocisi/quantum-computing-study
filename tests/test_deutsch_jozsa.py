@@ -1,5 +1,5 @@
 """
-Tests for src/algorithms/algorithm_base.py
+Tests for src/algorithms/deutsch_jozsa.py
 
 Verifies:
 - Oracle circuit structure
@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 import pytest
 from qiskit import QuantumCircuit
-from src.algorithms.algorithm_base import build_oracle, deutsch_jozsa
+from src.algorithms.deutsch_jozsa import build_oracle, deutsch_jozsa
 
 
 class TestBuildOracle:
