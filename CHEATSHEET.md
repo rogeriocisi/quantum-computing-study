@@ -70,3 +70,18 @@ flake8
 * To draw quantum circuits in text mode: `print(circuit.draw())`
 * To draw using Matplotlib (prettier): `circuit.draw('mpl')`
 * If visualization fails, ensure `matplotlib` and `pylatexenc` are installed in your environment.
+
+---
+
+## 4. Running Demos & Capstone
+Validate your local and cloud environments.
+
+### Capstone Demo Runner
+```bash
+# Run local simulation only (default)
+python scripts/capstone_demo.py
+
+# Submit to real IBM Quantum cloud hardware
+python scripts/capstone_demo.py --cloud
+```
+

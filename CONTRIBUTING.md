@@ -16,6 +16,10 @@ Feel free to open an issue if you find a bug or have an idea for a new feature. 
 
 We enforce strict code quality to keep the repository professional and maintainable.
 
+### Language Rule
+All code documentation—including docstrings, comments, and commit messages—**MUST** be written in English.
+
+
 ### Environment Setup
 ```powershell
 python -m venv quantum_env
