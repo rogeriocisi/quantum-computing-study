@@ -13,3 +13,7 @@ pytest
 pytest-cov
 black
 flake8
+
+# Environment Variables
+python-dotenv
+

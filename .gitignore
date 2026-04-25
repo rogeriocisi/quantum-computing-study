@@ -20,3 +20,8 @@ outputs/*.json
 # Study Resources & Notes
 notes/
 books/
+
+# Secrets / Environment Variables
+.env
+.env.local
+.env.*
