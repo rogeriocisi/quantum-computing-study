@@ -11,7 +11,6 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-import pytest
 import numpy as np
 from qiskit import QuantumCircuit
 from src.optimization.vqe_qaoa import build_qaoa_ansatz, vqe_workflow

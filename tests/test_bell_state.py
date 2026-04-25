@@ -12,7 +12,6 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-import pytest
 from qiskit import QuantumCircuit
 from src.algorithms.bell_state import create_bell_state, run_simulation
 

@@ -1,0 +1,22 @@
+[flake8]
+# Aumenta o limite de caracteres para 88 (padrão do Black)
+max-line-length = 100
+
+# Ignora erros comuns que não quebram o código
+# E203: Espaço antes de ':' (conflito com Black)
+# W503: Quebra de linha antes de operador binário (conflito com Black)
+extend-ignore = E203, W503
+
+# Ignora pastas inteiras
+exclude =
+    .git,
+    __pycache__,
+    quantum_env,
+    build,
+    dist
+
+# Permite importações não utilizadas em arquivos específicos (opcional)
+per-file-ignores =
+    __init__.py: F401
+    tests/*: E402
+

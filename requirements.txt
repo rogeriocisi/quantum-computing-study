@@ -17,3 +17,7 @@ flake8
 # Environment Variables
 python-dotenv
 
+# Code Quality Auto-fixers
+autoflake
+
+

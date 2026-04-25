@@ -11,7 +11,6 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-import pytest
 from qiskit import QuantumCircuit
 from src.algorithms.deutsch_jozsa import build_oracle, deutsch_jozsa
 

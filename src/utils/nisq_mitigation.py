@@ -7,7 +7,6 @@ enabling the estimation of error-free results through noise scaling.
 """
 
 from typing import Dict, Tuple, Any
-import math
 from qiskit import QuantumCircuit
 
 

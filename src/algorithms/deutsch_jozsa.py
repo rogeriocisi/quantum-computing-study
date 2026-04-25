@@ -15,7 +15,10 @@ except Exception:
 
 
 def build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit:
-    """Return an oracle circuit for Deutsch-Jozsa. Replace body to implement custom oracles."""
+    """
+    Return an oracle circuit for D-J algorithm.
+    Replace body to implement custom oracles.
+    """
     qc = QuantumCircuit(n_qubits + 1)
     # Placeholder: prepare last qubit in |1> for phase kickback
     qc.x(n_qubits)
