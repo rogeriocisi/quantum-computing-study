@@ -135,19 +135,33 @@ The main objective is 100% coverage of the IBM Certified Developer exam:
 *   **MIT xPRO**: For executive strategy and theoretical depth.
 *   **PennyLane (Xanadu)**: For advanced Quantum Machine Learning.
 
-## 🧪 Quality Assurance
-To maintain high standards for quantum code, this project includes a comprehensive test suite.
+## 🧪 Quality Assurance & Developer Tooling
+To maintain high standards for quantum code, this project enforces strict formatting, linting, and test coverage.
 
-*   **[Testing Guide](docs/reference/tests/testing_guide.md)**: Documentation on the `pytest` framework, circuit verification strategies, and troubleshooting.
-*   **Run all tests**: `python -m pytest`
+*   **Linting & Style:** Configured via `flake8` (see [.flake8](.flake8)) and `black` for PEP 8 compliance.
+*   **Code Cleanup:** Automatic unused import removal via `autoflake`.
+*   **Testing Suite:** Built using `pytest` with coverage tracking.
+*   **Developer Guide:** See [CHEATSHEET.md](CHEATSHEET.md) for activation and command references.
+
+### Quick Commands
+*   **Run tests:** `pytest --cov=src`
+*   **Format code:** `black .`
+*   **Lint check:** `flake8`
+*   **Clean imports:** `autoflake --in-place --remove-all-unused-imports --recursive src tests scripts`
 
 ---
 
 ## 📂 Project Structure
 *   `src/`: Quantum code implementations (.py).
+*   `tests/`: Unit test suite for verification.
+*   `scripts/`: Demonstration and execution scripts.
 *   `docs/`: Resource portal, roadmap details, and technical reference.
-    *   `docs/dashboard/`: Visual progress dashboard (HTML/CSS).
+*   `.github/`: Community templates (Issue/PR forms) and standards.
 *   `outputs/`: Circuits, diagrams, and simulation results.
+*   **Configuration Files:**
+    *   [.flake8](.flake8): Style rules and execution settings.
+    *   [.env.example](.env.example): Secrets and API key templates.
+
 
 ---
 

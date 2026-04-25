@@ -1,4 +1,4 @@
-# Project Setup & Developer Reminders
+# Project Setup & Developer Cheat Sheet
 
 ## 1. Virtual Environment Activation
 Always activate the virtual environment before running scripts or installing dependencies.
@@ -58,6 +58,9 @@ Keep the codebase clean:
 ```bash
 # Format code
 black .
+
+# Clean unused imports
+autoflake --in-place --remove-all-unused-imports --recursive src tests scripts
 
 # Check for style issues
 flake8

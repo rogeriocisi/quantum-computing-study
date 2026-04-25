@@ -9,7 +9,7 @@ Feel free to open an issue if you find a bug or have an idea for a new feature. 
 
 ### 2. Code Contributions
 1. Fork the repository and create your branch from `main`.
-2. Ensure you have the development environment set up (see [reminders.md](reminders.md)).
+2. Ensure you have the development environment set up (see [CHEATSHEET.md](CHEATSHEET.md)).
 3. Make your changes, adhering to the project's coding standards.
 
 ## Development Standards
