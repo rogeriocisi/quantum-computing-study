@@ -22,6 +22,8 @@ autoflake
 
 # Jupyter Notebook Support
 ipykernel
+sympy
+
 
 
 
