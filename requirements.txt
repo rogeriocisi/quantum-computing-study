@@ -20,4 +20,8 @@ python-dotenv
 # Code Quality Auto-fixers
 autoflake
 
+# Jupyter Notebook Support
+ipykernel
+
+
 
