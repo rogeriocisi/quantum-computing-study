@@ -11,9 +11,6 @@ Usage:
     $ python scripts/capstone_demo.py --cloud  # Submit job to real IBM Quantum hardware
 """
 
-
-
-
 import argparse
 import os
 from dotenv import load_dotenv
@@ -132,4 +129,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
