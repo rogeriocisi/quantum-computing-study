@@ -12,9 +12,10 @@ To transform software engineers and scientists into quantum-ready developers by 
 ## 📚 Academic Resource Portal
 A curated selection of the best educational materials in the field. For the full list of books, courses, and papers, see the **[Detailed Resource Guide](docs/roadmap/resources.md)**.
 
-### 📖 Essential Books
-*   **The Best Starting Point**: *Introduction to Classical and Quantum Computing* by Thomas G. Wong.
-*   **The Official Guide**: *Learn Quantum Computing using Qiskit* by IBM Qiskit Community.
+### 📖 Essential Materials
+*   **The Best Book to Start With**: *Introduction to Classical and Quantum Computing* by Thomas G. Wong.
+*   **The Best Online Course**: *Quantum Information & Computation* by John Watrous.
+*   **The Official Guide to Qiskit**: *Learn Quantum Computing using Qiskit* by IBM Qiskit Community.
 *   **The "Bible" of the Field**: *Quantum Computation and Quantum Information* ("Mike & Ike") by Nielsen & Chuang.
 
 ---
@@ -24,6 +25,15 @@ Practical algorithms implemented from scratch with full technical documentation 
 
 *   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
 *   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
+*   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
+
+*Planned Implementations:*
+*   **[Bernstein-Vazirani Algorithm](docs/reference/algorithms/bernstein_vazirani.md)**: Finds a hidden bitstring in a single query.
+*   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
+*   **[Grover's Search](docs/reference/algorithms/grover.md)**: Quadratic speedup for unstructured database search.
+*   **[Quantum Fourier Transform (QFT)](docs/reference/algorithms/qft.md)**: The quantum version of the discrete Fourier transform.
+*   **[Phase Estimation (QPE)](docs/reference/algorithms/qpe.md)**: Algorithm to estimate the phase of an eigenvalue of a unitary operator.
+*   **[Shor's Algorithm](docs/reference/algorithms/shor.md)**: Polynomial-time algorithm for integer factorization.
 *   **[VQE & QAOA Optimization](docs/reference/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems.
 *   **[Variational Quantum Classifier](docs/reference/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration.
 *   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices.
@@ -37,7 +47,7 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **Goal**: Transition from classical logic to quantum state representation (Dirac & Bloch).
 
 ### Phase 2: Core Quantum Logic — Algorithms I (Months 2-4)
-*   **Topics**: Oracles, Phase Kickback, Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
+*   **Topics**: Oracles (black-box problem encoding), Phase Kickback (logic for information retrieval), Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
 *   **Focus**: Mastery of the "Quantum Intuition" — where most developers face the steepest learning curve.
 
 ### Phase 3: Intro to QML with PennyLane (Month 5)
