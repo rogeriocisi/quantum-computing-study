@@ -23,7 +23,6 @@ A curated selection of the best educational materials in the field. For the full
 Practical algorithms implemented from scratch with full technical documentation and unit testing.
 
 *   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
-*   **[Bell State Generation](docs/reference/algorithms/bell_state.md)**: Fundamental 2-qubit entanglement circuit ($|\Phi^+\rangle$).
 *   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
 *   **[VQE & QAOA Optimization](docs/reference/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems.
 *   **[Variational Quantum Classifier](docs/reference/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration.
