@@ -26,6 +26,7 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
 *   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
 *   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
+*   **[Superdense Coding](docs/reference/algorithms/superdense_coding.md)**: Sending two classical bits by transmitting only one qubit using pre-shared entanglement.
 
 *Planned Implementations:*
 *   **[Bernstein-Vazirani Algorithm](docs/reference/algorithms/bernstein_vazirani.md)**: Finds a hidden bitstring in a single query.
@@ -43,14 +44,14 @@ Practical algorithms implemented from scratch with full technical documentation 
 ## 📅 Realistic Part-Time Roadmap (12 Months)
 *Optimized for 6-10 hours/week. Refined for developers focusing on core logic and professional delivery. See the **[Full Roadmap Document](docs/roadmap/quantum-dev-roadmap.md)** for detailed phase-by-phase milestones.*
 
-### Phase 1: Foundations & Qubits (Month 1)
+### Phase 1: Foundations of Quantum Computing (Month 1)
 *   **Goal**: Transition from classical logic to quantum state representation (Dirac & Bloch).
 
-### Phase 2: Core Quantum Logic — Algorithms I (Months 2-4)
+### Phase 2: Quantum Mechanics & Algorithms I (Months 2-4)
 *   **Topics**: Oracles (black-box problem encoding), Phase Kickback (logic for information retrieval), Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
 *   **Focus**: Mastery of the "Quantum Intuition" — where most developers face the steepest learning curve.
 
-### Phase 3: Intro to QML with PennyLane (Month 5)
+### Phase 3: Intro to Quantum Machine Learning with PennyLane (Month 5)
 *   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", PennyLane setup.
 *   **Focus**: Early introduction to the "learnable" part of quantum computing.
 
@@ -153,10 +154,10 @@ To maintain high standards for quantum code, this project enforces strict format
 *   **Developer Guide:** See [CHEATSHEET.md](CHEATSHEET.md) for activation and command references.
 
 ### Quick Commands
-*   **Run tests:** `pytest --cov=src`
-*   **Format code:** `black .`
-*   **Lint check:** `flake8`
-*   **Clean imports:** `autoflake --in-place --remove-all-unused-imports --recursive src tests scripts`
+*   **Run tests:** `python -m pytest --cov=src`
+*   **Format code:** `python -m black .`
+*   **Lint check:** `python -m flake8`
+*   **Clean imports:** `python -m autoflake --in-place --remove-all-unused-imports --recursive src tests scripts`
 
 ---
 
