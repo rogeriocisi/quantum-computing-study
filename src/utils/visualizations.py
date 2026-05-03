@@ -5,7 +5,6 @@ This module provides tools to format and display quantum states in a readable wa
 including Dirac (Bra-Ket) notation and amplitude vectors.
 """
 
-import os
 from qiskit.quantum_info import Statevector
 
 

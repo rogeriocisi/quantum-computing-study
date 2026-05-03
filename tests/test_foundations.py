@@ -1,10 +1,10 @@
 """
-Tests for src/algorithms/bell_state.py
+Tests for src/utils/foundations.py
 
 Verifies:
-- Circuit structure (qubits, gates, measurements)
+- apply_bell_pair: Correct gate application on target qubits
+- create_bell_state: Circuit structure (qubits, gates, measurements)
 - Simulation output: Bell state produces only |00> and |11>
-- No |01> or |10> outcomes (entanglement contract)
 """
 
 import sys
@@ -13,7 +13,27 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from qiskit import QuantumCircuit
-from src.algorithms.bell_state import create_bell_state, run_simulation
+from src.utils.foundations import apply_bell_pair, create_bell_state, run_simulation
+
+
+class TestApplyBellPair:
+    def test_applies_correct_gates(self):
+        """apply_bell_pair must apply H and CX to the specified qubits."""
+        qc = QuantumCircuit(3)
+        apply_bell_pair(qc, 1, 2)
+
+        # Filter for non-barrier instructions
+        gate_names = [
+            instr.operation.name
+            for instr in qc.data
+            if instr.operation.name != "barrier"
+        ]
+        assert gate_names == ["h", "cx"]
+
+        # Check qubit indices
+        assert qc.data[0].qubits[0]._index == 1  # H on q1
+        assert qc.data[1].qubits[0]._index == 1  # CX control q1
+        assert qc.data[1].qubits[1]._index == 2  # CX target q2
 
 
 class TestCreateBellState:

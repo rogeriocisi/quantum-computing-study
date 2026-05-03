@@ -9,8 +9,20 @@ import matplotlib
 matplotlib.use("Agg")  # Non-interactive backend for headless environments
 
 
+def apply_bell_pair(qc: QuantumCircuit, a: int, b: int) -> None:
+    """Applies a Bell pair (Phi+) entanglement between two qubits in a circuit.
+
+    Args:
+        qc: The QuantumCircuit to modify.
+        a: Index of the first qubit (control).
+        b: Index of the second qubit (target).
+    """
+    qc.h(a)
+    qc.cx(a, b)
+
+
 def create_bell_state() -> QuantumCircuit:
-    """Creates a 2-qubit Bell state (|00> + |11>) / sqrt(2).
+    """Creates a 2-qubit Bell state (|00> + |11>) / sqrt(2) as a standalone circuit.
 
     Returns:
         QuantumCircuit: The entangled circuit.
@@ -18,14 +30,10 @@ def create_bell_state() -> QuantumCircuit:
     # 1. Create a quantum circuit with 2 qubits and 2 classical bits
     qc = QuantumCircuit(2, 2)
 
-    # 2. Apply a Hadamard gate on qubit 0 to create superposition
-    qc.h(0)
+    # 2. Apply Bell pair entanglement
+    apply_bell_pair(qc, 0, 1)
 
-    # 3. Apply a CNOT gate with control on qubit 0 and target on qubit 1
-    # This creates entanglement
-    qc.cx(0, 1)
-
-    # 4. Measure the qubits and store results in classical bits
+    # 3. Measure the qubits and store results in classical bits
     qc.measure([0, 1], [0, 1])
     return qc
 
