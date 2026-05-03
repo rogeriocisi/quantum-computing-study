@@ -26,11 +26,15 @@ The algorithm leverages **superposition** and **phase kickback** to analyze the 
 
 The module `src.algorithms.deutsch_jozsa` provides a template-like implementation.
 
-### `deutsch_jozsa(n_qubits: int = 2, balanced: bool = True) -> Optional[Dict[str, int]]`
-Executes the full Deutsch-Jozsa algorithm.
+### `create_deutsch_jozsa_circuit(n_qubits: int = 2, balanced: bool = True) -> QuantumCircuit`
+Constructs the full Deutsch-Jozsa circuit.
 - **Parameters**:
   - `n_qubits`: Number of input bits (excluding the ancilla).
   - `balanced`: Whether the mock oracle generated should be balanced (True) or constant (False).
+- **Returns**: A `qiskit.QuantumCircuit`.
+
+### `run_simulation(qc: QuantumCircuit) -> Optional[Dict[str, int]]`
+Executes the circuit on a local simulator.
 - **Returns**: A dictionary of counts. If the function is constant, you will observe `'0...0'` with 100% probability.
 
 ### `build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit`
@@ -41,10 +45,11 @@ A helper function to generate mock oracles for testing.
 
 ## Usage Example
 ```python
-from src.algorithms.deutsch_jozsa import deutsch_jozsa
+from src.algorithms.deutsch_jozsa import create_deutsch_jozsa_circuit, run_simulation
 
 # Test with 3 input qubits and a balanced oracle
-counts = deutsch_jozsa(n_qubits=3, balanced=True)
+qc = create_deutsch_jozsa_circuit(n_qubits=3, balanced=True)
+counts = run_simulation(qc)
 
 print(f"Results: {counts}")
 # Since it's balanced, we expect a non-zero bitstring result.

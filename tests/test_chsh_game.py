@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from qiskit import QuantumCircuit
 from src.algorithms.chsh_game import (
     create_chsh_circuit,
-    simulate_chsh_game,
+    run_simulation,
     analyze_results,
 )
 
@@ -32,7 +32,7 @@ class TestCHSHGame:
 
     def test_simulation_returns_all_configs(self):
         """Simulation must return results for all 4 (x, y) pairs."""
-        results = simulate_chsh_game(trials_per_config=10)
+        results = run_simulation(trials_per_config=10)
         assert len(results) == 4
         for x in [0, 1]:
             for y in [0, 1]:
@@ -40,7 +40,7 @@ class TestCHSHGame:
 
     def test_win_rate_violates_bell_inequality(self):
         """Overall win rate must be significantly > 75% (using 1000 trials)."""
-        results = simulate_chsh_game(trials_per_config=500)
+        results = run_simulation(trials_per_config=500)
         win_rate = analyze_results(results)
 
         # 75% is the classical limit. 80% is a safe threshold for a successful quantum test

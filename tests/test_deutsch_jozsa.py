@@ -12,7 +12,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from qiskit import QuantumCircuit
-from src.algorithms.deutsch_jozsa import build_oracle, deutsch_jozsa
+from src.algorithms.deutsch_jozsa import build_oracle, create_deutsch_jozsa_circuit, run_simulation
 
 
 class TestBuildOracle:
@@ -35,14 +35,16 @@ class TestBuildOracle:
 
 class TestDeutschJozsa:
     def test_returns_dict_when_aer_available(self):
-        """deutsch_jozsa() must return a dict of counts."""
-        result = deutsch_jozsa(n_qubits=2)
+        """run_simulation() must return a dict of counts."""
+        qc = create_deutsch_jozsa_circuit(n_qubits=2)
+        result = run_simulation(qc)
         assert result is None or isinstance(result, dict)
 
     def test_result_has_correct_bit_length(self):
         """Result keys must have length equal to n_qubits."""
         for n in [2, 3, 4]:
-            result = deutsch_jozsa(n_qubits=n)
+            qc = create_deutsch_jozsa_circuit(n_qubits=n)
+            result = run_simulation(qc)
             if result is not None:
                 for key in result:
                     assert (
@@ -51,13 +53,15 @@ class TestDeutschJozsa:
 
     def test_total_shots_is_1024(self):
         """Default shot count must be 1024."""
-        result = deutsch_jozsa(n_qubits=2)
+        qc = create_deutsch_jozsa_circuit(n_qubits=2)
+        result = run_simulation(qc)
         if result is not None:
             assert sum(result.values()) == 1024
 
     def test_counts_are_positive(self):
         """All count values must be positive integers."""
-        result = deutsch_jozsa(n_qubits=2)
+        qc = create_deutsch_jozsa_circuit(n_qubits=2)
+        result = run_simulation(qc)
         if result is not None:
             for count in result.values():
                 assert count > 0

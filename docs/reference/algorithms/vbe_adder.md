@@ -59,8 +59,8 @@ The easiest way to use the adder. It handles bit encoding, circuit building, sim
   - `n` (Optional): Bit-width of the registers. Defaults to the minimum required size.
 - **Returns**: The integer result of $a + b$.
 
-### `build_vbe_adder(n: int, a_bits: List[int] = None, b_bits: List[int] = None) -> QuantumCircuit`
-Constructs the full VBE ripple-carry circuit.
+### `create_vbe_adder_circuit(n, a_bits=None, b_bits=None) -> QuantumCircuit`
+Constructs the full ripple-carry adder circuit.
 - **Parameters**:
   - `n`: Number of bits for the input registers.
   - `a_bits`, `b_bits` (Optional): Lists of 0s and 1s to initialize the $A$ and $B$ registers.
@@ -85,8 +85,12 @@ result = add(9, 6)
 print(f"Result: {result}") # Output: 15
 
 # Low-level API: Custom circuit building
-from src.algorithms.vbe_adder import build_vbe_adder, run_simulation, decode_result
-qc = build_vbe_adder(4, a_bits=[1,0,0,1], b_bits=[0,1,1,0])
+from src.algorithms.vbe_adder import create_vbe_adder_circuit, run_simulation, decode_result
+
+# 1. Build a 4-bit adder (9 + 6)
+qc = create_vbe_adder_circuit(4, a_bits=[1,0,0,1], b_bits=[0,1,1,0])
+
+# 2. Run simulation
 counts = run_simulation(qc)
 value, _ = decode_result(counts, 4)
 print(f"Decoded: {value}")

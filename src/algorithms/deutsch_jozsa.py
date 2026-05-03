@@ -25,8 +25,16 @@ def build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit:
     return qc
 
 
-def deutsch_jozsa(n_qubits: int = 2, balanced: bool = True) -> Optional[Dict[str, int]]:
-    """Construct and run a Deutsch-Jozsa circuit; return counts."""
+def create_deutsch_jozsa_circuit(n_qubits: int = 2, balanced: bool = True) -> QuantumCircuit:
+    """Constructs a Deutsch-Jozsa circuit.
+
+    Args:
+        n_qubits: Number of input qubits.
+        balanced: Whether the oracle is balanced or constant.
+
+    Returns:
+        QuantumCircuit: The constructed circuit.
+    """
     qc = QuantumCircuit(n_qubits + 1, n_qubits)
     # Hadamard on input and ancilla
     qc.h(range(n_qubits + 1))
@@ -34,6 +42,18 @@ def deutsch_jozsa(n_qubits: int = 2, balanced: bool = True) -> Optional[Dict[str
     qc.compose(oracle, inplace=True)
     qc.h(range(n_qubits))
     qc.measure(range(n_qubits), range(n_qubits))
+    return qc
+
+
+def run_simulation(qc: QuantumCircuit) -> Optional[Dict[str, int]]:
+    """Runs the Deutsch-Jozsa circuit on a local AerSimulator.
+
+    Args:
+        qc: The QuantumCircuit to simulate.
+
+    Returns:
+        Optional[Dict[str, int]]: The measurement counts or None if Aer is missing.
+    """
     if AerSimulator:
         sim = AerSimulator()
         tqc = transpile(qc, sim)
@@ -45,7 +65,8 @@ def deutsch_jozsa(n_qubits: int = 2, balanced: bool = True) -> Optional[Dict[str
 
 def main() -> None:
     """Minimal runnable flow."""
-    counts = deutsch_jozsa(n_qubits=3, balanced=False)
+    qc = create_deutsch_jozsa_circuit(n_qubits=3, balanced=False)
+    counts = run_simulation(qc)
     print("Counts:", counts)
 
 

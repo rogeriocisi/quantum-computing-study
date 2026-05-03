@@ -144,7 +144,7 @@ def _sum_gate() -> QuantumCircuit:
 # ---------------------------------------------------------------------------
 
 
-def build_vbe_adder(
+def create_vbe_adder_circuit(
     n: int,
     a_bits: Optional[List[int]] = None,
     b_bits: Optional[List[int]] = None,
@@ -295,7 +295,7 @@ def run_simulation(
     Parameters
     ----------
     qc:
-        The adder quantum circuit (as returned by ``build_vbe_adder``).
+        The adder quantum circuit (as returned by ``create_vbe_adder_circuit``).
     shots:
         Number of simulation shots (default 1024).
 
@@ -385,7 +385,7 @@ def add(a: int, b: int, n: int | None = None, shots: int = 2048) -> int:
     a_bits = [(a >> i) & 1 for i in range(n)]
     b_bits = [(b >> i) & 1 for i in range(n)]
 
-    qc = build_vbe_adder(n, a_bits=a_bits, b_bits=b_bits)
+    qc = create_vbe_adder_circuit(n, a_bits=a_bits, b_bits=b_bits)
     counts = run_simulation(qc, shots=shots)
     value, _ = decode_result(counts, n)
     return value
@@ -406,7 +406,7 @@ def main() -> None:
     print(f"  b = {b_val}  ({b_val:0{n}b})")
     print(f"  Expected sum: {a_val + b_val}  ({a_val + b_val:0{n+1}b})\n")
 
-    qc = build_vbe_adder(
+    qc = create_vbe_adder_circuit(
         n,
         a_bits=[(a_val >> i) & 1 for i in range(n)],
         b_bits=[(b_val >> i) & 1 for i in range(n)],

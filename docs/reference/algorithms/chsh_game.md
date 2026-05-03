@@ -37,7 +37,7 @@ The module `src.algorithms.chsh_game` provides functions to simulate and analyze
 Builds the quantum circuit for a specific input pair $(x, y)$.
 - **Returns**: A `qiskit.QuantumCircuit` ready for execution.
 
-### `simulate_chsh_game(trials_per_config: int = 250) -> Dict`
+### `run_simulation(trials_per_config: int = 250) -> Dict`
 Executes the game for all four possible input combinations.
 - **Returns**: A nested dictionary containing counts for each configuration.
 
@@ -49,10 +49,10 @@ Processes the simulation counts, calculates the win rate for each configuration,
 ## Usage Example
 
 ```python
-from src.algorithms.chsh_game import simulate_chsh_game, analyze_results
+from src.algorithms.chsh_game import run_simulation, analyze_results
 
 # Run 1000 trials for each input combination
-results = simulate_chsh_game(trials_per_config=1000)
+results = run_simulation(trials_per_config=1000)
 
 # Print statistics and verify Bell inequality violation
 win_rate = analyze_results(results)

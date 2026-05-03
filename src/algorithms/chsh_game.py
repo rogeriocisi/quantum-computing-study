@@ -54,7 +54,7 @@ def create_chsh_circuit(x: int, y: int) -> QuantumCircuit:
     return qc
 
 
-def simulate_chsh_game(
+def run_simulation(
     trials_per_config: int = 250,
 ) -> Dict[Tuple[int, int], Dict[str, int]]:
     """Simulates the CHSH game for all 4 input combinations (x, y).
@@ -127,7 +127,7 @@ def analyze_results(results: Dict[Tuple[int, int], Dict[str, int]]) -> float:
 
 def main() -> None:
     """Main execution flow."""
-    results = simulate_chsh_game(trials_per_config=1000)
+    results = run_simulation(trials_per_config=1000)
     analyze_results(results)
 
 

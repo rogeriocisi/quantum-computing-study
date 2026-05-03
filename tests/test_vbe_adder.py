@@ -22,7 +22,7 @@ from src.algorithms.vbe_adder import (
     _carry_gate,
     _carry_dag_gate,
     _sum_gate,
-    build_vbe_adder,
+    create_vbe_adder_circuit,
     run_simulation,
     decode_result,
     add,
@@ -128,16 +128,16 @@ class TestSumGate:
 # ---------------------------------------------------------------------------
 
 
-class TestBuildVbeAdder:
-    """build_vbe_adder() must produce well-formed circuits."""
+class TestCreateVbeAdderCircuit:
+    """create_vbe_adder_circuit() must produce well-formed circuits."""
 
     def test_returns_quantum_circuit(self):
-        assert isinstance(build_vbe_adder(2), QuantumCircuit)
+        assert isinstance(create_vbe_adder_circuit(2), QuantumCircuit)
 
     @pytest.mark.parametrize("n", [1, 2, 4, 8])
     def test_qubit_count(self, n):
         """Total qubits = (n+1) carry + n addend-a + n addend-b = 3n+1."""
-        qc = build_vbe_adder(n)
+        qc = create_vbe_adder_circuit(n)
         assert (
             qc.num_qubits == 3 * n + 1
         ), f"Expected {3*n+1} qubits for n={n}, got {qc.num_qubits}"
@@ -145,36 +145,36 @@ class TestBuildVbeAdder:
     @pytest.mark.parametrize("n", [1, 2, 4, 8])
     def test_classical_bit_count(self, n):
         """Result register width = n+1 (n sum bits + 1 carry-out)."""
-        qc = build_vbe_adder(n)
+        qc = create_vbe_adder_circuit(n)
         assert qc.num_clbits == n + 1
 
     def test_has_measurements(self):
-        qc = build_vbe_adder(2)
+        qc = create_vbe_adder_circuit(2)
         names = [instr.operation.name for instr in qc.data]
         assert "measure" in names
 
     def test_a_bits_initialisation(self):
         """X gates must be applied for set bits in a."""
-        qc = build_vbe_adder(2, a_bits=[1, 0])
+        qc = create_vbe_adder_circuit(2, a_bits=[1, 0])
         # At least one X gate expected for the '1' bit
         names = [instr.operation.name for instr in qc.data]
         assert "x" in names
 
     def test_invalid_a_bits_length(self):
         with pytest.raises(ValueError, match="a_bits must have length"):
-            build_vbe_adder(4, a_bits=[1, 0])  # wrong length
+            create_vbe_adder_circuit(4, a_bits=[1, 0])  # wrong length
 
     def test_invalid_b_bits_length(self):
         with pytest.raises(ValueError, match="b_bits must have length"):
-            build_vbe_adder(4, b_bits=[1, 0, 1])
+            create_vbe_adder_circuit(4, b_bits=[1, 0, 1])
 
     def test_invalid_a_bits_values(self):
         with pytest.raises(ValueError, match="only 0 or 1"):
-            build_vbe_adder(2, a_bits=[0, 2])
+            create_vbe_adder_circuit(2, a_bits=[0, 2])
 
     def test_invalid_b_bits_values(self):
         with pytest.raises(ValueError, match="only 0 or 1"):
-            build_vbe_adder(2, b_bits=[-1, 1])
+            create_vbe_adder_circuit(2, b_bits=[-1, 1])
 
 
 # ---------------------------------------------------------------------------
@@ -210,7 +210,7 @@ class TestVbeAdderCorrectness:
     def test_addition(self, a_val, b_val, n):
         a_bits = [(a_val >> i) & 1 for i in range(n)]
         b_bits = [(b_val >> i) & 1 for i in range(n)]
-        qc = build_vbe_adder(n, a_bits=a_bits, b_bits=b_bits)
+        qc = create_vbe_adder_circuit(n, a_bits=a_bits, b_bits=b_bits)
         counts = run_simulation(qc, shots=self.SHOTS)
         value, _ = decode_result(counts, n)
         expected = a_val + b_val
@@ -222,21 +222,21 @@ class TestVbeAdderCorrectness:
     def test_quirk_example(self):
         """Replicate the exact Quirk URL example: a=9 (1001), b=6 (0110)."""
         # Quirk init vector LSB first: a=[1,0,0,1], b=[0,1,1,0]
-        qc = build_vbe_adder(4, a_bits=[1, 0, 0, 1], b_bits=[0, 1, 1, 0])
+        qc = create_vbe_adder_circuit(4, a_bits=[1, 0, 0, 1], b_bits=[0, 1, 1, 0])
         counts = run_simulation(qc, shots=self.SHOTS)
         value, _ = decode_result(counts, 4)
         assert value == 15, f"Quirk example (9+6): expected 15, got {value}"
 
     def test_result_is_deterministic(self):
         """A fully specified input must yield exactly one outcome (counts has one key)."""
-        qc = build_vbe_adder(3, a_bits=[1, 0, 1], b_bits=[0, 1, 0])
+        qc = create_vbe_adder_circuit(3, a_bits=[1, 0, 1], b_bits=[0, 1, 0])
         counts = run_simulation(qc, shots=2048)
         assert (
             len(counts) == 1
         ), f"Deterministic circuit must yield exactly 1 outcome, got {counts}"
 
     def test_counts_sum_to_shots(self):
-        qc = build_vbe_adder(2, a_bits=[1, 0], b_bits=[0, 1])
+        qc = create_vbe_adder_circuit(2, a_bits=[1, 0], b_bits=[0, 1])
         shots = 512
         counts = run_simulation(qc, shots=shots)
         assert sum(counts.values()) == shots
