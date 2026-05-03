@@ -12,7 +12,11 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from qiskit import QuantumCircuit
-from src.algorithms.deutsch_jozsa import build_oracle, create_deutsch_jozsa_circuit, run_simulation
+from src.algorithms.deutsch_jozsa import (
+    build_oracle,
+    create_deutsch_jozsa_circuit,
+    run_simulation,
+)
 
 
 class TestBuildOracle:

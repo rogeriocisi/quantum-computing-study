@@ -113,14 +113,17 @@ def analyze_results(results: Dict[Tuple[int, int], Dict[str, int]]) -> float:
         total_trials += trials_for_config
 
         print(
-            f"({x}, {y}){' ':<8} | a ^ b == {target_xor}{' ':<11} | {wins_for_config:<8} | {win_rate:.2%}"
+            f"({x}, {y}){' ':<8} | "
+            f"a ^ b == {target_xor}{' ':<11} | "
+            f"{wins_for_config:<8} | "
+            f"{win_rate:.2%}"
         )
 
     overall_win_rate = total_wins / total_trials
     print("-" * 55)
     print(f"OVERALL WIN RATE: {overall_win_rate:.2%}")
-    print(f"Classical Limit: 75.00%")
-    print(f"Quantum Theoretical Bound: ~85.36%")
+    print("Classical Limit: 75.00%")
+    print("Quantum Theoretical Bound: ~85.36%")
 
     return overall_win_rate
 

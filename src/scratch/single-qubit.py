@@ -1,14 +1,6 @@
-# %%
 import os
-import sys
 from qiskit.quantum_info import Statevector
 from qiskit import QuantumCircuit
-
-# Ensure Python finds the 'src' folder from the project root
-root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-if root_path not in sys.path:
-    sys.path.append(root_path)
-
 from src.utils.visualizations import display_state
 
 # 0. Clear screen (useful if running in terminal)

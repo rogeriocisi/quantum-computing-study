@@ -25,7 +25,9 @@ def build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit:
     return qc
 
 
-def create_deutsch_jozsa_circuit(n_qubits: int = 2, balanced: bool = True) -> QuantumCircuit:
+def create_deutsch_jozsa_circuit(
+    n_qubits: int = 2, balanced: bool = True
+) -> QuantumCircuit:
     """Constructs a Deutsch-Jozsa circuit.
 
     Args:
