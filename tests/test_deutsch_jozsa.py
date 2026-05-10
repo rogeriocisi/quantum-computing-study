@@ -5,7 +5,7 @@ Verifies:
 - DJ Oracle circuit structure (constant/balanced)
 - BV Oracle circuit structure (secret string encoding)
 - Query circuit structure (Phase Kickback, Hadamards)
-- Algorithm outputs: 
+- Algorithm outputs:
     - DJ: constant → all-zeros; balanced → non-zero result
     - BV: returns secret string s
 """

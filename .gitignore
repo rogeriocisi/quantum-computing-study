@@ -26,5 +26,10 @@ books/
 .env.local
 .env.*
 
+# Testing
+.coverage
+.pytest_cache/
+htmlcov/
+
 # Experimental / Scratch Code (Tracked in Git)
 # src/scratch/ is now tracked

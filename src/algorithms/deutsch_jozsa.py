@@ -104,7 +104,9 @@ def main(mode: str = "DJ", n_qubits: int = 3, secret_s: str = "101") -> None:
 
         if mode == "DJ":
             is_constant = all(bit == "0" for bit in result_bits)
-            print(f"Conclusion: Function is {'CONSTANT' if is_constant else 'BALANCED'}")
+            print(
+                f"Conclusion: Function is {'CONSTANT' if is_constant else 'BALANCED'}"
+            )
         else:
             print(f"Conclusion: Found secret string = '{result_bits}'")
     else:
