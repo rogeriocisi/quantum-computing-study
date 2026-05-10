@@ -25,6 +25,7 @@ Practical algorithms implemented from scratch with full technical documentation 
 
 *   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
 *   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
+*   **[Bernstein-Vazirani Algorithm](docs/reference/algorithms/bernstein_vazirani.md)**: Finds a hidden bitstring in a single query using the query circuit pattern.
 *   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
 *   **[Superdense Coding](docs/reference/algorithms/superdense_coding.md)**: Sending two classical bits by transmitting only one qubit using pre-shared entanglement.
 *   **[CHSH Game (Bell Test)](docs/reference/algorithms/chsh_game.md)**: A practical demonstration of Bell's Theorem and the violation of local realism.
@@ -33,7 +34,6 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices.
 
 *Planned Implementations:*
-*   **[Bernstein-Vazirani Algorithm](docs/reference/algorithms/bernstein_vazirani.md)**: Finds a hidden bitstring in a single query.
 *   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
 *   **[Grover's Search](docs/reference/algorithms/grover.md)**: Quadratic speedup for unstructured database search.
 *   **[Quantum Fourier Transform (QFT)](docs/reference/algorithms/qft.md)**: The quantum version of the discrete Fourier transform.

@@ -24,37 +24,43 @@ The algorithm leverages **superposition** and **phase kickback** to analyze the 
 
 ## API Reference
 
-The module `src.algorithms.deutsch_jozsa` provides a template-like implementation.
+The module `src.algorithms.deutsch_jozsa` provides implementations for query-based algorithms.
 
-### `create_deutsch_jozsa_circuit(n_qubits: int = 2, balanced: bool = True) -> QuantumCircuit`
-Constructs the full Deutsch-Jozsa circuit.
+### `create_query_circuit(oracle: QuantumCircuit) -> QuantumCircuit`
+Constructs the full quantum circuit for a query algorithm (DJ or BV).
 - **Parameters**:
-  - `n_qubits`: Number of input bits (excluding the ancilla).
-  - `balanced`: Whether the mock oracle generated should be balanced (True) or constant (False).
-- **Returns**: A `qiskit.QuantumCircuit`.
+  - `oracle`: A `QuantumCircuit` representing the black-box function $f(x)$.
+- **Returns**: A `qiskit.QuantumCircuit` with Phase Kickback preparation and final interference.
+
+### `build_dj_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit`
+Helper function to generate oracles for the Deutsch-Jozsa problem.
+- **Parameters**:
+  - `n_qubits`: Number of input qubits.
+  - `balanced`: If True, returns a balanced function; if False, returns a constant function.
 
 ### `run_simulation(qc: QuantumCircuit) -> Optional[Dict[str, int]]`
 Executes the circuit on a local simulator.
 - **Returns**: A dictionary of counts. If the function is constant, you will observe `'0...0'` with 100% probability.
 
-### `build_oracle(n_qubits: int, balanced: bool = True) -> QuantumCircuit`
-A helper function to generate mock oracles for testing.
-- **Note**: In a real-world scenario, the oracle would be a "black box" provided to the algorithm.
-
 ---
 
 ## Usage Example
 ```python
-from src.algorithms.deutsch_jozsa import create_deutsch_jozsa_circuit, run_simulation
+from src.algorithms.deutsch_jozsa import build_dj_oracle, create_query_circuit, run_simulation
 
-# Test with 3 input qubits and a balanced oracle
-qc = create_deutsch_jozsa_circuit(n_qubits=3, balanced=True)
+# 1. Build a balanced oracle for 3 qubits
+oracle = build_dj_oracle(n_qubits=3, balanced=True)
+
+# 2. Create the algorithm circuit
+qc = create_query_circuit(oracle)
+
+# 3. Simulate
 counts = run_simulation(qc)
-
 print(f"Results: {counts}")
-# Since it's balanced, we expect a non-zero bitstring result.
+# Since it's balanced, we expect a non-zero bitstring result (e.g., '111').
 ```
 
 ## Implementation Details
 - **Module**: [`src/algorithms/deutsch_jozsa.py`](../../../src/algorithms/deutsch_jozsa.py)
 - **Test Suite**: [`tests/test_deutsch_jozsa.py`](../../../tests/test_deutsch_jozsa.py)
+- **Specification**: [`docs/system/specs/06-query_algorithms.md`](../../system/specs/06-query_algorithms.md)
