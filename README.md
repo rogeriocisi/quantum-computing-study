@@ -29,12 +29,10 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
 *   **[Superdense Coding](docs/reference/algorithms/superdense_coding.md)**: Sending two classical bits by transmitting only one qubit using pre-shared entanglement.
 *   **[CHSH Game (Bell Test)](docs/reference/algorithms/chsh_game.md)**: A practical demonstration of Bell's Theorem and the violation of local realism.
+*   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
 *   **[VQE & QAOA Optimization](docs/reference/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems. *(Structural Skeleton)*
 *   **[Variational Quantum Classifier](docs/reference/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration. *(Structural Skeleton)*
 *   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices. *(Structural Skeleton)*
-
-*Planned Implementations:*
-*   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
 *   **[Grover's Search](docs/reference/algorithms/grover.md)**: Quadratic speedup for unstructured database search.
 *   **[Quantum Fourier Transform (QFT)](docs/reference/algorithms/qft.md)**: The quantum version of the discrete Fourier transform.
 *   **[Phase Estimation (QPE)](docs/reference/algorithms/qpe.md)**: Algorithm to estimate the phase of an eigenvalue of a unitary operator.
