@@ -56,7 +56,6 @@ from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
 
-
 # ---------------------------------------------------------------------------
 # Core building-block sub-circuits
 # ---------------------------------------------------------------------------
@@ -310,7 +309,7 @@ def run_simulation(
     tqc = transpile(qc, sim)
     job = sampler.run([(tqc, None, shots)])
     result = job.result()
-    
+
     # Extract counts from the result register
     if qc.cregs:
         creg_name = qc.cregs[0].name

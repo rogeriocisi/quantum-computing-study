@@ -76,7 +76,7 @@ def run_simulation(
             tqc = transpile(qc, simulator)
             job = sampler.run([(tqc, None, trials_per_config)])
             result = job.result()
-            
+
             # Extract counts from first classical register
             creg_name = qc.cregs[0].name
             counts = result[0].data[creg_name].get_counts()

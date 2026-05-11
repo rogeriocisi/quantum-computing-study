@@ -60,19 +60,19 @@ def create_query_circuit(oracle: QuantumCircuit) -> QuantumCircuit:
 
 def run_simulation(qc: QuantumCircuit) -> Optional[Dict[str, int]]:
     """Runs simulation on AerSimulator using SamplerV2.
-    
+
     Args:
         qc: The quantum circuit to execute.
-        
+
     Returns:
         A dictionary of counts if successful, None otherwise.
     """
     sim = AerSimulator()
-    sampler = SamplerV2(backend=sim)
+    sampler = SamplerV2()
     tqc = transpile(qc, sim)
     job = sampler.run([(tqc, None, 1024)])
     result = job.result()
-    
+
     # Extract counts from the first (and only) pub result
     pub_result = result[0]
     if qc.cregs:
