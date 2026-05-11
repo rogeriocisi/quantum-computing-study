@@ -9,8 +9,9 @@ classical limit (75%).
 
 from typing import Dict, Tuple
 import numpy as np
-from qiskit import QuantumCircuit
+from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
+from qiskit_aer.primitives import SamplerV2
 from src.utils.foundations import apply_bell_pair
 
 
@@ -66,13 +67,19 @@ def run_simulation(
         Dict: A mapping of (x, y) to measurement counts.
     """
     simulator = AerSimulator()
+    sampler = SamplerV2()
     results = {}
 
     for x in [0, 1]:
         for y in [0, 1]:
             qc = create_chsh_circuit(x, y)
-            job = simulator.run(qc, shots=trials_per_config)
-            counts = job.result().get_counts()
+            tqc = transpile(qc, simulator)
+            job = sampler.run([(tqc, None, trials_per_config)])
+            result = job.result()
+            
+            # Extract counts from first classical register
+            creg_name = qc.cregs[0].name
+            counts = result[0].data[creg_name].get_counts()
             results[(x, y)] = counts
 
     return results

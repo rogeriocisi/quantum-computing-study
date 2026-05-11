@@ -39,9 +39,10 @@ Both algorithms share the same circuit template:
     - `build_dj_oracle(n_qubits, balanced)`: Constructs a DJ oracle.
     - `build_bv_oracle(s)`: Constructs a BV oracle.
     - `create_query_circuit(oracle)`: Builds the unified quantum circuit.
-    - `run_simulation(qc)`: Simulates execution and returns counts.
+    - `run_simulation(qc)`: Simulates execution using `SamplerV2` and returns counts.
 
 ## 5. Success Criteria
 -   DJ must correctly identify constant/balanced functions with 100% accuracy in simulation.
 -   BV must retrieve the secret string $s$ with 100% accuracy in simulation.
+-   Execution MUST use `SamplerV2`.
 -   Full unit test coverage in `tests/test_deutsch_jozsa.py`.

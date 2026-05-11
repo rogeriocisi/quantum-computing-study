@@ -9,10 +9,8 @@ over classical algorithms and was a precursor to Shor's algorithm.
 import numpy as np
 from typing import List, Dict, Optional
 from qiskit import QuantumCircuit, transpile
-try:
-    from qiskit_aer import AerSimulator
-except ImportError:
-    AerSimulator = None
+from qiskit_aer import AerSimulator
+from qiskit_aer.primitives import SamplerV2
 
 def build_simon_oracle(s: str) -> QuantumCircuit:
     """
@@ -125,12 +123,24 @@ def solve_simon(counts: Dict[str, int], n: int) -> str:
     return '0' * n
 
 def run_simulation(qc: QuantumCircuit) -> Optional[Dict[str, int]]:
-    """Runs simulation on AerSimulator."""
-    if AerSimulator:
-        sim = AerSimulator()
-        tqc = transpile(qc, sim)
-        result = sim.run(tqc, shots=1024).result()
-        return result.get_counts()
+    """Runs simulation on AerSimulator using SamplerV2.
+    
+    Args:
+        qc: The quantum circuit to execute.
+        
+    Returns:
+        A dictionary of counts if successful, None otherwise.
+    """
+    sim = AerSimulator()
+    sampler = SamplerV2()
+    tqc = transpile(qc, sim)
+    job = sampler.run([(tqc, None, 1024)])
+    result = job.result()
+    
+    # Extract counts from the first classical register
+    if qc.cregs:
+        creg_name = qc.cregs[0].name
+        return result[0].data[creg_name].get_counts()
     return None
 
 def main(secret_s: str = "110") -> None:

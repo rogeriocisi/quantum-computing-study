@@ -1,7 +1,8 @@
 import os
 from typing import Dict
-from qiskit import QuantumCircuit
+from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
+from qiskit_aer.primitives import SamplerV2
 from qiskit.visualization import plot_histogram
 import matplotlib.pyplot as plt
 import matplotlib
@@ -72,13 +73,15 @@ def run_simulation(qc: QuantumCircuit, message: str) -> Dict[str, int]:
     print(f"Drawing the circuit for message '{message}'...")
     qc.draw(output="mpl", filename=f"outputs/superdense_circuit_{message}.png")
 
-    # Run the simulation using AerSimulator
-    backend = AerSimulator()
-    job = backend.run(qc, shots=1024)
+    # Run the simulation using SamplerV2
+    sim = AerSimulator()
+    sampler = SamplerV2()
+    tqc = transpile(qc, sim)
+    job = sampler.run([(tqc, None, 1024)])
     result = job.result()
 
-    # Get the counts of the results
-    counts = result.get_counts(qc)
+    # Get the counts from the 'meas' register (added by measure_all)
+    counts = result[0].data.meas.get_counts()
     print(f"Results for message '{message}': {counts}")
 
     # Visualize the histogram (saved as an image)

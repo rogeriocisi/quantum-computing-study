@@ -53,12 +53,8 @@ from typing import Dict, List, Optional, Tuple
 
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
 
-try:
-    from qiskit_aer import AerSimulator
-
-    _HAS_AER = True
-except ImportError:
-    _HAS_AER = False
+from qiskit_aer import AerSimulator
+from qiskit_aer.primitives import SamplerV2
 
 
 # ---------------------------------------------------------------------------
@@ -309,15 +305,17 @@ def run_simulation(
     RuntimeError
         If ``qiskit-aer`` is not installed.
     """
-    if not _HAS_AER:
-        raise RuntimeError(
-            "qiskit-aer is required for simulation. "
-            "Install it with:  pip install qiskit-aer"
-        )
-    backend = AerSimulator()
-    tqc = transpile(qc, backend)
-    result = backend.run(tqc, shots=shots).result()
-    return result.get_counts()
+    sim = AerSimulator()
+    sampler = SamplerV2()
+    tqc = transpile(qc, sim)
+    job = sampler.run([(tqc, None, shots)])
+    result = job.result()
+    
+    # Extract counts from the result register
+    if qc.cregs:
+        creg_name = qc.cregs[0].name
+        return result[0].data[creg_name].get_counts()
+    return {}
 
 
 def decode_result(counts: Dict[str, int], n: int) -> Tuple[int, Dict[str, int]]:

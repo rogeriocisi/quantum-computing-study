@@ -1,7 +1,8 @@
 import os
 from typing import Dict
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
 from qiskit_aer import AerSimulator
+from qiskit_aer.primitives import SamplerV2
 from qiskit.visualization import plot_histogram
 import matplotlib.pyplot as plt
 import matplotlib
@@ -90,13 +91,16 @@ def run_simulation(qc: QuantumCircuit) -> Dict[str, int]:
     print("Drawing the circuit...")
     qc.draw(output="mpl", filename="outputs/teleportation_circuit.png")
 
-    # Run the simulation using AerSimulator
-    backend = AerSimulator()
-    job = backend.run(qc, shots=1024)
+    # Run the simulation using SamplerV2
+    sim = AerSimulator()
+    sampler = SamplerV2()
+    tqc = transpile(qc, sim)
+    job = sampler.run([(tqc, None, 1024)])
     result = job.result()
 
-    # Get the counts of the results
-    counts = result.get_counts(qc)
+    # Get the counts from the 'result' classical register
+    # (Bob's verification qubit)
+    counts = result[0].data.result.get_counts()
     print(f"Results (counts): {counts}")
 
     # Visualize the histogram (saved as an image)

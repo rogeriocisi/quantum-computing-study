@@ -25,6 +25,7 @@ To ensure consistency across the library, all quantum algorithms must implement 
 ### `run_simulation(qc, ...)`
 - **Purpose**: Executes the circuit on a simulator (typically `AerSimulator`).
 - **Input**: The `QuantumCircuit` and simulation parameters (e.g., shots).
+- **Mandate**: MUST use `SamplerV2` (from `qiskit_aer.primitives` or `qiskit_ibm_runtime`) for count retrieval.
 - **Output**: Returns measurement results (usually a `counts` dictionary).
 - **Visuals**: May generate diagrams (`circuit.draw`) or histograms (`plot_histogram`) in the `outputs/` folder.
 
@@ -51,4 +52,5 @@ if __name__ == "__main__":
 - **Formatting**: All code must be formatted with `black .`.
 - **Linting**: Code must pass `flake8` checks.
 - **Cleanup**: Unused imports must be removed using `autoflake`.
-- **Imports**: Modules within the project should use absolute imports from `src` (e.g., `from src.utils.foundations import ...`) and requires `PYTHONPATH="."`.
+- **Imports**: Modules within the project should use absolute imports from `src`.
+- **Documentation**: Every function must have a **Google-style** or **NumPy-style** docstring with type annotations.

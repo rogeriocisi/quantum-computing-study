@@ -35,10 +35,11 @@ It is often described as a game where two parties (Alice and Bob) cooperate to w
 -   **File**: `src/algorithms/chsh_game.py`
 -   **Functions**:
     - `create_chsh_circuit(x: int, y: int) -> QuantumCircuit`: Builds the circuit for a specific input pair.
-    - `simulate_chsh_game(trials: int = 1000) -> Dict`: Runs multiple trials for all $(x, y)$ combinations.
-    - `calculate_win_rate(results: Dict) -> float`: Computes the overall winning probability.
+    - `run_simulation(trials: int = 1000) -> Dict`: Runs multiple trials for all $(x, y)$ combinations using `SamplerV2`.
+    - `analyze_results(results: Dict) -> float`: Computes and prints the overall winning probability.
 
 ## 5. Success Criteria
 -   The implementation must show a winning probability significantly exceeding 75% (ideally approaching 85%).
+-   Execution MUST use `SamplerV2` for data collection.
 -   Full documentation in `docs/reference/algorithms/chsh_game.md`.
 -   Integration into the `README.md`.
