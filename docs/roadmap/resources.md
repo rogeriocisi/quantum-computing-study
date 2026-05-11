@@ -64,7 +64,22 @@ Visual and pedagogical introduction for IT professionals without a strong math b
 ---
 
 ## 🎓 Online Courses
-*   **IBM Quantum Learning**: Official interactive path for Qiskit v2 certification. [Access Course](https://quantum.cloud.ibm.com/learning)
+
+### Featured: Understanding Quantum Information and Computation
+**IBM Quantum Learning · Led by John Watrous · Official Track**
+This is one of the most respected, rigorous, and well-structured learning paths available today. It is the official evolution of the classic Qiskit Textbook and provides a comprehensive journey from foundations to error correction.
+
+1.  **[Basics of quantum information](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information)**: The entry point. Covers linear algebra, qubits, basic circuits, and entanglement (Teleportation, CHSH).
+2.  **[Fundamentals of quantum algorithms](https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms)**: Explores why quantum computers are useful. Deep dive into DJ, Simon, Grover, QPE, and Shor's algorithm.
+3.  **[General formulation of quantum information](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information)**: Advanced university level. Introduces Density Matrices, POVMs, and Quantum Channels to model real, noisy systems.
+4.  **[Foundations of quantum error correction](https://quantum.cloud.ibm.com/learning/en/courses/foundations-of-quantum-error-correction)**: The "Holy Grail". Teaches how to protect quantum info from noise using codes (Shor, Surface codes) and fault-tolerance principles.
+
+**About IBM Digital Badges (Credly):**
+Completing these courses leads to verifiable digital badges on the Credly platform. These are highly valued in the industry as they represent a rigorous assessment of mathematical and algorithmic proficiency from the market leader.
+
+---
+
+*   **IBM Quantum Learning (Main Catalog)**: Official interactive path for Qiskit v2 certification. [Access Course](https://quantum.cloud.ibm.com/learning)
 *   **MIT 8.370x (OCW)**: Complete university course by Peter Shor & Isaac Chuang. [Access MIT OCW](https://ocw.mit.edu/courses/8-370x-quantum-information-science-i-spring-2018/)
 *   **Quantum Computing Fundamentals (MIT/edX)**: Hardware perspectives and fundamental principles. [View on edX](https://www.edx.org/learn/quantum-computing/massachusetts-institute-of-technology-quantum-computing-fundamentals)
 *   **QuTech Academy (TU Delft)**: Europe's most advanced quantum modules on internet and cryptography. [View QuTech Courses](https://www.edx.org/school/delftx)

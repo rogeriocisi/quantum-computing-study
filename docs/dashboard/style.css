@@ -204,6 +204,25 @@ section {
     color: var(--text-dim);
 }
 
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--secondary);
+    margin-top: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+}
+
+.status-skeleton {
+    color: var(--accent);
+    border-color: rgba(255, 0, 122, 0.2);
+}
+
 /* Tech Stack */
 .tech-stack {
     display: flex;

@@ -29,9 +29,9 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
 *   **[Superdense Coding](docs/reference/algorithms/superdense_coding.md)**: Sending two classical bits by transmitting only one qubit using pre-shared entanglement.
 *   **[CHSH Game (Bell Test)](docs/reference/algorithms/chsh_game.md)**: A practical demonstration of Bell's Theorem and the violation of local realism.
-*   **[VQE & QAOA Optimization](docs/reference/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems.
-*   **[Variational Quantum Classifier](docs/reference/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration.
-*   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices.
+*   **[VQE & QAOA Optimization](docs/reference/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems. *(Structural Skeleton)*
+*   **[Variational Quantum Classifier](docs/reference/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration. *(Structural Skeleton)*
+*   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices. *(Structural Skeleton)*
 
 *Planned Implementations:*
 *   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
@@ -133,13 +133,22 @@ pip install qiskit qiskit-aer qiskit-ibm-runtime pennylane matplotlib
 
 ## 🏆 Certification Goals
 
-### 🎯 Primary: IBM C1000-179
-The main objective is 100% coverage of the IBM Certified Developer exam:
-*   **Circuit Operations (47%)**
-*   **Visualization (19%)**
-*   **Primitives (15%)**
-*   **Quantum Information (10%)**
-*   **OpenQASM & Tooling (9%)**
+### 🎯 Primary: IBM C1000-179 & Learning Path Badges
+The main objective is 100% coverage of the IBM Certified Developer exam and completing the **"Understanding Quantum Information and Computation"** series:
+
+*   **[Basics of Quantum Information Badge](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information)**: Mathematical foundations, qubits, and entanglement.
+*   **[Fundamentals of Quantum Algorithms Badge](https://quantum.cloud.ibm.com/learning/en/courses/fundamentals-of-quantum-algorithms)**: DJ, Simon, Grover, and Shor's algorithms.
+*   **[General Formulation of Quantum Information Badge](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information)**: Density matrices and noisy systems.
+*   **[Foundations of Quantum Error Correction Badge](https://quantum.cloud.ibm.com/learning/en/courses/foundations-of-quantum-error-correction)**: Fault-tolerance and surface codes.
+
+These badges, issued via **Credly**, are industry-recognized proofs of proficiency in mathematical and algorithmic quantum logic.
+
+*   **Exam Coverage (C1000-179)**:
+    *   **Circuit Operations (47%)**
+    *   **Visualization (19%)**
+    *   **Primitives (15%)**
+    *   **Quantum Information (10%)**
+    *   **OpenQASM & Tooling (9%)**
 
 ### 🌟 The "Plus" (Complementary Badges)
 *   **AWS Braket**: For cloud-native infrastructure mastery.
