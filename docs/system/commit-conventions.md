@@ -21,8 +21,8 @@ Format: `<type>(<scope>): <short description in English>`
 | Scope          | Maps to                          |
 |----------------|----------------------------------|
 | `bell-state`   | `src/algorithms/bell_state.py`   |
-| `vqe`          | `src/optimization/vqe_qaoa.py`   |
-| `qml`          | `src/qml/qml_vqc.py`             |
+| `vqe`          | `src/algorithms/optimization/vqe_qaoa.py` |
+| `qml`          | `src/algorithms/qml/qml_vqc.py`           |
 | `nisq`         | `src/utils/nisq_mitigation.py`   |
 | `algorithms`   | `src/algorithms/`                |
 | `src`          | multiple modules under `src/`    |

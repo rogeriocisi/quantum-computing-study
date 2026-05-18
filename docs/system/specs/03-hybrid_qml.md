@@ -1,6 +1,6 @@
 # Specification: Phase 3 — Hybrid Algorithms & QML 🤖
 
-- **Modules**: `src/optimization/`, `src/qml/`
+- **Modules**: `src/algorithms/optimization/`, `src/algorithms/qml/`
 - **Phase**: 3
 - **Status**: Implemented (Retroactive Spec)
 

@@ -1,5 +1,5 @@
 """
-Tests for src/optimization/vqe_qaoa.py
+Tests for src/algorithms/optimization/vqe_qaoa.py
 
 Verifies:
 - QAOA ansatz structure
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import numpy as np
 from qiskit import QuantumCircuit
-from src.optimization.vqe_qaoa import build_qaoa_ansatz, vqe_workflow
+from src.algorithms.optimization.vqe_qaoa import build_qaoa_ansatz, vqe_workflow
 
 
 class TestBuildQaoaAnsatz:

@@ -4,9 +4,9 @@ This directory follows a professional modular structure for Quantum Software Eng
 
 ## 📁 Directory Map
 
-- **`algorithms/`**: Standard quantum algorithms (Deutsch-Jozsa, Simon, Grover, Shor).
-- **`qml/`**: Quantum Machine Learning experiments using **PennyLane**.
-- **`optimization/`**: Hybrid variational algorithms like **VQE** and **QAOA**.
+- **`algorithms/`**: Quantum algorithms and submodules (Deutsch-Jozsa, Simon, Grover, Shor):
+  - **`algorithms/optimization/`**: Hybrid variational algorithms like **VQE** and **QAOA**.
+  - **`algorithms/qml/`**: Quantum Machine Learning experiments using **PennyLane**.
 - **`utils/`**: Helper functions for noise mitigation (NISQ), visualization, and data processing.
 
 > 📌 **Note**: Runnable entry point scripts (e.g., `capstone_demo.py`) live in `../scripts/`, not here. This folder contains only reusable, importable modules.

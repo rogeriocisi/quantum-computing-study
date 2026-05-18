@@ -20,7 +20,7 @@ Both algorithms follow a similar iterative loop:
 
 ## API Reference
 
-The module `src.optimization.vqe_qaoa` defines the interfaces for these workflows.
+The module `src.algorithms.optimization.vqe_qaoa` defines the interfaces for these workflows.
 
 ### `build_qaoa_ansatz(n_qubits: int = 4, p: int = 1) -> QuantumCircuit`
 Generates a parametrized QAOA circuit.
@@ -40,7 +40,7 @@ Executes the hybrid optimization loop.
 
 ## Usage Example
 ```python
-from src.optimization.vqe_qaoa import build_qaoa_ansatz, vqe_workflow
+from src.algorithms.optimization.vqe_qaoa import build_qaoa_ansatz, vqe_workflow
 
 # 1. Build a 4-qubit QAOA circuit
 ansatz = build_qaoa_ansatz(n_qubits=4, p=2)
@@ -52,5 +52,5 @@ print(f"Optimal Parameters: {optimal_params}")
 ```
 
 ## Implementation Details
-- **Module**: [`src/optimization/vqe_qaoa.py`](../../../src/optimization/vqe_qaoa.py)
-- **Test Suite**: [`tests/test_vqe_qaoa.py`](../../../tests/test_vqe_qaoa.py)
+- **Module**: [`src/algorithms/optimization/vqe_qaoa.py`](../../../../src/algorithms/optimization/vqe_qaoa.py)
+- **Test Suite**: [`tests/test_vqe_qaoa.py`](../../../../tests/test_vqe_qaoa.py)

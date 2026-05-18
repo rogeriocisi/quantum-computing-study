@@ -21,7 +21,7 @@ We use the **Mean Squared Error (MSE)** as the loss function and update paramete
 
 ## API Reference
 
-The module `src.qml.qml_vqc` manages the training and evaluation logic.
+The module `src.algorithms.qml.qml_vqc` manages the training and evaluation logic.
 
 ### `build_vqc(n_qubits: int = 2, n_layers: int = 2) -> (QNode, np.ndarray)`
 Sets up the PennyLane device and QNode.
@@ -42,7 +42,7 @@ Performs the training loop.
 
 ## Usage Example
 ```python
-from src.qml.qml_vqc import build_vqc, train_vqc
+from src.algorithms.qml.qml_vqc import build_vqc, train_vqc
 import numpy as np
 
 # 1. Initialize circuit
@@ -57,5 +57,5 @@ final_params = train_vqc(circuit, init_params, data, labels, steps=5)
 ```
 
 ## Implementation Details
-- **Module**: [`src/qml/qml_vqc.py`](../../../src/qml/qml_vqc.py)
-- **Test Suite**: [`tests/test_qml_vqc.py`](../../../tests/test_qml_vqc.py)
+- **Module**: [`src/algorithms/qml/qml_vqc.py`](../../../../src/algorithms/qml/qml_vqc.py)
+- **Test Suite**: [`tests/test_qml_vqc.py`](../../../../tests/test_qml_vqc.py)

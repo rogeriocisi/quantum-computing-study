@@ -21,7 +21,7 @@
 - **Audience**: International researchers and professional developers.
 
 ## 4. Repository Structure & Standards
-- **Source Code (`src/`)**: Reusable modules organized by domain (`algorithms/`, `qml/`, `optimization/`, `utils/`).
+- **Source Code (`src/`)**: Reusable modules organized by domain (`algorithms/` containing subdomains `optimization/` and `qml/`, and `utils/`).
 - **Scratch / Prototypes (`src/scratch/`)**: Fast prototyping, isolated concept testing, and experimental code. Visible and tracked in Git for knowledge sharing.
 - **Execution Scripts (`scripts/`)**: Standalone runners that import from `src/` (e.g., `capstone_demo.py`). These are not importable modules.
 - **Notebooks (`notebooks/`)**: Used for Phase 1-6 learning and prototyping.

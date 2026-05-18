@@ -1,5 +1,5 @@
 """
-Tests for src/qml/qml_vqc.py
+Tests for src/algorithms/qml/qml_vqc.py
 
 Verifies:
 - build_vqc() returns a valid QNode and parameters
@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
 import numpy as np
-from src.qml.qml_vqc import build_vqc, loss_fn, train_vqc
+from src.algorithms.qml.qml_vqc import build_vqc, loss_fn, train_vqc
 
 
 class TestBuildVqc:
