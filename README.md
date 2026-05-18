@@ -38,6 +38,10 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **[Phase Estimation (QPE)](docs/reference/algorithms/qpe.md)**: Algorithm to estimate the phase of an eigenvalue of a unitary operator.
 *   **[Shor's Algorithm](docs/reference/algorithms/shor.md)**: Polynomial-time algorithm for integer factorization.
 
+> [!NOTE]
+> **Execution Paradigm — Simulators vs. Real Hardware (NISQ Era)**  
+> All quantum algorithms in this repository are executed by default using local high-performance classical simulators ([Qiskit Aer](https://github.com/Qiskit/qiskit-aer)). Due to physical noise, decoherence, and gate error rates on real physical devices (NISQ era), executing deep circuits (like Shor's Algorithm) on physical hardware currently yields mostly noise without advanced error mitigation. We prioritize a simulator-first approach to validate mathematical and algorithmic correctness, although the code remains 100% compliant with standard physical transpilation APIs (using Qiskit `SamplerV2`). See the [Shor's Algorithm Hardware Documentation](docs/reference/algorithms/shor.md#classical-simulation-vs-real-hardware-nisq-reality) for details.
+
 ---
 
 ## 📅 Realistic Part-Time Roadmap (12 Months)

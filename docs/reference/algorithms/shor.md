@@ -130,6 +130,55 @@ else:
     # Expected: Factors of 15: 3 and 5  (or 5 and 3)
 ```
 
+---
+
+## Classical Simulation vs. Real Hardware (NISQ Reality)
+
+Although the codebase is 100% compliant with standard Qiskit execution interfaces, the default orchestrator runs on a local high-performance simulator (`AerSimulator`). Understanding the transition from simulation to real physical hardware—and the physical challenges involved—is essential for Quantum Software Engineering.
+
+### 1. Qiskit v2.x Hardware Portability (IBM Quantum)
+Because this project strictly adheres to the modern **Qiskit v2.x Primitives (`SamplerV2`)** standard, migrating the execution backend from local CPU simulation to an utility-scale IBM Quantum processor (such as 127-qubit *Eagle* or *Heron* systems) requires no architectural changes.
+
+Below is the code template to redirect the QPE circuit execution to a physical IBM Quantum system via cloud runtime:
+
+```python
+from qiskit import transpile
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as IBMQSampler
+
+# 1. Connect to IBM Quantum Cloud Service (credentials loaded from .env)
+service = QiskitRuntimeService()
+
+# 2. Select the least busy online quantum physical computer
+backend = service.least_busy(simulator=False, operational=True)
+
+# 3. Transpile the circuit for the physical qubit coupling map of the selected chip
+tqc = transpile(qc, backend)
+
+# 4. Instantiate the cloud-native hardware Sampler
+sampler = IBMQSampler(mode=backend)
+
+# 5. Submit the execution job to the physical IBM queue
+job = sampler.run([(tqc, None, shots)])
+result = job.result()
+counts = result[0].data[qc.cregs[0].name].get_counts()
+```
+
+### 2. The Noise Challenge in the NISQ Era
+If you submit Shor's algorithm for $N=15$ directly to a real physical quantum computer today, the continued fraction classical post-processing (`solve_shor`) will likely fail. This is due to the physical limitations of the **NISQ (Noisy Intermediate-Scale Quantum)** era:
+
+*   **Qubit Count vs. Circuit Depth**: Factoring $N=15$ requires **12 qubits** (8 counting, 4 target). While 12 physical qubits are easily available, the **circuit depth** (total number of sequential gate layers) is extremely high due to the complex controlled modular exponentiation gates ($C-U^{2^i}$).
+*   **Two-Qubit Gate Errors**: Physical multi-qubit operations (like CNOT or ECR gates) have error rates around $10^{-2}$ to $10^{-3}$ on current NISQ devices. Since modular multiplication requires hundreds of these gates, the probability of the entire circuit executing without a single physical phase-flip or bit-flip error decays exponentially toward zero:
+    $$P_{\text{success}} \approx (1 - \epsilon)^{N_{\text{gates}}} \approx 0$$
+*   **Decoherence & Thermalization**: Over the course of a deep circuit, qubits lose their quantum properties and interact with the environment (T1 relaxation and T2 dephasing). By the time the counting register is measured, the system has thermalized, resulting in a **uniform random distribution** (white noise) instead of the sharp probability peaks representing the phase $\theta = s/r$.
+
+### 3. Engineering Justification for Simulator-First Development
+For educational, research, and testing purposes, utilizing a local classical simulator (`AerSimulator`) is the preferred industry standard because it:
+1.  **Ensures Algorithmic Correctness**: Validates that the mathematical logic of the oracle, QPE phase-kickback, and continued fractions are perfectly aligned without being obscured by environmental noise.
+2.  **Is Cost and Speed Efficient**: Avoids long IBM cloud queues and execution costs, completing 2048 shots of a 12-qubit circuit in less than a second locally.
+3.  **Acts as a Baseline**: Provides a noiseless "control group" to benchmark physical hardware runs and develop quantum error mitigation strategies (like Zero Noise Extrapolation).
+
+---
+
 ## Implementation Details
 - **Module**: [`src/algorithms/shor.py`](../../../src/algorithms/shor.py)
 - **Test Suite**: [`tests/test_shor.py`](../../../tests/test_shor.py)
