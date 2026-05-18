@@ -50,32 +50,28 @@ Practical algorithms implemented from scratch with full technical documentation 
 ### Phase 1: Foundations of Quantum Computing (Month 1)
 *   **Goal**: Transition from classical logic to quantum state representation (Dirac & Bloch).
 
-### Phase 2: Quantum Mechanics & Algorithms I (Months 2-4)
+### Phase 2: Quantum Mechanics & Algorithms I (Month 2)
 *   **Topics**: Oracles (black-box problem encoding), Phase Kickback (logic for information retrieval), Deutsch-Jozsa, Bernstein-Vazirani, Simon's Algorithm.
 *   **Focus**: Mastery of the "Quantum Intuition" — where most developers face the steepest learning curve.
 
-### Phase 3: Intro to Quantum Machine Learning with PennyLane (Month 5)
-*   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", PennyLane setup.
-*   **Focus**: Early introduction to the "learnable" part of quantum computing.
-
-### Phase 4: Advanced Algorithms II (Month 6)
+### Phase 3: Advanced Algorithms II (Month 3)
 *   **Topics**: Grover's Search, Quantum Fourier Transform (QFT), Phase Estimation (QPE), Shor's Algorithm.
 *   **Goal**: Understanding the mathematical foundations and Qiskit implementations of complex routines.
 
-### Phase 5: Applied QML & Optimization (Months 7-8)
+### Phase 4: Intro to Quantum Machine Learning with PennyLane (Month 4)
+*   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", PennyLane setup.
+*   **Focus**: Early introduction to the "learnable" part of quantum computing.
+
+### Phase 5: Applied QML & Optimization (Months 5-6)
 *   **Topics**: QAOA for optimization, VQE for molecular simulation, Hybrid workflows.
 *   **Focus**: Practical use of **PennyLane** and Qiskit for real-world problem solving.
 
-### Phase 6: The NISQ Era & Noise Reality (Month 9)
-*   **Topics**: Conceptual Noise, Decoherence, high-level Error Mitigation (ZNE/M3).
-*   **Focus**: Understanding hardware limitations without diving too deep into physics.
+### Phase 6: Industrial Capstone (Months 7-10)
+*   **Final Project**: A professional-grade application with technical documentation.
 
-### Phase 7: Buffer Month & Exam Deep Review (Month 10)
+### Phase 7: Exam Prep & IBM Certification (Months 11-12)
 *   **Objective**: Identify and fill knowledge gaps, review all previous phases, and start targeted IBM C1000-179 prep.
 *   **Focus**: Consolidation and "house cleaning" before the final push.
-
-### Phase 8: Industrial Capstone & IBM Certification (Months 11-12)
-*   **Final Project**: A professional-grade hybrid application with a full CI/CD pipeline and technical documentation.
 *   **Certification**: Completion of the **IBM C1000-179 Exam**.
 
 ---
