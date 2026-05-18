@@ -98,7 +98,7 @@ def create_shor_circuit(a: int, N: int) -> QuantumCircuit:
         QuantumCircuit: The complete quantum circuit.
     """
     n_count = 2 * math.ceil(math.log2(N))  # size of counting register
-    m = math.ceil(math.log2(N))             # size of target register
+    m = math.ceil(math.log2(N))  # size of target register
 
     count_reg = QuantumRegister(n_count, name="count")
     target_reg = QuantumRegister(m, name="target")
@@ -260,7 +260,10 @@ def main() -> None:
 
         found_factor = solve_shor(counts, a, N)
         if found_factor is not None:
-            print(f"   SUCCESS! Found factor: {found_factor} (meaning {found_factor} * {N // found_factor} = {N})")
+            print(
+                f"   SUCCESS! Found factor: {found_factor} "
+                f"(meaning {found_factor} * {N // found_factor} = {N})"
+            )
         else:
             print(f"   FAILED to factor N={N} with base a={a}.")
 
