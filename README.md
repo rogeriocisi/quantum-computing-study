@@ -21,22 +21,26 @@ A curated selection of the best educational materials in the field. For the full
 ---
 
 ## ✨ Core Implementations
-Practical algorithms implemented from scratch with full technical documentation and unit testing.
+Important algorithms implemented from scratch, with full technical documentation and unit testing.
 
-*   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
-*   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
 *   **[Bernstein-Vazirani Algorithm](docs/reference/algorithms/bernstein_vazirani.md)**: Finds a hidden bitstring in a single query using the query circuit pattern.
-*   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
-*   **[Superdense Coding](docs/reference/algorithms/superdense_coding.md)**: Sending two classical bits by transmitting only one qubit using pre-shared entanglement.
 *   **[CHSH Game (Bell Test)](docs/reference/algorithms/chsh_game.md)**: A practical demonstration of Bell's Theorem and the violation of local realism.
-*   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
-*   **[VQE & QAOA Optimization](docs/reference/algorithms/optimization/vqe_qaoa.md)**: Hybrid workflows for chemistry and combinatorial problems. *(Structural Skeleton)*
-*   **[Variational Quantum Classifier](docs/reference/algorithms/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration. *(Structural Skeleton)*
-*   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices. *(Structural Skeleton)*
+*   **[Deutsch-Jozsa Algorithm](docs/reference/algorithms/deutsch_jozsa.md)**: First algorithm to show exponential quantum speedup for black-box problems.
 *   **[Grover's Search](docs/reference/algorithms/grover.md)**: Quadratic speedup for unstructured database search.
-*   **[Quantum Fourier Transform (QFT)](docs/reference/algorithms/qft.md)**: The quantum version of the discrete Fourier transform.
+*   **[NISQ Error Mitigation](docs/reference/utils/nisq_mitigation.md)**: Zero Noise Extrapolation (ZNE) tools for noisy devices. *(Structural Skeleton)*
 *   **[Phase Estimation (QPE)](docs/reference/algorithms/qpe.md)**: Algorithm to estimate the phase of an eigenvalue of a unitary operator.
+*   **[Quantum Teleportation](docs/reference/algorithms/quantum_teleportation.md)**: Protocol to transmit quantum information using entanglement and classical communication.
 *   **[Shor's Algorithm](docs/reference/algorithms/shor.md)**: Polynomial-time algorithm for integer factorization.
+*   **[Simon's Algorithm](docs/reference/algorithms/simon.md)**: Finds the hidden period of a function, providing exponential speedup.
+*   **[Superdense Coding](docs/reference/algorithms/superdense_coding.md)**: Sending two classical bits by transmitting only one qubit using pre-shared entanglement.
+*   **[Variational Quantum Classifier](docs/reference/algorithms/qml/vqc.md)**: Supervised learning using PennyLane-Qiskit integration. *(Structural Skeleton)*
+*   **[Vedral-Barenco-Ekert (VBE) Adder](docs/reference/algorithms/vbe_adder.md)**: A reversible ripple-carry quantum adder. Implementation follows the 1996 seminal paper.
+*   **[VQE & QAOA Optimization](docs/reference/algorithms/optimization/vqe_qaoa.md)**: Variational Quantum Eigensolvers (VQE) and the Quantum Approximate Optimization Algorithm (QAOA) - hybrid workflows for chemistry and combinatorial problems. *(Structural Skeleton)*
+
+### 📦 Standard Library Integrations
+*   **[Quantum Fourier Transform (QFT)](docs/reference/algorithms/qft.md)**: The quantum version of the discrete Fourier transform. *(Utilized directly as a pre-built module from the `qiskit.circuit.library`)*
+
+---
 
 > [!NOTE]
 > **Execution Paradigm — Simulators vs. Real Hardware (NISQ Era)**  
@@ -58,15 +62,15 @@ Practical algorithms implemented from scratch with full technical documentation 
 *   **Topics**: Grover's Search, Quantum Fourier Transform (QFT), Phase Estimation (QPE), Shor's Algorithm.
 *   **Goal**: Understanding the mathematical foundations and Qiskit implementations of complex routines.
 
-### Phase 4: Intro to Quantum Machine Learning with PennyLane (Month 4)
-*   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", PennyLane setup.
-*   **Focus**: Early introduction to the "learnable" part of quantum computing.
+### Phase 4: Quantum Machine Learning with PennyLane (Month 4-5)
+*   **Topics**: Variational Quantum Circuits (VQC) as "Quantum Neural Networks", [PennyLane](https://pennylane.ai/intro/) setup.
+*   **Focus**: Introduction to the "learnable" part of quantum computing.
 
-### Phase 5: Applied QML & Optimization (Months 5-6)
+### Phase 5: Applied QML & Optimization (Months 6-7)
 *   **Topics**: QAOA for optimization, VQE for molecular simulation, Hybrid workflows.
-*   **Focus**: Practical use of **PennyLane** and Qiskit for real-world problem solving.
+*   **Focus**: Practical use of PennyLane and Qiskit for real-world problem solving.
 
-### Phase 6: Industrial Capstone (Months 7-10)
+### Phase 6: Industrial Capstone (Months 8-10)
 *   **Final Project**: A professional-grade application with technical documentation.
 
 ### Phase 7: Exam Prep & IBM Certification (Months 11-12)
