@@ -13,7 +13,7 @@ from typing import Dict, Tuple, Optional
 import numpy as np
 
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
-from qiskit.circuit.library import QFT
+from qiskit.circuit.library import QFTGate
 from qiskit.quantum_info import Operator
 from qiskit_aer import AerSimulator
 from qiskit_aer.primitives import SamplerV2
@@ -116,7 +116,7 @@ def create_shor_circuit(a: int, N: int) -> QuantumCircuit:
         qc.append(c_u, [count_reg[i]] + list(target_reg))
 
     # 3. Apply Inverse QFT on counting register
-    qc.append(QFT(n_count, inverse=True).to_gate(label="IQFT"), count_reg)
+    qc.append(QFTGate(n_count).inverse(), count_reg)
 
     # 4. Measure counting register
     qc.measure(count_reg, class_reg)
