@@ -59,9 +59,64 @@ graph LR
 
 ---
 
-## Implementation & Shor's Algorithm Integration
-*   **Implementation in Shor's Algorithm**: QPE acts as the quantum Order Finding engine. It prepares a target state in $|1\rangle$ (which is a superposition of the eigenstates of the modular multiplication operator $U_a|y\rangle = |ay \bmod N\rangle$) and measures the phase $\theta \approx s/r$, exposing the period $r$.
-    *   **Module**: [`src/algorithms/shor.py`](../../../src/algorithms/shor.py)
-    *   **Shor Specification**: [`docs/system/specs/08-shor_algorithm.md`](../../system/specs/08-shor_algorithm.md)
-*   **Planned standalone module**: An interactive, standalone Jupyter Notebook exploring QPE in isolation is scheduled under Month 6: Advanced Algorithms II of the project roadmap.
-    *   **Roadmap**: [`docs/roadmap/quantum-dev-roadmap.md`](../../roadmap/quantum-dev-roadmap.md)
+## Standalone QPE Implementation Details
+
+The algorithm is fully implemented in [qpe.py](file:///c:/Antigravity/quantum-computing-study/src/algorithms/qpe.py) as a first-class, standalone, tested Python module.
+
+### Core API Functions
+
+*   `create_qpe_circuit(phi: float, n_counting: int) -> QuantumCircuit`
+    *   Constructs the full QPE circuit (counting register size `n_counting` and 1 target qubit).
+    *   Prepares the target qubit in the $|1\rangle$ eigenstate using an $X$ gate.
+    *   Applies Hadamards on counting qubits to create an equal superposition.
+    *   Applies controlled-$U^{2^j}$ operations on target, where the unitary is the phase rotation gate $U = P(2\pi\phi)$.
+    *   Applies the modern inverse Fourier Transform: `QFTGate(n_counting).inverse()`.
+    *   Appends measurements to the counting register.
+*   `run_simulation(qc: QuantumCircuit, shots: int = 2048) -> Optional[Dict[str, int]]`
+    *   Simulates the compiled circuit using modern Qiskit Aer `AerSimulator` and the high-fidelity `SamplerV2` primitive.
+*   `solve_qpe(counts: Dict[str, int], n_counting: int) -> Tuple[float, str]`
+    *   Interprets the measurement counts to decode the estimated phase $\phi_{est}$.
+    *   Finds the most frequent bitstring, reverses or handles ordering, and decodes it: $\phi_{est} = \frac{\text{int}(b, 2)}{2^{n_{counting}}}$.
+
+---
+
+## Shor's Algorithm Integration
+
+Beyond the standalone module, QPE acts as the quantum Order Finding engine in [shor.py](file:///c:/Antigravity/quantum-computing-study/src/algorithms/shor.py). It prepares a target state in $|1\rangle$ (which is a superposition of the eigenstates of the modular multiplication operator $U_a|y\rangle = |ay \bmod N\rangle$) and measures the phase $\theta \approx s/r$, exposing the period $r$.
+
+*   **Shor Module**: [`src/algorithms/shor.py`](../../../src/algorithms/shor.py)
+*   **Shor Specification**: [`docs/system/specs/08-shor_algorithm.md`](../../system/specs/08-shor_algorithm.md)
+
+---
+
+## Usage Example
+
+```python
+from src.algorithms.qpe import create_qpe_circuit, run_simulation, solve_qpe
+
+# 1. Define real phase to estimate (e.g. 0.25 -> 1/4)
+real_phi = 0.25
+n_counting = 3  # QPE will be exact with 3 counting qubits
+
+# 2. Build circuit
+qc = create_qpe_circuit(real_phi, n_counting)
+
+# 3. Simulate locally
+counts = run_simulation(qc)
+
+# 4. Decode the phase
+est_phi, bin_str = solve_qpe(counts, n_counting)
+print(f"Measured bitstring: |{bin_str}>")
+print(f"Estimated phase: {est_phi:.5f} (Real phase: {real_phi:.5f})")
+# Output: Measured bitstring: |010> and Estimated phase: 0.25000!
+```
+
+---
+
+## Verification & Automated Tests
+
+A comprehensive unit test suite is implemented in [test_qpe.py](file:///c:/Antigravity/quantum-computing-study/tests/test_qpe.py) verifying the mathematical correctness and physical success criteria:
+*   `test_qpe_circuit_dimensions`: Ensures the circuit has exactly $t+1$ qubits and $t$ classical bits.
+*   `test_exact_phase_estimation`: Validates that binary exact phases ($\phi \in \{0.5, 0.25, 0.125, 0.75\}$) are estimated with 100% precision.
+*   `test_approximate_phase_estimation`: Validates that general irrational phases (e.g., $\phi = 1/3 \approx 0.33333$) successfully converge to the nearest binary fractions with bounded error ($\le \frac{1}{2^t}$).
+

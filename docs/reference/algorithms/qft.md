@@ -40,36 +40,38 @@ For each qubit $i$ from $1$ to $n$:
 
 ---
 
-## Qiskit v2.x Implementation
+## Qiskit v2.x & 3.0 Modern Implementation
 
-In Qiskit 2.x, the QFT is standard and can be constructed easily using the `QFT` class inside the `qiskit.circuit.library` module.
+In modern Qiskit (2.x / 3.0), the Quantum Fourier Transform is constructed using the `QFTGate` class inside the `qiskit.circuit.library` module.
 
 ### Construction Example
 ```python
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import QFT
+from qiskit.circuit.library import QFTGate
 
 n_qubits = 4
 
 # Create a circuit and append the standard QFT gate
 qc = QuantumCircuit(n_qubits)
-qft_gate = QFT(num_qubits=n_qubits, inverse=False, do_swaps=True).to_gate()
+qft_gate = QFTGate(num_qubits=n_qubits)
 qc.append(qft_gate, range(n_qubits))
 
 print(qc.draw())
 ```
 
 ### Inverse QFT (IQFT)
-To reverse the QFT (which is necessary in Shor's algorithm and QPE to map phase values back to the computational basis), set `inverse=True`:
+To reverse the QFT (which is necessary in Shor's algorithm and QPE to map phase values back to the computational basis), call the `.inverse()` method of the `QFTGate` instance:
 ```python
-iqft_gate = QFT(num_qubits=n_qubits, inverse=True, do_swaps=True).to_gate(label="IQFT")
+from qiskit.circuit.library import QFTGate
+
+iqft_gate = QFTGate(num_qubits=n_qubits).inverse()
 ```
 
 ---
 
 ## Implementation & Usage in this Project
-*   **Integrated Usage**: The Inverse QFT is a core module inside our Shor's Algorithm implementation to retrieve the period $r$.
-    *   **Module**: [`src/algorithms/shor.py`](../../../src/algorithms/shor.py)
+*   **Integrated Usage**: The Inverse QFT is a core building block inside our Shor's Algorithm implementation to retrieve the period $r$, and in QPE to decode the phase $\phi$.
+    *   **Shor Module**: [`src/algorithms/shor.py`](../../../src/algorithms/shor.py)
+    *   **QPE Module**: [`src/algorithms/qpe.py`](../../../src/algorithms/qpe.py)
     *   **Specification**: [`docs/system/specs/08-shor_algorithm.md`](../../system/specs/08-shor_algorithm.md)
-*   **Planned Deliverable**: A standalone interactive QFT notebook is scheduled under Month 6: Advanced Algorithms II of the project roadmap.
-    *   **Roadmap Details**: [`docs/roadmap/quantum-dev-roadmap.md`](../../roadmap/quantum-dev-roadmap.md)
+

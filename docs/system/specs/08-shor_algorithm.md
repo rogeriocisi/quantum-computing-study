@@ -104,7 +104,7 @@ $$\frac{1}{\sqrt{r}} \sum_{s=0}^{r-1}
 Applying IQFT to the counting register maps each inner sum to $|\tilde{\phi}_s\rangle$, a
 binary approximation of $s/r$. Measurement collapses to a single integer $m \approx 2^n \cdot s/r$.
 
-Use `QFT(n_count, inverse=True)` from `qiskit.circuit.library`.
+Use `QFTGate(n_count).inverse()` from `qiskit.circuit.library`.
 
 ## 6. Implementation Guidelines
 
@@ -137,7 +137,7 @@ solve_shor(counts: dict[str, int], a: int, N: int) -> int | None
 import math
 from fractions import Fraction
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
-from qiskit.circuit.library import QFT
+from qiskit.circuit.library import QFTGate
 from qiskit_aer.primitives import SamplerV2
 
 
@@ -161,10 +161,12 @@ def create_shor_circuit(a: int, N: int) -> QuantumCircuit:
         qc.append(c_u, [count_reg[i]] + list(target_reg))
 
     # Inverse QFT on counting register
-    qc.append(QFT(n_count, inverse=True).to_gate(label="IQFT"), count_reg)
+    iqft_gate = QFTGate(n_count).inverse()
+    qc.append(iqft_gate, count_reg)
 
     qc.measure(count_reg, class_reg)
     return qc
+```
 
 
 def run_simulation(qc: QuantumCircuit) -> dict[str, int]:

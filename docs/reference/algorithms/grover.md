@@ -55,7 +55,55 @@ graph TD
 
 ---
 
-## Technical Project Details
-*   **Grover Roadmap**: Standalone implementation of Grover's search, including query-based oracles and automatic diffuser construction, is planned for Month 6 of the study curriculum.
-    *   **Roadmap Details**: [`docs/roadmap/quantum-dev-roadmap.md`](../../roadmap/quantum-dev-roadmap.md)
-*   **Relation to Shor's**: Along with Shor's algorithm, Grover's search represents the twin pillar of core quantum speedups featured in the IBM certification syllabus.
+## Implementation Details & API Reference
+
+The algorithm is fully implemented in [grover.py](file:///c:/Antigravity/quantum-computing-study/src/algorithms/grover.py) as a first-class, standalone, tested Python module.
+
+### Core API Functions
+
+*   `build_grover_oracle(target: str) -> QuantumCircuit`
+    *   Constructs a phase oracle for a specific binary target string (e.g. `"101"`).
+    *   Applies a multi-controlled $Z$ phase flip dynamically. To align with Qiskit's little-endian bit ordering convention, the target string is reversed. For qubits where the target bit is `'0'`, $X$ gates are applied before and after the controlled $Z$ gate to selectively invert only the target state's phase.
+*   `build_grover_diffuser(n_qubits: int) -> QuantumCircuit`
+    *   Constructs the standard $n$-qubit amplitude amplification operator (diffuser): $H^{\otimes n} (2|0\rangle\langle 0| - I) H^{\otimes n}$.
+    *   Utilizes a multi-controlled $Z$ phase flip on the zero state.
+*   `optimal_iterations(n_qubits: int) -> int`
+    *   Calculates the mathematically optimal number of query iterations: $R = \lfloor \frac{\pi}{4}\sqrt{2^n} \rfloor$.
+*   `create_grover_circuit(target: str, iterations: Optional[int] = None) -> QuantumCircuit`
+    *   Orchestrates the entire Grover search circuit. Prepares the equal superposition, runs the oracle and diffuser pair $R$ times, and appends measurements to all qubits.
+*   `run_simulation(qc: QuantumCircuit, shots: int = 1024) -> Optional[Dict[str, int]]`
+    *   Simulates the compiled circuit using modern Qiskit Aer `AerSimulator` and the high-fidelity `SamplerV2` primitive.
+
+---
+
+## Usage Example
+
+```python
+from src.algorithms.grover import create_grover_circuit, run_simulation, optimal_iterations
+
+# 1. Define target search state
+target_state = "101"
+n = len(target_state)
+
+# 2. Compute optimal number of iterations (R = 2 for 3 qubits)
+r = optimal_iterations(n)
+
+# 3. Create full circuit
+qc = create_grover_circuit(target_state, r)
+
+# 4. Simulate locally
+counts = run_simulation(qc)
+print("Measured counts:", counts)
+# Output will show '101' with >90% success probability!
+```
+
+---
+
+## Verification & Automated Tests
+
+A comprehensive unit test suite is implemented in [test_grover.py](file:///c:/Antigravity/quantum-computing-study/tests/test_grover.py) verifying the mathematical correctness and physical success criteria:
+*   `test_optimal_iterations`: Verifies the theoretical iterations calculator for $n \in \{1, 2, 3, 4\}$.
+*   `test_oracle_structure` & `test_diffuser_structure`: Asserts exact qubit bounds and register names.
+*   `test_end_to_end_2_qubits`: Simulates searches for all 4 states (`"00"`, `"01"`, `"10"`, `"11"`) confirming success rates $\ge 98\%$.
+*   `test_end_to_end_3_qubits` & `test_end_to_end_4_qubits`: Validates target state searches (e.g. `"101"`, `"1100"`) confirming success rates $\ge 90\%$.
+
