@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>From Classical Code to Quantum Circuits | Quantum Computing Study</title>
-<meta name="description" content="Why a software engineer would move from classical to quantum computing, how to go about it, and where the field meets AI, illustrated by the quantum-computing-study repository.">
+<meta name="description" content="Does it make sense for a software engineer to move to quantum computing? The case for, the case against, what the move takes, and where the field meets AI, illustrated by the quantum-computing-study repository.">
 <meta property="og:title" content="From Classical Code to Quantum Circuits">
-<meta property="og:description" content="Why a software engineer would move from classical to quantum computing, how to go about it, and where the field meets AI.">
+<meta property="og:description" content="Does it make sense for a software engineer to move to quantum computing? The case for, the case against, what the move takes, and where the field meets AI.">
 <meta property="og:type" content="article">
 <style>
 :root {
@@ -212,21 +212,25 @@ footer p { margin-bottom: 8px; }
 <header class="hero">
   <p class="kicker">Project notes</p>
   <h1>From Classical Code to Quantum Circuits</h1>
-  <p class="dek">Why a software engineer would move from classical to quantum computing, how to go about it, and where the field meets AI.</p>
-  <p class="byline">Rogerio Cisi · November 2026 · 11 min read</p>
+  <p class="dek">Does it make sense for a software engineer to move to quantum computing? The case for, the case against, what the move takes, and where the field meets AI.</p>
+  <p class="byline">Rogerio Cisi · November 2026 · 14 min read</p>
 </header>
 
-<p>Three questions come up whenever a working programmer looks at quantum computing. Is it worth the effort for someone who is not a physicist? If so, what is a realistic way in? And how does it relate to the other field reshaping software, artificial intelligence? This article takes them in turn, and uses a public study repository, <a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a>, as the worked example.</p>
+<p>A working programmer who looks at quantum computing sooner or later asks one question: does it make sense for me to move into this field? The reasons to hesitate are easy to list. The subject rests on physics most engineers never studied, the hardware is still noisy, and nobody can say when it will pay off commercially. The reasons to go ahead are less visible from outside: much of what remains to be built is software, and getting started costs a laptop and some hours a week.</p>
+
+<p>This article argues for a qualified yes. The move makes sense as a part-time investment made alongside a current job, and much less sense as an abrupt career switch that depends on the hardware arriving on schedule. The sections below weigh the case for and the case against, look at what the move takes in practice, and relate it to artificial intelligence, the other field reshaping software. A public study repository, <a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a>, is the worked example throughout.</p>
 
 <ul class="toc" aria-label="In this article">
-  <li><a href="#why"><span>1</span>Why make the move</a></li>
-  <li><a href="#how"><span>2</span>How to make it</a></li>
-  <li><a href="#ai"><span>3</span>Where quantum meets AI</a></li>
+  <li><a href="#for"><span>1</span>The case for</a></li>
+  <li><a href="#against"><span>2</span>The case against</a></li>
+  <li><a href="#how"><span>3</span>What the move takes</a></li>
+  <li><a href="#ai"><span>4</span>Where quantum meets AI</a></li>
+  <li><a href="#verdict"><span>5</span>The verdict</a></li>
 </ul>
 
-<h2 id="why">Why make the move</h2>
+<h2 id="for">The case for</h2>
 
-<p>A quantum computer is not a faster classical computer. It is a different model of computation, in which a register of qubits holds a vector of complex amplitudes, gates rotate that vector, and a measurement samples from it. For most everyday workloads this offers nothing. For a small set of problems it changes what is feasible, and that set is the first reason to pay attention.</p>
+<p>A quantum computer is not a faster classical computer. It is a different model of computation, in which a register of qubits holds a vector of complex amplitudes, gates rotate that vector, and a measurement samples from it. For most everyday workloads this offers nothing. For a small set of problems it changes what is feasible, and that set is the first argument for the move.</p>
 
 <p><strong>The problems are specific and valuable.</strong> Shor's algorithm factors integers in polynomial time, where the best known classical methods take super-polynomial time. Grover's algorithm searches an unstructured space with quadratically fewer queries. Simulating molecules and materials, which are quantum systems to begin with, is the application the field was first proposed for. None of these is a general speed-up, and knowing exactly where the advantage comes from is most of what there is to learn.</p>
 
@@ -236,13 +240,25 @@ footer p { margin-bottom: 8px; }
 
 <p><strong>The cost of entry is low.</strong> No laboratory is required. A statevector simulator on a laptop handles circuits of twenty-odd qubits, which is enough for every textbook algorithm; memory doubles with each added qubit and reaches about 16 GB at thirty. Cloud providers offer access to real devices, some of it free.</p>
 
+<h2 id="against">The case against</h2>
+
+<p>The arguments on the other side are just as concrete, and an honest answer has to give them the same weight.</p>
+
+<p><strong>The payoff has no date.</strong> Today's devices are noisy, and no one has yet shown a quantum computer beating classical methods on a commercially useful problem. When that will happen is uncertain, so a career plan that needs it to happen by a given year is a bet on a timeline nobody can state.</p>
+
+<p><strong>The advantage is narrow.</strong> Most software will never run on a quantum computer, because most problems have no known quantum speed-up. Some speed-ups proposed for machine learning have since been matched by new classical algorithms, as <a href="#ai">discussed below</a>. An engineer who expects quantum computing to accelerate the systems they already build will be disappointed.</p>
+
+<p><strong>The dedicated job market is small.</strong> Positions for quantum software developers are few next to the classical market, and many are written for people with a research background in physics or a neighboring field. Software engineering skills are useful in those roles, but they are seldom the only thing asked for.</p>
+
+<p><strong>The learning takes real time.</strong> The mathematics is manageable, but the model runs against habits built over years of classical programming, and absorbing it takes months of steady work. The plan described below budgets twelve months of part-time study. Those hours have an opportunity cost, since the same time spent on machine learning or on a current specialty meets clearer demand today.</p>
+
 <div class="note">
-  <p><strong>The honest counterweight.</strong> Today's devices are noisy, and no one has yet shown a quantum computer beating classical methods on a commercially useful problem. When that will happen is uncertain. The case for learning now is that the model takes time to absorb, the tools are mature enough to learn on, and the knowledge pays off in adjacent work such as cryptography, simulation and optimization even before the hardware arrives.</p>
+  <p><strong>What the objections leave standing.</strong> These are arguments against depending on quantum computing too early. They leave the case for learning it largely intact: the model takes time to absorb, the tools are mature enough to learn on, and the knowledge pays off in adjacent work such as cryptography, simulation and optimization even before the hardware arrives.</p>
 </div>
 
-<h2 id="how">How to make the move</h2>
+<h2 id="how">What the move takes</h2>
 
-<p>The path below is the one the repository follows: a 12-month plan at six to ten hours a week, ordered so that each step depends only on the ones before it.</p>
+<p>Whether the move makes sense also depends on what it costs. The path below is the one the repository follows: a 12-month plan at six to ten hours a week, ordered so that each step depends only on the ones before it.</p>
 
 <ol class="steps">
   <li><strong>Start with linear algebra, not physics.</strong> Complex vectors, inner products, unitary matrices, tensor products and eigenvalues are the whole prerequisite. A qubit is a unit vector with two complex entries, a gate is a unitary matrix, and <em>n</em> qubits live in a space of 2<sup><em>n</em></sup> dimensions. Anyone who has worked with machine-learning code has seen most of this already.</li>
@@ -283,7 +299,7 @@ footer p { margin-bottom: 8px; }
 
 <h2 id="repo">The roadmap in practice</h2>
 
-<p><a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a> is two things in one repository. It is a 12-month, part-time study plan (six to ten hours a week) for moving from classical software engineering to quantum development, aimed at IBM's <em>Certified Associate Developer – Quantum Computation using Qiskit v2.X</em> exam (C1000-179). And it is the laboratory where that plan is carried out: each algorithm on the syllabus is written from scratch in Python, documented, and put under test.</p>
+<p><a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a> is two things in one repository. It is a 12-month, part-time study plan (six to ten hours a week) for moving from classical software engineering to quantum development, aimed at IBM's <em>Certified Associate Developer – Quantum Computation using Qiskit v2.X</em> exam (C1000-179). And it is the laboratory where that plan is carried out: each algorithm on the syllabus is written from scratch in Python, documented, and put under test. For the question this article asks, it is also evidence of how far that kind of part-time study gets.</p>
 
 <p>The premise is that reading about a quantum algorithm and being able to build it are different skills. A circuit that returns the right bitstring in a simulator, with a test that fails when it stops doing so, is a stricter check on understanding than a page of notes.</p>
 
@@ -362,7 +378,7 @@ footer p { margin-bottom: 8px; }
 
 <h2 id="ai">Where quantum computing meets AI</h2>
 
-<p>The two fields are connected in three ways, and they are worth keeping apart because their maturity differs a great deal.</p>
+<p>Artificial intelligence is the obvious alternative use of the same study hours, so how the two fields relate matters to the decision. They are connected in three ways, and these are worth keeping apart because their maturity differs a great deal.</p>
 
 <h3>Quantum circuits as machine-learning models</h3>
 
@@ -378,7 +394,7 @@ footer p { margin-bottom: 8px; }
 
 <h3>Shared foundations</h3>
 
-<p>Both fields are applied linear algebra in very high-dimensional spaces, both lean on gradient-based optimization, and both run on the same hardware: simulating a circuit is a sequence of matrix operations that a GPU accelerates in the same way it accelerates a neural network. Someone arriving from machine learning will find the variational half of quantum computing familiar. Someone arriving from software engineering will find it is the part where both worlds use one workflow.</p>
+<p>Both fields are applied linear algebra in very high-dimensional spaces, both lean on gradient-based optimization, and both run on the same hardware: simulating a circuit is a sequence of matrix operations that a GPU accelerates in the same way it accelerates a neural network. Someone arriving from machine learning will find the variational half of quantum computing familiar. Someone arriving from software engineering will find it is the part where both worlds use one workflow. For the decision at hand, that overlap lowers the stakes, because the linear algebra and optimization learned for one field are reused in the other.</p>
 
 <h3>In this repository</h3>
 
@@ -386,7 +402,35 @@ footer p { margin-bottom: 8px; }
 
 <p>AI also shaped how the repository is built. Its process documents are written to be read by an AI coding assistant as well as by a person: a specification comes first, the implementation must follow it, and every module needs tests that check mathematical correctness in simulation. In a field where a plausible-looking circuit can be quietly wrong, a test that compares measured counts with the value theory predicts is the check that matters, whoever wrote the code.</p>
 
-<h2>What comes next</h2>
+<h2 id="verdict">So, does it make sense?</h2>
+
+<p>It depends on what the move is expected to deliver, and by when. Setting the two cases against each other gives a rough test:</p>
+
+<div class="split">
+  <div>
+    <h3>It makes sense when</h3>
+    <ul>
+      <li>You can give it six to ten hours a week for about a year without leaving your current work.</li>
+      <li>Linear algebra is familiar, or you are willing to make it so.</li>
+      <li>Your work touches cryptography, simulation, optimization or machine learning, where the knowledge is useful already.</li>
+      <li>The software around the hardware interests you: compilers, runtimes, error mitigation, tooling.</li>
+      <li>Not knowing when the hardware will be ready is acceptable to you.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>It makes less sense when</h3>
+    <ul>
+      <li>The effort has to pay off in a new job within a year or two.</li>
+      <li>You expect it to speed up the software you already write.</li>
+      <li>You want to learn an SDK and skip the mathematics.</li>
+      <li>The plan is to leave a stable position, counting on useful hardware by a given date.</li>
+    </ul>
+  </div>
+</div>
+
+<p>For an engineer who fits the first list, the move is a reasonable bet. The cost is hours and a laptop, the engineering habits carry over, and the knowledge is already useful wherever post-quantum cryptography, simulation or optimization come up. What does not hold up is the abrupt version of the move, made on the expectation that the hardware will arrive on a schedule. The repository takes the first route: a part-time plan with tests at every step, which can stop at any phase and still leave something usable.</p>
+
+<h2>What comes next in the repository</h2>
 
 <ul class="plain">
   <li><strong>Quantum machine learning</strong> (months 4–5): variational circuits trained with PennyLane and compared against a classical baseline.</li>
