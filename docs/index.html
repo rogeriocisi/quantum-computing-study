@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>From Classical Code to Quantum Circuits | Quantum Computing Study</title>
-<meta name="description" content="A short article on the quantum-computing-study repository: a 12-month roadmap from software engineering to quantum development, with ten algorithms implemented and tested in Qiskit 2.x.">
+<meta name="description" content="Why a software engineer would move from classical to quantum computing, how to go about it, and where the field meets AI, illustrated by the quantum-computing-study repository.">
 <meta property="og:title" content="From Classical Code to Quantum Circuits">
-<meta property="og:description" content="What a software engineer's quantum study repository contains, what its simulations actually measure, and where it goes next.">
+<meta property="og:description" content="Why a software engineer would move from classical to quantum computing, how to go about it, and where the field meets AI.">
 <meta property="og:type" content="article">
 <style>
 :root {
@@ -135,6 +135,57 @@ figcaption { font-size: 14px; color: var(--muted); margin-top: 12px; }
 ul.plain { padding-left: 1.2em; margin: 0 0 18px; }
 ul.plain li { margin-bottom: 8px; }
 
+h3 {
+  font-family: var(--sans); font-weight: 600; font-size: 1.08rem;
+  line-height: 1.35; margin: 30px 0 8px;
+}
+.toc {
+  display: flex; flex-wrap: wrap; gap: 8px 10px;
+  margin: 26px 0 34px; padding: 0; list-style: none;
+}
+.toc a {
+  display: block; text-decoration: none; font-size: 14.5px; font-weight: 500;
+  border: 1px solid var(--rule); background: var(--surface);
+  border-radius: 999px; padding: 7px 14px;
+}
+.toc a:hover { border-color: var(--accent); }
+.toc a span { font-family: var(--mono); color: var(--cyan); margin-right: 6px; }
+
+ol.steps { padding-left: 0; margin: 20px 0 22px; list-style: none; counter-reset: step; }
+ol.steps li {
+  counter-increment: step; position: relative;
+  padding: 0 0 16px 46px; margin: 0;
+}
+ol.steps li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: 1px;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 14px; font-weight: 500;
+  color: var(--accent); background: var(--accent-soft);
+}
+
+.split {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px; margin: 22px 0 24px;
+}
+.split > div {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 16px 18px 6px;
+}
+.split h3 {
+  margin: 0 0 10px; font-family: var(--mono); font-size: 12px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+}
+.split ul { padding-left: 1.1em; margin: 0 0 10px; font-size: 15.5px; }
+.split li { margin-bottom: 8px; }
+
+ol.refs { padding-left: 1.4em; margin: 0 0 18px; font-size: 14.5px; color: var(--muted); }
+ol.refs li { margin-bottom: 8px; }
+sup { line-height: 0; }
+sup a { text-decoration: none; font-size: 0.85em; padding: 0 1px; }
+h2[id] { scroll-margin-top: 16px; }
+
 footer {
   border-top: 1px solid var(--rule); margin-top: 56px;
   padding: 26px 0 48px; font-size: 14px; color: var(--muted);
@@ -161,9 +212,76 @@ footer p { margin-bottom: 8px; }
 <header class="hero">
   <p class="kicker">Project notes</p>
   <h1>From Classical Code to Quantum Circuits</h1>
-  <p class="dek">What a software engineer's quantum study repository contains, what its simulations actually measure, and where it goes next.</p>
-  <p class="byline">Rogerio Cisi · November 2026 · 5 min read</p>
+  <p class="dek">Why a software engineer would move from classical to quantum computing, how to go about it, and where the field meets AI.</p>
+  <p class="byline">Rogerio Cisi · November 2026 · 11 min read</p>
 </header>
+
+<p>Three questions come up whenever a working programmer looks at quantum computing. Is it worth the effort for someone who is not a physicist? If so, what is a realistic way in? And how does it relate to the other field reshaping software, artificial intelligence? This article takes them in turn, and uses a public study repository, <a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a>, as the worked example.</p>
+
+<ul class="toc" aria-label="In this article">
+  <li><a href="#why"><span>1</span>Why make the move</a></li>
+  <li><a href="#how"><span>2</span>How to make it</a></li>
+  <li><a href="#ai"><span>3</span>Where quantum meets AI</a></li>
+</ul>
+
+<h2 id="why">Why make the move</h2>
+
+<p>A quantum computer is not a faster classical computer. It is a different model of computation, in which a register of qubits holds a vector of complex amplitudes, gates rotate that vector, and a measurement samples from it. For most everyday workloads this offers nothing. For a small set of problems it changes what is feasible, and that set is the first reason to pay attention.</p>
+
+<p><strong>The problems are specific and valuable.</strong> Shor's algorithm factors integers in polynomial time, where the best known classical methods take super-polynomial time. Grover's algorithm searches an unstructured space with quadratically fewer queries. Simulating molecules and materials, which are quantum systems to begin with, is the application the field was first proposed for. None of these is a general speed-up, and knowing exactly where the advantage comes from is most of what there is to learn.</p>
+
+<p><strong>The security consequences have already arrived.</strong> A large fault-tolerant quantum computer running Shor's algorithm would break RSA and elliptic-curve cryptography. No such machine exists yet, but encrypted data captured today can be stored and decrypted later, so the migration has started: NIST published its first post-quantum cryptography standards in August 2024.<sup><a href="#ref-1">1</a></sup> Engineers will be doing that migration whether or not they ever write a circuit, and it is easier to reason about when you have built the algorithm that motivates it.</p>
+
+<p><strong>Much of the remaining work is software.</strong> Between an algorithm on paper and a result from a device sits a stack that looks familiar: compilers that map circuits onto a chip's connectivity, optimizers that shorten them, runtimes that schedule jobs, layers that mitigate and correct errors, and the orchestration that ties quantum calls to classical code. The main toolkits are open source and written in Python. Testing, API design, performance work and continuous integration are all needed here, and they are skills software engineers already have.</p>
+
+<p><strong>The cost of entry is low.</strong> No laboratory is required. A statevector simulator on a laptop handles circuits of twenty-odd qubits, which is enough for every textbook algorithm; memory doubles with each added qubit and reaches about 16 GB at thirty. Cloud providers offer access to real devices, some of it free.</p>
+
+<div class="note">
+  <p><strong>The honest counterweight.</strong> Today's devices are noisy, and no one has yet shown a quantum computer beating classical methods on a commercially useful problem. When that will happen is uncertain. The case for learning now is that the model takes time to absorb, the tools are mature enough to learn on, and the knowledge pays off in adjacent work such as cryptography, simulation and optimization even before the hardware arrives.</p>
+</div>
+
+<h2 id="how">How to make the move</h2>
+
+<p>The path below is the one the repository follows: a 12-month plan at six to ten hours a week, ordered so that each step depends only on the ones before it.</p>
+
+<ol class="steps">
+  <li><strong>Start with linear algebra, not physics.</strong> Complex vectors, inner products, unitary matrices, tensor products and eigenvalues are the whole prerequisite. A qubit is a unit vector with two complex entries, a gate is a unitary matrix, and <em>n</em> qubits live in a space of 2<sup><em>n</em></sup> dimensions. Anyone who has worked with machine-learning code has seen most of this already.</li>
+  <li><strong>Learn the circuit model on small protocols.</strong> A Bell pair, teleportation, superdense coding and the CHSH game each fit in two or three qubits and each isolate one idea about entanglement and measurement.</li>
+  <li><strong>Work through the canonical algorithms in dependency order.</strong> Deutsch–Jozsa and Bernstein–Vazirani teach oracles and phase kickback. Simon introduces period finding. Grover adds amplitude amplification. The quantum Fourier transform and phase estimation then lead directly to Shor.</li>
+  <li><strong>Implement each one from scratch and test it against theory.</strong> If theory says a search should succeed 94.5% of the time, a test can check that it does.</li>
+  <li><strong>Move to hybrid, variational algorithms.</strong> Here a classical optimizer tunes the parameters of a quantum circuit. This is where quantum computing overlaps with machine learning, covered <a href="#ai">below</a>.</li>
+  <li><strong>Then face noise.</strong> Noise models, error mitigation and runs on real hardware come last, once it is clear what the right answer should have been.</li>
+  <li><strong>Use a certification as a forcing function.</strong> The repository targets IBM's Qiskit developer exam (C1000-179), which gives the plan a syllabus and a deadline.</li>
+</ol>
+
+<p>For materials, the repository's <a href="https://github.com/rogeriocisi/quantum-computing-study/blob/main/docs/roadmap/resources.md">resource guide</a> recommends Thomas Wong's <em>Introduction to Classical and Quantum Computing</em> as a first book, John Watrous's course <em>Understanding Quantum Information and Computation</em> for rigor, the Qiskit documentation for practice, and Nielsen and Chuang as the reference to grow into.</p>
+
+<p>The transition is partly a matter of reusing habits and partly of unlearning assumptions:</p>
+
+<div class="split">
+  <div>
+    <h3>Carries over</h3>
+    <ul>
+      <li>Python and its tooling, since the main SDKs are Python libraries.</li>
+      <li>Testing and continuous integration.</li>
+      <li>Modular design: oracles, diffusers and adders are reusable components.</li>
+      <li>Complexity analysis, which is how quantum advantage is stated.</li>
+      <li>Linear algebra from graphics or machine learning.</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Has to be relearned</h3>
+    <ul>
+      <li>State cannot be copied, and on hardware it cannot be inspected mid-run. There is no print statement.</li>
+      <li>Every gate is reversible, so scratch results must be uncomputed, not discarded.</li>
+      <li>Output is a probability distribution. Tests assert on frequencies within a tolerance, not on single values.</li>
+      <li>An algorithm works by arranging interference so that wrong answers cancel.</li>
+      <li>Conventions bite: Qiskit orders bits little-endian, so strings are reversed when building oracles.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="repo">The roadmap in practice</h2>
 
 <p><a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a> is two things in one repository. It is a 12-month, part-time study plan (six to ten hours a week) for moving from classical software engineering to quantum development, aimed at IBM's <em>Certified Associate Developer – Quantum Computation using Qiskit v2.X</em> exam (C1000-179). And it is the laboratory where that plan is carried out: each algorithm on the syllabus is written from scratch in Python, documented, and put under test.</p>
 
@@ -242,6 +360,32 @@ footer p { margin-bottom: 8px; }
   <p><strong>Not finished yet.</strong> Three modules exist only as skeletons with placeholder logic: the VQE and QAOA optimization workflow, the variational classifier built on PennyLane, and zero-noise extrapolation. They mark where phases four to six will land, and their current outputs are mock values.</p>
 </div>
 
+<h2 id="ai">Where quantum computing meets AI</h2>
+
+<p>The two fields are connected in three ways, and they are worth keeping apart because their maturity differs a great deal.</p>
+
+<h3>Quantum circuits as machine-learning models</h3>
+
+<p>A circuit whose gates take adjustable angles is a parameterized function, and it can be trained like one. The loop is the one every machine-learning engineer knows: run the model, compute a loss, estimate gradients, let a classical optimizer update the parameters, repeat. Gradients can be obtained from the device itself, since for common gates the derivative with respect to an angle follows from two extra runs of the circuit at shifted values.<sup><a href="#ref-2">2</a></sup> Libraries such as <a href="https://pennylane.ai/">PennyLane</a> make a circuit differentiable in the same sense as a neural-network layer and connect it to standard frameworks.</p>
+
+<p>The same pattern, under different names, covers most near-term algorithms. A variational classifier encodes data into rotation angles and trains the remaining gates. The variational quantum eigensolver (VQE) minimizes the energy of a molecule. QAOA does the same for combinatorial problems such as Max-Cut. Quantum kernel methods use a circuit to define a feature space for a classical support-vector machine.<sup><a href="#ref-3">3</a></sup></p>
+
+<p>What this has delivered so far should be stated carefully. There is no demonstrated practical advantage for quantum models on classical data. Training can stall on barren plateaus, where gradients vanish exponentially as circuits grow.<sup><a href="#ref-4">4</a></sup> Loading classical data into a quantum state is itself costly. And some proposed speed-ups have been matched by new classical algorithms inspired by the quantum ones.<sup><a href="#ref-5">5</a></sup> The strongest case remains data that is quantum to begin with, as in chemistry and materials.</p>
+
+<h3>AI as a tool for building quantum computers</h3>
+
+<p>The reverse direction is the one producing results today. Error correction needs a decoder that infers, in real time, which errors occurred from indirect measurements; in 2024 a neural-network decoder outperformed the leading conventional decoders on data from a real processor.<sup><a href="#ref-6">6</a></sup> Reinforcement learning is used to route and shorten circuits during compilation, machine learning helps calibrate and control devices, and code assistants trained on quantum SDKs help write the programs. Making quantum hardware usable is, to a large extent, an optimization and inference problem, which is what current AI is good at.</p>
+
+<h3>Shared foundations</h3>
+
+<p>Both fields are applied linear algebra in very high-dimensional spaces, both lean on gradient-based optimization, and both run on the same hardware: simulating a circuit is a sequence of matrix operations that a GPU accelerates in the same way it accelerates a neural network. Someone arriving from machine learning will find the variational half of quantum computing familiar. Someone arriving from software engineering will find it is the part where both worlds use one workflow.</p>
+
+<h3>In this repository</h3>
+
+<p>Phases four and five of the roadmap are devoted to this overlap: a variational classifier in PennyLane benchmarked against a classical baseline, then QAOA and VQE. As noted above, these modules are skeletons at the time of writing.</p>
+
+<p>AI also shaped how the repository is built. Its process documents are written to be read by an AI coding assistant as well as by a person: a specification comes first, the implementation must follow it, and every module needs tests that check mathematical correctness in simulation. In a field where a plausible-looking circuit can be quietly wrong, a test that compares measured counts with the value theory predicts is the check that matters, whoever wrote the code.</p>
+
 <h2>What comes next</h2>
 
 <ul class="plain">
@@ -256,6 +400,17 @@ footer p { margin-bottom: 8px; }
 <h2>Running it yourself</h2>
 
 <p>Clone the repository, install <code>requirements.txt</code> into a virtual environment, and run <code>python -m pytest</code>. Each algorithm is also runnable as a module, for example <code>python -m src.algorithms.shor</code>. The code is released under the MIT license.</p>
+
+<h2>References</h2>
+
+<ol class="refs">
+  <li id="ref-1">NIST, <a href="https://csrc.nist.gov/pubs/fips/203/final">FIPS 203: Module-Lattice-Based Key-Encapsulation Mechanism Standard</a>, August 2024, published together with FIPS 204 and 205.</li>
+  <li id="ref-2">K. Mitarai, M. Negoro, M. Kitagawa, K. Fujii, <a href="https://doi.org/10.1103/PhysRevA.98.032309">Quantum circuit learning</a>, Physical Review A 98, 032309 (2018).</li>
+  <li id="ref-3">V. Havlíček et al., <a href="https://doi.org/10.1038/s41586-019-0980-2">Supervised learning with quantum-enhanced feature spaces</a>, Nature 567, 209–212 (2019).</li>
+  <li id="ref-4">J. R. McClean et al., <a href="https://doi.org/10.1038/s41467-018-07090-4">Barren plateaus in quantum neural network training landscapes</a>, Nature Communications 9, 4812 (2018).</li>
+  <li id="ref-5">E. Tang, <a href="https://doi.org/10.1145/3313276.3316310">A quantum-inspired classical algorithm for recommendation systems</a>, Proceedings of STOC 2019.</li>
+  <li id="ref-6">J. Bausch et al., <a href="https://doi.org/10.1038/s41586-024-08148-8">Learning high-accuracy error decoding for quantum processors</a>, Nature 635, 834–840 (2024).</li>
+</ol>
 
 </article>
 </main>
