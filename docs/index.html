@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Classical Code to Quantum Circuits | Quantum Computing Study</title>
+<meta name="description" content="A short article on the quantum-computing-study repository: a 12-month roadmap from software engineering to quantum development, with ten algorithms implemented and tested in Qiskit 2.x.">
+<meta property="og:title" content="From Classical Code to Quantum Circuits">
+<meta property="og:description" content="What a software engineer's quantum study repository contains, what its simulations actually measure, and where it goes next.">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1c1b22;
+  --muted: #5f5c6b;
+  --rule: #e4e1ea;
+  --accent: #6a1fc2;
+  --accent-soft: #f1e8fb;
+  --cyan: #007f8a;
+  --bar-classical: #b9b5c4;
+  --bar-measured: #6a1fc2;
+  --bar-bound: #007f8a;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0a14;
+    --surface: #14121f;
+    --text: #e6e3ee;
+    --muted: #a39fb3;
+    --rule: #2a2738;
+    --accent: #b88cf5;
+    --accent-soft: #221a35;
+    --cyan: #4fd8e4;
+    --bar-classical: #55516a;
+    --bar-measured: #b88cf5;
+    --bar-bound: #4fd8e4;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+.wrap { max-width: 740px; margin: 0 auto; padding: 0 20px; }
+
+.topbar {
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+}
+.topbar .wrap {
+  display: flex; flex-wrap: wrap; gap: 6px 20px;
+  justify-content: space-between; align-items: center;
+  padding-top: 14px; padding-bottom: 14px;
+}
+.topbar .brand { font-family: var(--mono); color: var(--muted); letter-spacing: 0.02em; }
+.topbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.topbar nav a { text-decoration: none; }
+.topbar nav a:hover { text-decoration: underline; }
+
+header.hero { padding: 56px 0 28px; }
+.kicker {
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--cyan); margin: 0 0 14px;
+}
+h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12;
+  letter-spacing: -0.01em; margin: 0 0 18px; text-wrap: balance;
+}
+.dek { font-size: 1.15rem; color: var(--muted); margin: 0 0 22px; text-wrap: pretty; }
+.byline { font-size: 14px; color: var(--muted); margin: 0; }
+
+h2 {
+  font-family: var(--serif); font-weight: 600; font-size: 1.55rem;
+  line-height: 1.25; margin: 48px 0 12px;
+}
+p { margin: 0 0 18px; text-wrap: pretty; }
+code {
+  font-family: var(--mono); font-size: 0.88em;
+  background: var(--accent-soft); padding: 0.1em 0.35em; border-radius: 4px;
+}
+
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; margin: 28px 0 8px; padding: 0; list-style: none;
+}
+.stats li {
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 14px 16px;
+}
+.stats b {
+  display: block; font-family: var(--serif); font-size: 1.9rem;
+  line-height: 1.1; color: var(--accent); font-weight: 600;
+}
+.stats span { font-size: 14px; color: var(--muted); }
+
+.table-scroll { overflow-x: auto; margin: 22px 0 10px; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 600px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--rule); }
+tr:last-child td { border-bottom: 0; }
+th {
+  font-family: var(--mono); font-size: 12px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+}
+td:first-child { font-weight: 600; white-space: nowrap; }
+td.num { font-variant-numeric: tabular-nums; }
+
+figure { margin: 30px 0; }
+figcaption { font-size: 14px; color: var(--muted); margin-top: 12px; }
+.bars { display: grid; gap: 12px; }
+.bar-row { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.bar-label { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.bar-label b { font-variant-numeric: tabular-nums; }
+.bar-track { height: 14px; border-radius: 7px; background: var(--rule); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 7px; }
+
+.note {
+  border-left: 3px solid var(--accent); background: var(--accent-soft);
+  padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 24px 0;
+  font-size: 15.5px;
+}
+.note p:last-child { margin-bottom: 0; }
+
+ul.plain { padding-left: 1.2em; margin: 0 0 18px; }
+ul.plain li { margin-bottom: 8px; }
+
+footer {
+  border-top: 1px solid var(--rule); margin-top: 56px;
+  padding: 26px 0 48px; font-size: 14px; color: var(--muted);
+}
+footer p { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="brand">quantum-computing-study</span>
+    <nav aria-label="Project links">
+      <a href="https://github.com/rogeriocisi/quantum-computing-study">Repository</a>
+      <a href="dashboard/">Roadmap dashboard</a>
+      <a href="https://github.com/rogeriocisi/quantum-computing-study/tree/main/docs/reference/algorithms">Algorithm notes</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+<article>
+
+<header class="hero">
+  <p class="kicker">Project notes</p>
+  <h1>From Classical Code to Quantum Circuits</h1>
+  <p class="dek">What a software engineer's quantum study repository contains, what its simulations actually measure, and where it goes next.</p>
+  <p class="byline">Rogerio Cisi · November 2026 · 5 min read</p>
+</header>
+
+<p><a href="https://github.com/rogeriocisi/quantum-computing-study">quantum-computing-study</a> is two things in one repository. It is a 12-month, part-time study plan (six to ten hours a week) for moving from classical software engineering to quantum development, aimed at IBM's <em>Certified Associate Developer – Quantum Computation using Qiskit v2.X</em> exam (C1000-179). And it is the laboratory where that plan is carried out: each algorithm on the syllabus is written from scratch in Python, documented, and put under test.</p>
+
+<p>The premise is that reading about a quantum algorithm and being able to build it are different skills. A circuit that returns the right bitstring in a simulator, with a test that fails when it stops doing so, is a stricter check on understanding than a page of notes.</p>
+
+<ul class="stats" aria-label="Repository at a glance">
+  <li><b>10</b><span>working algorithm implementations</span></li>
+  <li><b>125</b><span>passing tests in 11 test modules</span></li>
+  <li><b>10</b><span>written module specifications</span></li>
+  <li><b>3 of 7</b><span>roadmap phases implemented</span></li>
+</ul>
+
+<h2>What is implemented</h2>
+
+<p>The first three phases of the roadmap cover foundations, query algorithms, and the phase-estimation family that ends in Shor's algorithm. All of them run on the local <a href="https://github.com/Qiskit/qiskit-aer">Qiskit Aer</a> simulator through the <code>SamplerV2</code> primitive. The table lists each one with the result of running its demo.</p>
+
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr><th>Algorithm</th><th>What it shows</th><th>Measured in simulation</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Teleportation</td><td>Moving a qubit state with one entangled pair and two classical bits</td><td class="num">State recovered in 1,024 of 1,024 shots</td></tr>
+    <tr><td>Superdense coding</td><td>Two classical bits carried by one transmitted qubit</td><td class="num">All four messages decoded, 1,024 of 1,024 each</td></tr>
+    <tr><td>CHSH game</td><td>Entanglement beating the best classical strategy</td><td class="num">84.6% wins over 4,000 rounds (classical limit 75%)</td></tr>
+    <tr><td>Deutsch–Jozsa</td><td>Constant vs. balanced function in one query</td><td class="num">Correct classification in a single query</td></tr>
+    <tr><td>Bernstein–Vazirani</td><td>A hidden bitstring read out in one query</td><td class="num">Secret <code>1101</code> recovered in one query</td></tr>
+    <tr><td>Simon</td><td>Hidden period from a linear system over GF(2)</td><td class="num">Secrets <code>11</code> and <code>101</code> recovered</td></tr>
+    <tr><td>Grover</td><td>Amplitude amplification on an unstructured search</td><td class="num">Target <code>101</code> found in 94.6% of shots after 2 iterations</td></tr>
+    <tr><td>Phase estimation</td><td>Reading an eigenphase into a register via the inverse QFT</td><td class="num">1/2, 1/4, 3/4 exact; 1/3 estimated as 11/32 with 5 qubits</td></tr>
+    <tr><td>Shor</td><td>Factoring by order finding</td><td class="num">15 factored with every valid base, on 12 qubits</td></tr>
+    <tr><td>VBE adder</td><td>Reversible ripple-carry addition (Vedral, Barenco, Ekert, 1996)</td><td class="num">4-bit sums correct, carry ancillas returned to zero</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>These numbers agree with theory, which is the point of measuring them. Grover's success probability on three qubits after two iterations is predicted to be 94.5%. Phase estimation of 1/3 with five counting qubits should land on 11/32 about 68% of the time, and it did so in 68.4% of shots. The CHSH result sits just under the quantum ceiling:</p>
+
+<figure>
+  <div class="bars" role="img" aria-label="CHSH game win rate: classical limit 75 percent, measured 84.6 percent, quantum limit 85.4 percent">
+    <div class="bar-row">
+      <div class="bar-label"><span>Best classical strategy</span><b>75.0%</b></div>
+      <div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--bar-classical)"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span>Measured, 4,000 simulated rounds</span><b>84.6%</b></div>
+      <div class="bar-track"><div class="bar-fill" style="width:84.6%;background:var(--bar-measured)"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label"><span>Quantum limit, cos²(π/8)</span><b>85.4%</b></div>
+      <div class="bar-track"><div class="bar-fill" style="width:85.4%;background:var(--bar-bound)"></div></div>
+    </div>
+  </div>
+  <figcaption>CHSH game win rate. Alice and Bob share a Bell pair and measure at angles chosen from their input bits; no classical strategy can win more than three rounds in four.</figcaption>
+</figure>
+
+<h2>Two pieces worth a closer look</h2>
+
+<p><strong>Shor's algorithm.</strong> The implementation follows the textbook structure: cheap classical checks first, then a phase-estimation circuit with an eight-qubit counting register and a four-qubit work register, then continued fractions to turn the measured phase into the order <em>r</em>, and finally a greatest-common-divisor step to extract a factor. For 15, every base from 2, 4, 7, 8, 11 and 13 yields 3 or 5, and the test suite also factors 21.</p>
+
+<p>One shortcut is deliberate and should be read as such. The controlled modular multiplication is built as a permutation matrix handed to Qiskit as a unitary, not as a gate-level arithmetic circuit. That is fine for validating the algorithm on a simulator, but the matrix grows exponentially with the size of the number, so it is not how the algorithm would be run at scale.</p>
+
+<p><strong>The VBE adder</strong> is the other half of that story. It builds addition out of CARRY and SUM blocks made only of Toffoli and CNOT gates, uses 3<em>n</em> + 1 qubits for <em>n</em>-bit operands, and runs a backward pass that uncomputes the carry ancillas so they finish in the state they started in. It has the heaviest test coverage in the repository, including a check that the inverse CARRY block is the exact reverse of the forward one. Reversible arithmetic of this kind is the building block a gate-level modular exponentiation would need.</p>
+
+<h2>Engineering habits carried over</h2>
+
+<p>The repository treats quantum code as ordinary software. Each module starts as a short specification in <code>docs/system/specs/</code>, is implemented in <code>src/</code>, and gets a matching test file. Functions carry type hints and docstrings. Code is formatted with Black and linted with Flake8, and a GitHub Actions workflow runs the suite on Ubuntu and Windows across Python 3.10 to 3.12.</p>
+
+<p>Everything targets the Qiskit 2.x API. Circuits are transpiled and executed through <code>SamplerV2</code>, the same primitive interface IBM's cloud runtime exposes, so switching from the simulator to a real backend is a change of execution target and not a rewrite. A small script, <code>scripts/capstone_demo.py</code>, already does this for a three-qubit GHZ state behind a <code>--cloud</code> flag.</p>
+
+<h2>What simulation does not tell you</h2>
+
+<p>All results above come from a noiseless simulator. On today's hardware, gate errors and decoherence accumulate with circuit depth, and a circuit as deep as Shor's returns mostly noise without error mitigation. The repository is explicit about this and takes a simulator-first approach: establish that the algorithm is correct, then deal with noise as its own subject later in the roadmap.</p>
+
+<div class="note">
+  <p><strong>Not finished yet.</strong> Three modules exist only as skeletons with placeholder logic: the VQE and QAOA optimization workflow, the variational classifier built on PennyLane, and zero-noise extrapolation. They mark where phases four to six will land, and their current outputs are mock values.</p>
+</div>
+
+<h2>What comes next</h2>
+
+<ul class="plain">
+  <li><strong>Quantum machine learning</strong> (months 4–5): variational circuits trained with PennyLane and compared against a classical baseline.</li>
+  <li><strong>Optimization</strong> (months 6–7): QAOA on Max-Cut and VQE on small molecules such as H<sub>2</sub>.</li>
+  <li><strong>Capstone</strong> (months 8–10): a complete hybrid application with realistic noise models, error mitigation, and a run on cloud hardware.</li>
+  <li><strong>Certification</strong> (months 11–12): review, mock exams, and the C1000-179 exam.</li>
+</ul>
+
+<p>The full week-by-week plan is in the <a href="https://github.com/rogeriocisi/quantum-computing-study/blob/main/docs/roadmap/quantum-dev-roadmap.md">roadmap document</a>, and the <a href="dashboard/">dashboard</a> gives a visual summary. Each algorithm also has a <a href="https://github.com/rogeriocisi/quantum-computing-study/tree/main/docs/reference/algorithms">reference note</a> with the mathematics behind the code.</p>
+
+<h2>Running it yourself</h2>
+
+<p>Clone the repository, install <code>requirements.txt</code> into a virtual environment, and run <code>python -m pytest</code>. Each algorithm is also runnable as a module, for example <code>python -m src.algorithms.shor</code>. The code is released under the MIT license.</p>
+
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Figures in this article come from single runs of the repository's demo scripts on the Qiskit Aer simulator (Qiskit 2.4.1, Aer 0.17.2) in November 2026, at commit <code>7c77426</code>. Sampling noise means repeated runs differ slightly. The test count is from a run without PennyLane installed, where three further tests are skipped.</p>
+    <p>© 2026 Rogerio Cisi · <a href="https://github.com/rogeriocisi/quantum-computing-study">github.com/rogeriocisi/quantum-computing-study</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
