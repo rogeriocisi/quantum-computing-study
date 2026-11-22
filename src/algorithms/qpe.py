@@ -114,14 +114,19 @@ def main() -> None:
 
     # Test scenarios: (real phase phi, number of counting qubits)
     scenarios = [
-        (0.5, 3),    # Exact: phi = 0.5 -> 1/2 -> "100" with 3 qubits
-        (0.25, 3),   # Exact: phi = 0.25 -> 1/4 -> "010" with 3 qubits
-        (0.75, 4),   # Exact: phi = 0.75 -> 3/4 -> "1100" with 4 qubits
-        (0.3333, 5)  # Non-exact: 1/3 (fraction) -> converges to nearest binary approximation in 5 qubits (11/32 or 10/32)
+        (0.5, 3),  # Exact: phi = 0.5 -> 1/2 -> "100" with 3 qubits
+        (0.25, 3),  # Exact: phi = 0.25 -> 1/4 -> "010" with 3 qubits
+        (0.75, 4),  # Exact: phi = 0.75 -> 3/4 -> "1100" with 4 qubits
+        (
+            0.3333,
+            5,
+        ),  # Non-exact: 1/3 (fraction) -> converges to nearest binary approximation in 5 qubits (11/32 or 10/32)
     ]
 
     for real_phi, t in scenarios:
-        print(f"\n>> Scenario: Real phase phi = {real_phi:.4f} with t = {t} counting qubits")
+        print(
+            f"\n>> Scenario: Real phase phi = {real_phi:.4f} with t = {t} counting qubits"
+        )
 
         qc = create_qpe_circuit(real_phi, t)
         counts = run_simulation(qc)
@@ -131,7 +136,9 @@ def main() -> None:
             prob = counts[bin_str] / sum(counts.values()) * 100
             error = abs(real_phi - est_phi)
 
-            print(f"   Most probable bitstring: |{bin_str}> (probability = {prob:.2f}%)")
+            print(
+                f"   Most probable bitstring: |{bin_str}> (probability = {prob:.2f}%)"
+            )
             print(f"   Estimated Phase: phi_est = {est_phi:.5f}")
             print(f"   Absolute Error: {error:.5f}")
         else:

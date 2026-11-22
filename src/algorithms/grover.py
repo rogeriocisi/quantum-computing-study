@@ -112,7 +112,9 @@ def optimal_iterations(n_qubits: int) -> int:
     return max(1, int(math.floor(math.pi / 4 * math.sqrt(2**n_qubits))))
 
 
-def create_grover_circuit(target: str, iterations: Optional[int] = None) -> QuantumCircuit:
+def create_grover_circuit(
+    target: str, iterations: Optional[int] = None
+) -> QuantumCircuit:
     """Orchestrates the assembly of the complete Grover's Search algorithm.
 
     Args:

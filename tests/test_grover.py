@@ -64,11 +64,11 @@ class TestGroverSimulation:
             qc = create_grover_circuit(target)
             counts = run_simulation(qc, shots=500)
             assert counts is not None
-            
+
             # Find the most frequent bitstring
             measured = max(counts, key=counts.get)
             assert measured == target
-            
+
             # Theoretical success probability is 100% for 2 qubits (1 iteration)
             success_prob = counts[measured] / sum(counts.values())
             assert success_prob >= 0.98  # allowing tiny statistical noise if any
