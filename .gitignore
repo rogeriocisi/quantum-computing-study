@@ -33,3 +33,6 @@ htmlcov/
 
 # Experimental / Scratch Code (Tracked in Git)
 # src/scratch/ is now tracked
+
+# Claude Code (local, por máquina)
+.claude/settings.local.json
